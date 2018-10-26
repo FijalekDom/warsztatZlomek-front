@@ -3,17 +3,36 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
-import { CompanyComponent } from './company/company.component';
-import { OfferComponent } from './offer/offer.component';
-import { ContactComponent } from './contact/contact.component';
-import {Routes} from '@angular/router';
+import { CompanyComponent } from './home-page/company/company.component';
+import { OfferComponent } from './home-page/offer/offer.component';
+import { ContactComponent } from './home-page/contact/contact.component';
+import { RouterModule, Routes} from '@angular/router';
+import { LoginClientComponent } from './login-client/login-client.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import {ClientAuthGuard} from './client-auth.guard';
+import { AccountComponent } from './account/account.component';
+import { RegisterClientComponent } from './register-client/register-client.component';
 
 const appRoutes: Routes = [
     {
-
+        path: '',
+        component: HomePageComponent
     },
-    {
 
+    {
+        path: 'account',
+        component: AccountComponent,
+        canActivate: [ClientAuthGuard]
+    },
+
+    {
+        path: 'login',
+        component: LoginClientComponent
+    },
+
+    {
+        path: 'register',
+        component: RegisterClientComponent
     }
 ];
 
@@ -23,12 +42,18 @@ const appRoutes: Routes = [
     MenuComponent,
     CompanyComponent,
     OfferComponent,
-    ContactComponent
+    ContactComponent,
+    LoginClientComponent,
+    HomePageComponent,
+    AccountComponent,
+    RegisterClientComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
+
   ],
-  providers: [],
+  providers: [ClientAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
