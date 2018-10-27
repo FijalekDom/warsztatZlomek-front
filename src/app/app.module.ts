@@ -9,9 +9,12 @@ import { ContactComponent } from './home-page/contact/contact.component';
 import { RouterModule, Routes} from '@angular/router';
 import { LoginClientComponent } from './login-client/login-client.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import {ClientAuthGuard} from './client-auth.guard';
+import { ClientAuthGuard} from './client-auth.guard';
 import { AccountComponent } from './account/account.component';
 import { RegisterClientComponent } from './register-client/register-client.component';
+import { ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
+
 
 const appRoutes: Routes = [
     {
@@ -51,7 +54,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [ClientAuthGuard],
   bootstrap: [AppComponent]

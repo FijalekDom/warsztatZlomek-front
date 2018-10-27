@@ -8,3 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'warsztatZlomek-frontend';
 }
+
+export interface LoginModel {
+    username?: string;
+    password?: string;
+}
