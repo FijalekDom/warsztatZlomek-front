@@ -7,6 +7,102 @@
       <div class="col-md-12 backgroundClear">
         <div  id="site-background">
           <h1>Rejestracja</h1>
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <div class="form-group col-md-5">
+                  <label >Imię</label>
+                  <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                  <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                      <div *ngIf="f.firstName.errors.required">Imię jest wymagane</div>
+                  </div>
+              </div>
+
+              <div class="form-group col-md-5">
+                  <label >Nazwisko</label>
+                  <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                  <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                      <div *ngIf="f.lastName.errors.required">Nazwisko jest wymagane</div>
+                  </div>
+              </div>
+
+              <div class="form-group col-md-5">
+                  <label >E-mail</label>
+                  <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                      <div *ngIf="f.email.errors.required">Email jest wymagany</div>
+                  </div>
+              </div>
+
+              <div class="form-group col-md-5">
+                  <label >Numer telefonu</label>
+                  <input type="text" formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
+                  <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+                      <div *ngIf="f.phoneNumber.errors.required">Numer telefonu jest wymagany</div>
+                  </div>
+              </div>
+
+              <div class="form-group col-md-5">
+                  <label >Miasto</label>
+                  <input type="text" formControlName="cityName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cityName.errors }" />
+                  <div *ngIf="submitted && f.cityName.errors" class="invalid-feedback">
+                      <div *ngIf="f.cityName.errors.required">Nazwa miasta jest wymagana</div>
+                  </div>
+              </div>
+
+              <div class="form-group col-md-5">
+                  <label >Ulica</label>
+                  <input type="text" formControlName="streetName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.streetName.errors }" />
+                  <div *ngIf="submitted && f.streetName.errors" class="invalid-feedback">
+                      <div *ngIf="f.streetName.errors.required">Ulica jest wymagana</div>
+                  </div>
+              </div>
+
+              <div class="form-group col-md-5">
+                  <label >Numer budynku</label>
+                  <input type="text" formControlName="buildNum" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.buildNum.errors }" />
+                  <div *ngIf="submitted && f.buildNum.errors" class="invalid-feedback">
+                      <div *ngIf="f.buildNum.errors.required">Numer budynku jest wymagany</div>
+                  </div>
+              </div>
+
+              <div class="form-group col-md-5">
+                  <label >Numer mieszkania</label>
+                  <input type="text" formControlName="aptNum" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.aptNum.errors }" />
+                  <div *ngIf="submitted && f.aptNum.errors" class="invalid-feedback">
+                      <div *ngIf="f.aptNum.errors.required">Numer mieszkania jest wymagany</div>
+                  </div>
+              </div>
+
+              <div class="form-group col-md-5">
+                  <label >Kod pocztowy</label>
+                  <input type="text" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
+                  <div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
+                      <div *ngIf="f.zipCode.errors.required">Kod pocztowy jest wymagany</div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label >Hasło</label>
+                  <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                      <div *ngIf="f.password.errors.required">Hasło jest wymagane</div>
+                      <div *ngIf="f.password.errors.minlength">Hasło musi mieć co najmniej 6 znaków</div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label >Potwierdź hasło</label>
+                  <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                  <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                      <div *ngIf="f.confirmPassword.errors.required">Hasło jest wymagane</div>
+                      <div *ngIf="f.password.errors.minlength">Hasło musi mieć co najmniej 6 znaków</div>
+                  </div>
+              </div>
+
+            <div class="form-group">
+              <button [disabled]="loading" class="btn btn-primary">Zarejestruj sie</button>
+              <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </div>
+          </form>
         </div>
       </div>
     </div>

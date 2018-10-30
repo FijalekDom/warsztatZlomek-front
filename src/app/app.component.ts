@@ -10,6 +10,20 @@ export class AppComponent {
 }
 
 export interface LoginModel {
-    username?: string;
+    email?: string;
     password?: string;
+}
+
+export interface RegisterModel {
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phoneNumber?: string;
+    cityName?: string;
+    streetName?: string;
+    buildNum?: string;
+    aptNum?: string;
+    zipCode?: string;
+    password?: string;
+    confirmPassword?: string;
 }

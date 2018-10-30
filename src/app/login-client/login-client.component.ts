@@ -26,7 +26,7 @@ export class LoginClientComponent implements OnInit {
 
   ngOnInit() {
       this.loginForm = this.formBuilder.group({
-          username: ['', Validators.required],
+          email: ['', Validators.required],
           password: ['', Validators.required]
       });
 
@@ -44,10 +44,10 @@ export class LoginClientComponent implements OnInit {
             return;
         }
 
-        const loginM: LoginModel = ({
-            username: this.f.username.value,
+        const loginM: LoginModel = {
+            email: this.f.email.value,
             password: this.f.password.value
-        });
+        };
 
         this.loading = true;
         this.authService.login(loginM)
