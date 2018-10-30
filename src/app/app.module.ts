@@ -14,6 +14,8 @@ import { AccountComponent } from './account/account.component';
 import { RegisterClientComponent } from './register-client/register-client.component';
 import { ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
+import { MenuAccountComponent } from './menu-account/menu-account.component';
+import { LogoutClientComponent } from './logout-client/logout-client.component';
 
 
 const appRoutes: Routes = [
@@ -36,7 +38,13 @@ const appRoutes: Routes = [
     {
         path: 'register',
         component: RegisterClientComponent
+    },
+
+    {
+        path: 'logout',
+        component: LogoutClientComponent
     }
+
 ];
 
 @NgModule({
@@ -49,7 +57,9 @@ const appRoutes: Routes = [
     LoginClientComponent,
     HomePageComponent,
     AccountComponent,
-    RegisterClientComponent
+    RegisterClientComponent,
+    MenuAccountComponent,
+    LogoutClientComponent
   ],
   imports: [
     BrowserModule,
