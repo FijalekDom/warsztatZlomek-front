@@ -16,6 +16,10 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { MenuAccountComponent } from './menu-account/menu-account.component';
 import { LogoutClientComponent } from './logout-client/logout-client.component';
+import { VisitsComponent } from './account/visits/visits.component';
+import { CarsComponent } from './account/cars/cars.component';
+import { NewVisitComponent } from './account/new-visit/new-visit.component';
+import { ClientAccountComponent } from './account/client-account/client-account.component';
 
 
 const appRoutes: Routes = [
@@ -43,6 +47,30 @@ const appRoutes: Routes = [
     {
         path: 'logout',
         component: LogoutClientComponent
+    },
+
+    {
+        path: 'account/visits',
+        component: VisitsComponent,
+        canActivate: [ClientAuthGuard]
+    },
+
+    {
+        path: 'account/cars',
+        component: CarsComponent,
+        canActivate: [ClientAuthGuard]
+    },
+
+    {
+        path: 'account/new-visit',
+        component: NewVisitComponent,
+        canActivate: [ClientAuthGuard]
+    },
+
+    {
+        path: 'account/my-account',
+        component: ClientAccountComponent,
+        canActivate: [ClientAuthGuard]
     }
 
 ];
@@ -59,7 +87,11 @@ const appRoutes: Routes = [
     AccountComponent,
     RegisterClientComponent,
     MenuAccountComponent,
-    LogoutClientComponent
+    LogoutClientComponent,
+    VisitsComponent,
+    CarsComponent,
+    NewVisitComponent,
+    ClientAccountComponent
   ],
   imports: [
     BrowserModule,

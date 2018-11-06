@@ -15,7 +15,7 @@ export class LoginClientComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
-  returnUrl: string;
+
 
   constructor(
       private formBuilder: FormBuilder,
@@ -31,8 +31,6 @@ export class LoginClientComponent implements OnInit {
       });
 
       this.authService.logout();
-
-      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/account';
   }
 
   get f() { return this.loginForm.controls; }
@@ -54,7 +52,8 @@ export class LoginClientComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    this.router.navigate(['/account']);
+                    this.loading = false;
                 },
                 error => {
                     this.loading = false;
