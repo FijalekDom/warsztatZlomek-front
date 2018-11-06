@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 import {LoginModel} from '../app.component';
 import { first } from 'rxjs/operators';
+import * as $ from 'jquery';
+import {MenuComponent} from '../menu/menu.component';
 
 @Component({
   selector: 'app-login-client',

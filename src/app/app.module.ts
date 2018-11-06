@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -20,29 +20,33 @@ import { VisitsComponent } from './account/visits/visits.component';
 import { CarsComponent } from './account/cars/cars.component';
 import { NewVisitComponent } from './account/new-visit/new-visit.component';
 import { ClientAccountComponent } from './account/client-account/client-account.component';
+import { EmployeeSignInComponentComponent } from './employee-sign-in-component/employee-sign-in-component.component';
 
 
 const appRoutes: Routes = [
-    {
-        path: '',
-        component: HomePageComponent
-    },
+  {
+    path: '',
+    component: HomePageComponent
+  },
 
-    {
-        path: 'account',
-        component: AccountComponent,
-        canActivate: [ClientAuthGuard]
-    },
+  {
+    path: 'account',
+    component: AccountComponent,
+    canActivate: [ClientAuthGuard],
+    children: [
+      // tutaj urle dostępne z poziomu klienta
+    ]
+  },
 
-    {
-        path: 'login',
-        component: LoginClientComponent
-    },
+  {
+    path: 'login',
+    component: LoginClientComponent
+  },
 
-    {
-        path: 'register',
-        component: RegisterClientComponent
-    },
+  {
+    path: 'register',
+    component: RegisterClientComponent
+  },
 
     {
         path: 'logout',
@@ -73,6 +77,16 @@ const appRoutes: Routes = [
         canActivate: [ClientAuthGuard]
     }
 
+  {
+    path: 'employee',
+    children: [
+      {
+        path: 'signIn',
+        component: EmployeeSignInComponentComponent
+      }
+    ]
+  }
+
 ];
 
 @NgModule({
@@ -92,6 +106,8 @@ const appRoutes: Routes = [
     CarsComponent,
     NewVisitComponent,
     ClientAccountComponent
+    EmployeeSignInComponentComponent
+
   ],
   imports: [
     BrowserModule,
@@ -102,4 +118,5 @@ const appRoutes: Routes = [
   providers: [ClientAuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
