@@ -1,0 +1,22 @@
+<div>
+  <app-menu-account></app-menu-account>
+</div>
+<div id="site-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 backgroundClear">
+        <div  id="site-background">
+          <h1>Twoje Samochody</h1>
+          <ng-container *ngIf="cars.length == 0">
+            Do twojego konta nie przpisano żadnych samochodów.
+          </ng-container>
+          <ng-container *ngIf="cars.length != 0">
+            <div *ngFor="let car of cars">
+              {{car.brandName}}, {{car.model}}, {{car.productionYear}}, {{car.registrationNumber}}, {{car.vin}} <br>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

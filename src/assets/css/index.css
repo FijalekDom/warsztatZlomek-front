@@ -11,16 +11,17 @@
     background-image: url('images/background1.jpg');
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
     width: 100%;
-    height: 987px;
+    min-height: 987px;
 }
 
 #site-background{
-    background-color: rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.4);
+    background-color: rgba(251, 255, 255, 0.8);
+    background: rgba(251, 255, 255, 0.8);
     margin-top: 10%;
     width: 100%;
-    height: 800px;
+    min-height: 800px;
 }
 
 h1{
