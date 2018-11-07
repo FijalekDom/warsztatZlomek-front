@@ -27,3 +27,34 @@ export interface RegisterModel {
     password?: string;
     confirmPassword?: string;
 }
+
+export interface TokenModel {
+    accessToken?: string;
+}
+
+export interface UserData {
+    accessToken: string;
+    aptNum: string;
+    buildNum: string;
+    cityName: string;
+    confirmPassword: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    password: string;
+    phoneNumber: string;
+    streetName: string;
+    zipCode: string;
+}
+
+export interface CarModel {
+    vin?: string;
+    registrationNumber?: string;
+    model?: string;
+    productionYear?: number;
+    brandName?: string;
+}
+
+export interface ClientUpdateModel extends RegisterModel {
+    accessToken?: string;
+}

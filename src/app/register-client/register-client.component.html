@@ -26,6 +26,7 @@
                   <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                   <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                       <div *ngIf="f.email.errors.required">Email jest wymagany</div>
+                      <div *ngIf="f.email.errors.email">Niepoprawny format adresu e-mail</div>
                   </div>
               </div>
 
@@ -34,6 +35,7 @@
                   <input type="text" formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
                   <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
                       <div *ngIf="f.phoneNumber.errors.required">Numer telefonu jest wymagany</div>
+                      <div *ngIf="f.phoneNumber.errors.pattern">Numer telefonu składa się z 9 cyfr</div>
                   </div>
               </div>
 
@@ -65,7 +67,7 @@
                   <label >Numer mieszkania</label>
                   <input type="text" formControlName="aptNum" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.aptNum.errors }" />
                   <div *ngIf="submitted && f.aptNum.errors" class="invalid-feedback">
-                      <div *ngIf="f.aptNum.errors.required">Numer mieszkania jest wymagany</div>
+                      <div *ngIf="f.aptNum.errors.pattern">Numer mieszkania musi być liczbą</div>
                   </div>
               </div>
 
@@ -74,6 +76,7 @@
                   <input type="text" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
                   <div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
                       <div *ngIf="f.zipCode.errors.required">Kod pocztowy jest wymagany</div>
+                      <div *ngIf="f.zipCode.errors.pattern">Podaj kod pocztowy w formacie XX-XXX</div>
                   </div>
               </div>
 
