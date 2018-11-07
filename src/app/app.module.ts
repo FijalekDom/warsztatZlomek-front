@@ -14,9 +14,9 @@ import {AccountComponent} from './account/account.component';
 import {RegisterClientComponent} from './register-client/register-client.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {MenuAccountComponent} from './menu-account/menu-account.component';
 import {LogoutClientComponent} from './logout-client/logout-client.component';
 import { EmployeeSignInComponentComponent } from './employee-sign-in-component/employee-sign-in-component.component';
+import { EmployeeWelcomeSiteComponent } from './employee-welcome-site/employee-welcome-site.component';
 
 
 const appRoutes: Routes = [
@@ -52,8 +52,17 @@ const appRoutes: Routes = [
     path: 'employee',
     children: [
       {
-        path: 'signIn',
+        path: '',
         component: EmployeeSignInComponentComponent
+      },
+      {
+        path: 'account',
+        children: [
+          {
+            path: '',
+            component: EmployeeWelcomeSiteComponent
+          }
+        ]
       }
     ]
   }
@@ -71,9 +80,9 @@ const appRoutes: Routes = [
     HomePageComponent,
     AccountComponent,
     RegisterClientComponent,
-    MenuAccountComponent,
     LogoutClientComponent,
-    EmployeeSignInComponentComponent
+    EmployeeSignInComponentComponent,
+    EmployeeWelcomeSiteComponent,
   ],
   imports: [
     BrowserModule,
