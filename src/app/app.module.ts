@@ -14,7 +14,6 @@ import { AccountComponent } from './account/account.component';
 import { RegisterClientComponent } from './register-client/register-client.component';
 import { ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
-import { MenuAccountComponent } from './menu-account/menu-account.component';
 import { LogoutClientComponent } from './logout-client/logout-client.component';
 import { VisitsComponent } from './account/visits/visits.component';
 import { CarsComponent } from './account/cars/cars.component';
@@ -34,7 +33,7 @@ const appRoutes: Routes = [
     component: AccountComponent,
     canActivate: [ClientAuthGuard],
     children: [
-      // tutaj urle dostępne z poziomu klienta
+
     ]
   },
 
@@ -75,7 +74,7 @@ const appRoutes: Routes = [
         path: 'account/my-account',
         component: ClientAccountComponent,
         canActivate: [ClientAuthGuard]
-    }
+    },
 
   {
     path: 'employee',
@@ -100,12 +99,11 @@ const appRoutes: Routes = [
     HomePageComponent,
     AccountComponent,
     RegisterClientComponent,
-    MenuAccountComponent,
     LogoutClientComponent,
     VisitsComponent,
     CarsComponent,
     NewVisitComponent,
-    ClientAccountComponent
+    ClientAccountComponent,
     EmployeeSignInComponentComponent
 
   ],
