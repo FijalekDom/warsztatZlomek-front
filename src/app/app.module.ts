@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-
 import {AppComponent} from './app.component';
 import {MenuComponent} from './menu/menu.component';
 import {CompanyComponent} from './home-page/company/company.component';
@@ -35,7 +34,7 @@ const appRoutes: Routes = [
     component: AccountComponent,
     canActivate: [ClientAuthGuard],
     children: [
-      // tutaj urle dostępne z poziomu klienta
+
     ]
   },
 
@@ -78,6 +77,7 @@ const appRoutes: Routes = [
     canActivate: [ClientAuthGuard]
   },
 
+
   {
     path: 'employee',
     children: [
@@ -117,7 +117,6 @@ const appRoutes: Routes = [
     CarsComponent,
     NewVisitComponent,
     ClientAccountComponent
-
   ],
   imports: [
     BrowserModule,
