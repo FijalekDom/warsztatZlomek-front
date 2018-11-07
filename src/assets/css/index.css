@@ -3,27 +3,23 @@
     font-size: 20px;
 }
 
-#tlo{
-    background-image: url('images/kolorek.PNG')
+html{
+  width: 100%;
+  height: 100%;
 }
-
-#site-content{
-    background-image: url('images/background1.jpg');
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-    width: 100%;
-    min-height: 987px;
+body{
+  background: url('images/background1.jpg') center no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
 }
 
 #site-background{
-    background-color: rgba(251, 255, 255, 0.8);
-    background: rgba(251, 255, 255, 0.8);
-    margin-top: 10%;
+  background: rgba(255, 255, 255, 0.4);
+  margin-top: 10%;
     width: 100%;
-    min-height: 800px;
+    height: 100%;
 }
-
 h1{
     text-align: center;
 }
