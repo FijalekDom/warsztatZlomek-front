@@ -20,6 +20,17 @@ export class AuthService {
         } ));
   }
 
+  loginEmployee(loginM: LoginModel) {
+    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/signInEmployee', loginM)
+      .pipe(map( user => {
+        if (user && user.accessToken) {
+          localStorage.setItem('currentEmployee', JSON.stringify(user));
+        }
+        console.log(user.accessToken);
+        return user;
+      } ));
+  }
+
   logout() {
         localStorage.removeItem('currentUser');
     }
