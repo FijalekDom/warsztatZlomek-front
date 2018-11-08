@@ -26,7 +26,9 @@ export class AuthService {
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/signInEmployee', loginM)
       .pipe(map( user => {
         if (user && user.accessToken) {
-          localStorage.setItem('currentEmployee', JSON.stringify(user));
+          const date = new Date();
+          date.setTime(date.getTime() + (20 * 60 * 1000));
+          document.cookie = 'warsztatZlomekEmployee=' + user.accessToken.valueOf() + '; expires=' + date.toString();
         }
         console.log(user.accessToken);
         return user;

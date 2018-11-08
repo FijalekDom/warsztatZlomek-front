@@ -21,6 +21,7 @@ import {NewVisitComponent} from './account/new-visit/new-visit.component';
 import {ClientAccountComponent} from './account/client-account/client-account.component';
 import {EmployeeSignInComponentComponent} from './employee-sign-in-component/employee-sign-in-component.component';
 import {EmployeeWelcomeSiteComponent} from './employee-welcome-site/employee-welcome-site.component';
+import {EmployeeAuthGuard} from './EmployeeAuthGuard';
 
 
 const appRoutes: Routes = [
@@ -34,6 +35,25 @@ const appRoutes: Routes = [
     component: AccountComponent,
     canActivate: [ClientAuthGuard],
     children: [
+      {
+        path: 'visits',
+        component: VisitsComponent
+      },
+
+      {
+        path: 'cars',
+        component: CarsComponent
+      },
+
+      {
+        path: 'new-visit',
+        component: NewVisitComponent
+      },
+
+      {
+        path: 'my-account',
+        component: ClientAccountComponent
+      },
 
     ]
   },
@@ -53,29 +73,7 @@ const appRoutes: Routes = [
     component: LogoutClientComponent
   },
 
-  {
-    path: 'account/visits',
-    component: VisitsComponent,
-    canActivate: [ClientAuthGuard]
-  },
 
-  {
-    path: 'account/cars',
-    component: CarsComponent,
-    canActivate: [ClientAuthGuard]
-  },
-
-  {
-    path: 'account/new-visit',
-    component: NewVisitComponent,
-    canActivate: [ClientAuthGuard]
-  },
-
-  {
-    path: 'account/my-account',
-    component: ClientAccountComponent,
-    canActivate: [ClientAuthGuard]
-  },
 
 
   {
@@ -87,6 +85,7 @@ const appRoutes: Routes = [
       },
       {
         path: 'account',
+        canActivate: [EmployeeAuthGuard],
         children: [
           {
             path: '',
@@ -124,7 +123,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ClientAuthGuard],
+  providers: [ClientAuthGuard, EmployeeAuthGuard],
   bootstrap: [AppComponent]
 })
 
