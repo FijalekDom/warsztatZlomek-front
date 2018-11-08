@@ -58,3 +58,7 @@ export interface CarModel {
 export interface ClientUpdateModel extends RegisterModel {
     accessToken?: string;
 }
+
+export interface VisitsModel {
+
+}

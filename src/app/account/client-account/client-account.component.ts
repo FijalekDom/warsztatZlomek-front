@@ -25,9 +25,10 @@ export class ClientAccountComponent implements OnInit {
 
   ngOnInit() {
     this.formDisable = false;
-    const token: TokenModel = {
-      accessToken: JSON.parse(localStorage.getItem('currentUser'))
-    };
+
+      const token: TokenModel = {
+          accessToken: JSON.parse(localStorage.getItem('currentUser'))
+      };
 
     this.authService.getAccountData(token)
         .pipe(first())
@@ -101,6 +102,30 @@ export class ClientAccountComponent implements OnInit {
       this.formDisable = true;
   }
 
+  cancelEdit() {
+      this.formDisable = false;
+  }
 
+  deleteAccount() {
+
+      const token: TokenModel = {
+          accessToken: JSON.parse(localStorage.getItem('currentUser'))
+      };
+
+      if (confirm('Na pewno chcesz usunąć konto?') == true) {
+          this.authService.deleteUser(token)
+              .pipe(first())
+              .subscribe(
+                  user => {
+                      console.log(user);
+                      this.loading = false;
+                      this.router.navigate(['/logout']);
+                  },
+                  error => {
+                      console.log(error);
+                      this.loading = false;
+                  });
+      }
+  }
 
 }
