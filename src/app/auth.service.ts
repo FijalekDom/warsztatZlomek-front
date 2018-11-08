@@ -20,6 +20,19 @@ export class AuthService {
         } ));
   }
 
+  logoutEmployee() {
+    const accessToken = document.cookie.valueOf().split('/; */')[0].split('=')[1];
+    const tokenModel: TokenModel = {'accessToken': accessToken};
+    document.cookie = 'warsztatZlomekEmployee=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    console.log(tokenModel);
+     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/signOutEmployee', tokenModel).subscribe(() => {
+      console.log('success');
+     },
+       (error1 => {
+         console.log(error1);
+       }));
+  }
+
   loginEmployee(loginM: LoginModel) {
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/signInEmployee', loginM)
       .pipe(map( user => {

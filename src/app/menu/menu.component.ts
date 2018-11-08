@@ -36,12 +36,12 @@ export class MenuComponent implements OnInit {
   loginLeftMenu = [{url: '#', text: 'Wizyty'}, {url: '#', text: 'Samochody'}, {url: '#', text: 'Nowa wizyta'}];
   loginRightMenu = [{url: 'javascript:void(0)', text: 'Moje konto'}, {url: '/logout', text: 'wyloguj'}];
 
-  employeeBeginLeftMenu = [{url: '#', text: 'O firmie'}, {url: '#', text: 'Oferta'}, {url: '#', text: 'Kontakt'}];
+  employeeBeginLeftMenu = [{url: '#', text: ''}, {url: '#', text: ''}, {url: '#', text: ''}];
   employeeBeginRightMenu = [];
 
   employeeLoginLeftMenu = [{url: '#', text: 'Wizyty'}, {url: '#', text: 'Samochody'}, {url: '#', text: 'Nowa wizyta'},
     {url: 'javascript:void(0)', text: 'Faktury'}];
-  employeeLoginRightMenu = [{url: '/logout', text: 'wyloguj'}];
+  employeeLoginRightMenu = [{url: 'employee/logout', text: 'wyloguj'}];
 
   ngOnInit() {
 
