@@ -22,6 +22,7 @@ import {ClientAccountComponent} from './account/client-account/client-account.co
 import {EmployeeSignInComponentComponent} from './employee-sign-in-component/employee-sign-in-component.component';
 import {EmployeeWelcomeSiteComponent} from './employee-welcome-site/employee-welcome-site.component';
 import {EmployeeAuthGuard} from './EmployeeAuthGuard';
+import { EmployeeLogoutComponent } from './employee-logout/employee-logout.component';
 
 
 const appRoutes: Routes = [
@@ -90,8 +91,12 @@ const appRoutes: Routes = [
           {
             path: '',
             component: EmployeeWelcomeSiteComponent
-          }
+          },
         ]
+      },
+      {
+        path: 'logout',
+        component: EmployeeLogoutComponent
       }
     ]
   }
@@ -115,7 +120,8 @@ const appRoutes: Routes = [
     VisitsComponent,
     CarsComponent,
     NewVisitComponent,
-    ClientAccountComponent
+    ClientAccountComponent,
+    EmployeeLogoutComponent
   ],
   imports: [
     BrowserModule,
