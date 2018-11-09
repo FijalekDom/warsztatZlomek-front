@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="col-md-12">
+    <div id="site-background">
+      <div class="container">
+        <div class="row">
+          <form [formGroup]="removeEmployeeForm" (ngSubmit)="submit()">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" id="email" formControlName="email" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="quitDate">Data zatrudnienia</label>
+              <input type="date" id="quitDate" formControlName="quitDate" class="form-control">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" id="submit">Zaloguj się</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

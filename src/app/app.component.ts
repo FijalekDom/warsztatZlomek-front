@@ -59,6 +59,22 @@ export interface ClientUpdateModel extends RegisterModel {
     accessToken?: string;
 }
 
+export interface RegisterEmployeeModel {
+  firstName: String;
+  lastName: String;
+  email: String;
+  hireDate: String;
+  password: String;
+  confirmPassword: String;
+  accessToken: String;
+}
+
+export interface RemoveEmployeeModel {
+  employeeMail: String;
+  accessToken: String;
+  quitDate: String;
+}
+
 export interface VisitsModel {
 
 }

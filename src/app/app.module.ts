@@ -23,6 +23,9 @@ import {EmployeeSignInComponentComponent} from './employee-sign-in-component/emp
 import {EmployeeWelcomeSiteComponent} from './employee-welcome-site/employee-welcome-site.component';
 import {EmployeeAuthGuard} from './EmployeeAuthGuard';
 import { EmployeeLogoutComponent } from './employee-logout/employee-logout.component';
+import { RegisterEmployeeComponent } from './register-employee/register-employee.component';
+import { RemoveEmployeeComponent } from './remove-employee/remove-employee.component';
+
 
 
 const appRoutes: Routes = [
@@ -73,10 +76,6 @@ const appRoutes: Routes = [
     path: 'logout',
     component: LogoutClientComponent
   },
-
-
-
-
   {
     path: 'employee',
     children: [
@@ -92,6 +91,14 @@ const appRoutes: Routes = [
             path: '',
             component: EmployeeWelcomeSiteComponent
           },
+          {
+            path: 'registerEmployee',
+            component: RegisterEmployeeComponent
+          },
+          {
+            path: 'removeEmployee',
+            component: RemoveEmployeeComponent
+          }
         ]
       },
       {
@@ -121,7 +128,9 @@ const appRoutes: Routes = [
     CarsComponent,
     NewVisitComponent,
     ClientAccountComponent,
-    EmployeeLogoutComponent
+    EmployeeLogoutComponent,
+    RegisterEmployeeComponent,
+    RemoveEmployeeComponent
   ],
   imports: [
     BrowserModule,
