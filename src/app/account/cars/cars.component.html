@@ -4,6 +4,7 @@
       <div class="col-md-12 backgroundClear">
         <div  id="site-background">
           <h1>Twoje Samochody</h1>
+          <button (click)="showForm()">Dodaj samochód</button>
           <ng-container *ngIf="cars.length == 0">
             Do twojego konta nie przpisano żadnych samochodów.
           </ng-container>
