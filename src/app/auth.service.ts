@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ClientUpdateModel, LoginModel, RegisterEmployeeModel, RegisterModel, RemoveEmployeeModel, TokenModel} from './app.component';
+import {
+  BanUser,
+  ClientUpdateModel,
+  LoginModel,
+  RegisterEmployeeModel,
+  RegisterModel,
+  RemoveEmployeeModel,
+  TokenModel
+} from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
 
@@ -26,7 +34,7 @@ export class AuthService {
   logoutEmployee() {
     const accessToken = this.getAccessToken();
     const tokenModel: TokenModel = {'accessToken': accessToken};
-    document.cookie = 'warsztatZlomekEmployee=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    localStorage.removeItem('warsztatZlomekEmployee');
      return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/signOutEmployee', tokenModel).subscribe(() => {
 
      },
@@ -99,7 +107,7 @@ export class AuthService {
     }
 
     registerEmployee(registerEmployeeModel: RegisterEmployeeModel) {
-      if (registerEmployeeModel.accessToken == null){
+      if (registerEmployeeModel.accessToken == null) {
         return;
       }
       return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/registerEmployee',
@@ -114,7 +122,7 @@ export class AuthService {
     }
 
   removeEmployee(removeEmployeeModel: RemoveEmployeeModel) {
-    if (removeEmployeeModel.accessToken == null){
+    if (removeEmployeeModel.accessToken == null) {
       return;
     }
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/removeEmployee',
@@ -140,5 +148,19 @@ export class AuthService {
         localStorage.removeItem('warsztatZlomekEmployee');
         return null;
       }
+    }
+
+    banUserRequest(form: BanUser) {
+      if (form.accessToken == null) {
+        return;
+      }
+      return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/banUser', form).subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (data) => {
+          console.log(data);
+        }
+      );
     }
 }
