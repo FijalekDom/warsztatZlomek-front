@@ -75,6 +75,11 @@ export interface RemoveEmployeeModel {
   quitDate: String;
 }
 
+export interface BanUser {
+  username: String;
+  accessToken: String;
+}
+
 export interface VisitsModel {
 
 }

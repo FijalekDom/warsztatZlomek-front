@@ -25,6 +25,7 @@ import {EmployeeAuthGuard} from './EmployeeAuthGuard';
 import { EmployeeLogoutComponent } from './employee-logout/employee-logout.component';
 import { RegisterEmployeeComponent } from './register-employee/register-employee.component';
 import { RemoveEmployeeComponent } from './remove-employee/remove-employee.component';
+import { BanUserComponent } from './ban-user/ban-user.component';
 
 
 
@@ -98,6 +99,10 @@ const appRoutes: Routes = [
           {
             path: 'removeEmployee',
             component: RemoveEmployeeComponent
+          },
+          {
+            path: 'banUser',
+            component: BanUserComponent
           }
         ]
       },
@@ -130,7 +135,8 @@ const appRoutes: Routes = [
     ClientAccountComponent,
     EmployeeLogoutComponent,
     RegisterEmployeeComponent,
-    RemoveEmployeeComponent
+    RemoveEmployeeComponent,
+    BanUserComponent
   ],
   imports: [
     BrowserModule,
