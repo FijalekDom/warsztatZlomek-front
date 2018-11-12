@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../auth.service';
-import {TokenModel} from '../../app.component';
+import {TokenModel, VisitModel} from '../../app.component';
 import {first} from 'rxjs/operators';
+import {forEach} from '@angular/router/src/utils/collection';
+import {DateFormatter} from '@angular/common/src/pipes/deprecated/intl';
 
 @Component({
   selector: 'app-visits',
@@ -9,7 +11,8 @@ import {first} from 'rxjs/operators';
   styleUrls: ['./visits.component.css']
 })
 export class VisitsComponent implements OnInit {
-
+  visits: VisitModel[] = [];
+  dates = [];
   constructor(
       private authservice: AuthService
   ) { }
@@ -23,11 +26,20 @@ export class VisitsComponent implements OnInit {
           .pipe(first())
           .subscribe(
               data => {
-                  console.log(data);
+                  this.visits = data.visits;
+                  this.convertDates();
+                  console.log(this.visits);
               },
               error => {
                   console.log(error);
               });
+
+  }
+
+  convertDates() {
+      this.visits.forEach((visit) => {
+
+      });
 
   }
 

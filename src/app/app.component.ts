@@ -48,6 +48,7 @@ export interface UserData {
 }
 
 export interface CarModel {
+    id?: number;
     vin?: string;
     registrationNumber?: string;
     model?: string;
@@ -56,6 +57,10 @@ export interface CarModel {
 }
 
 export interface ClientUpdateModel extends RegisterModel {
+    accessToken: string;
+}
+
+export interface AddCarModel extends CarModel {
     accessToken?: string;
 }
 
@@ -75,11 +80,46 @@ export interface RemoveEmployeeModel {
   quitDate: String;
 }
 
+
+export interface VisitModel {
+    car: CarModel;
+    id: number;
+    notVerifiedOwners;
+    owners: UserData[];
+    visitDate: DateConstructor;
+}
+
 export interface BanUser {
   username: String;
   accessToken: String;
 }
 
-export interface VisitsModel {
+export interface CarIdModel {
+    carId: number;
+    accessToken: String;
+}
 
+export interface CarEditModel extends CarModel {
+    carId: number;
+    accessToken: String;
+}
+
+export interface CoownerModel extends CarIdModel {
+    coownerUsername: String;
+}
+
+export interface CarHasCompanyModel extends CarIdModel {
+    companyId: number;
+}
+
+export interface CompanyModel {
+    aptNum?: string;
+    buildingNum?: string;
+    cityName?: string;
+    streetName?: string;
+    zipCode?: string;
+    email?: string;
+    id?: number;
+    name?: string;
+    nip?: string;
 }
