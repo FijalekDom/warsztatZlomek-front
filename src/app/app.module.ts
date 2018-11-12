@@ -29,6 +29,7 @@ import { CarAddCoownerComponent } from './account/cars/car-add-coowner/car-add-c
 import { CarRmCoownerComponent } from './account/cars/car-rm-coowner/car-rm-coowner.component';
 import { CarAddCompanyComponent } from './account/cars/car-add-company/car-add-company.component';
 import { CarRmCompanyComponent } from './account/cars/car-rm-company/car-rm-company.component';
+import { BanUserComponent } from './ban-user/ban-user.component';
 
 
 
@@ -104,6 +105,10 @@ const appRoutes: Routes = [
           {
             path: 'removeEmployee',
             component: RemoveEmployeeComponent
+          },
+          {
+            path: 'banUser',
+            component: BanUserComponent
           }
         ]
       },
@@ -140,7 +145,9 @@ const appRoutes: Routes = [
     CarAddCoownerComponent,
     CarRmCoownerComponent,
     CarAddCompanyComponent,
-    CarRmCompanyComponent
+    CarRmCompanyComponent,
+    BanUserComponent
+
   ],
   imports: [
     BrowserModule,
