@@ -81,8 +81,6 @@ export class ClientAccountComponent implements OnInit {
             accessToken: JSON.parse(localStorage.getItem('currentUser'))
         };
 
-        console.log(client);
-
         this.loading = true;
 
         this.authService.updateClientData(client)

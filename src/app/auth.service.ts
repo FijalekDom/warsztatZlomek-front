@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ClientUpdateModel, LoginModel, RegisterEmployeeModel, RegisterModel, RemoveEmployeeModel, TokenModel} from './app.component';
+import {
+    AddCarModel, CarEditModel, CarHasCompanyModel, CarIdModel, ClientUpdateModel, CoownerModel, LoginModel,
+    RegisterEmployeeModel,
+    RegisterModel,
+    RemoveEmployeeModel,
+    TokenModel
+} from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
 
@@ -98,6 +104,78 @@ export class AuthService {
             }));
     }
 
+    getCarBrands() {
+        return this.http.get<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/getAllCarBrands')
+            .pipe(map(cars => {
+                return cars;
+            }));
+    }
+
+    addCar( car: AddCarModel) {
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/updateClient/addCar', car)
+            .pipe(map( user => {
+                localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
+                return user;
+            }));
+    }
+
+    deleteCar( id: CarIdModel) {
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/updateClient/removeCar', id)
+            .pipe(map( user => {
+                localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
+                return user;
+            }));
+    }
+
+    editCar( car: CarEditModel) {
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/editCar', car)
+            .pipe(map( user => {
+                localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
+                return user;
+            }));
+    }
+
+
+    addCoowner(owner: CoownerModel) {
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/addCoowner', owner)
+            .pipe(map( user => {
+                localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
+                return user;
+            }));
+    }
+
+    removeCoowner(owner: CoownerModel) {
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/removeCoowner', owner)
+            .pipe(map( user => {
+                localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
+                return user;
+            }));
+    }
+
+    addCarToCompany(company: CarHasCompanyModel) {
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/addCarToCompany', company)
+            .pipe(map( user => {
+                localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
+                return user;
+            }));
+    }
+
+    removeCarFromCompany(company: CarHasCompanyModel) {
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/removeCarFromCompany', company)
+            .pipe(map( user => {
+                localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
+                return user;
+            }));
+    }
+
+    getClientsCompanies(token: TokenModel) {
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/getClientsCompanies', token)
+            .pipe(map( companies => {
+                localStorage.setItem('currentUser', JSON.stringify(companies.accessToken.valueOf()));
+                return companies;
+            }));
+    }
+
     registerEmployee(registerEmployeeModel: RegisterEmployeeModel) {
       if (registerEmployeeModel.accessToken == null){
         return;
@@ -114,7 +192,7 @@ export class AuthService {
     }
 
   removeEmployee(removeEmployeeModel: RemoveEmployeeModel) {
-    if (removeEmployeeModel.accessToken == null){
+    if (removeEmployeeModel.accessToken == null) {
       return;
     }
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/removeEmployee',
@@ -128,7 +206,7 @@ export class AuthService {
     );
   }
 
-    getAccessToken() {
+  getAccessToken() {
       const value = localStorage.getItem('warsztatZlomekEmployee');
       if (value == null) {
         return null;
@@ -140,5 +218,5 @@ export class AuthService {
         localStorage.removeItem('warsztatZlomekEmployee');
         return null;
       }
-    }
+  }
 }

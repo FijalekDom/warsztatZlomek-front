@@ -25,6 +25,10 @@ import {EmployeeAuthGuard} from './EmployeeAuthGuard';
 import { EmployeeLogoutComponent } from './employee-logout/employee-logout.component';
 import { RegisterEmployeeComponent } from './register-employee/register-employee.component';
 import { RemoveEmployeeComponent } from './remove-employee/remove-employee.component';
+import { CarAddCoownerComponent } from './account/cars/car-add-coowner/car-add-coowner.component';
+import { CarRmCoownerComponent } from './account/cars/car-rm-coowner/car-rm-coowner.component';
+import { CarAddCompanyComponent } from './account/cars/car-add-company/car-add-company.component';
+import { CarRmCompanyComponent } from './account/cars/car-rm-company/car-rm-company.component';
 
 
 
@@ -36,29 +40,31 @@ const appRoutes: Routes = [
 
   {
     path: 'account',
-    component: AccountComponent,
-    canActivate: [ClientAuthGuard],
     children: [
-      {
-        path: 'visits',
-        component: VisitsComponent
-      },
+        {
+          path: '',
+          component: AccountComponent,
+          canActivate: [ClientAuthGuard]
+        },
+        {
+          path: 'visits',
+          component: VisitsComponent
+        },
 
-      {
-        path: 'cars',
-        component: CarsComponent
-      },
+        {
+          path: 'cars',
+          component: CarsComponent
+        },
 
-      {
-        path: 'new-visit',
-        component: NewVisitComponent
-      },
+        {
+          path: 'new-visit',
+          component: NewVisitComponent
+        },
 
-      {
-        path: 'my-account',
-        component: ClientAccountComponent
-      },
-
+        {
+          path: 'my-account',
+          component: ClientAccountComponent
+        }
     ]
   },
 
@@ -130,7 +136,11 @@ const appRoutes: Routes = [
     ClientAccountComponent,
     EmployeeLogoutComponent,
     RegisterEmployeeComponent,
-    RemoveEmployeeComponent
+    RemoveEmployeeComponent,
+    CarAddCoownerComponent,
+    CarRmCoownerComponent,
+    CarAddCompanyComponent,
+    CarRmCompanyComponent
   ],
   imports: [
     BrowserModule,

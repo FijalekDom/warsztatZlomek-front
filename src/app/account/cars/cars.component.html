@@ -3,14 +3,83 @@
     <div class="row">
       <div class="col-md-12 backgroundClear">
         <div  id="site-background">
-          <h1>Twoje Samochody</h1>
-          <button (click)="showForm()">Dodaj samochód</button>
-          <ng-container *ngIf="cars.length == 0">
-            Do twojego konta nie przpisano żadnych samochodów.
+          <ng-container *ngIf="formDisable == false && managementDisable == false">
+            <h1>Twoje Samochody</h1>
+            <button (click)="showForm(0, 0)">Dodaj samochód</button>
+            <ng-container *ngIf="cars.length == 0">
+              Do twojego konta nie przpisano żadnych samochodów.
+            </ng-container>
+            <ng-container *ngIf="cars.length != 0">
+              <div *ngFor="let car of cars; let i = index">
+                {{car.brandName}}, {{car.model}}, {{car.productionYear}}, {{car.registrationNumber}}, {{car.vin}}
+                <button (click)="showForm(car.id, i)">Edytuj</button>
+                <button (click)="showManagement(car.id)">Zarządzaj</button>
+              </div>
+            </ng-container>
           </ng-container>
-          <ng-container *ngIf="cars.length != 0">
-            <div *ngFor="let car of cars">
-              {{car.brandName}}, {{car.model}}, {{car.productionYear}}, {{car.registrationNumber}}, {{car.vin}} <br>
+
+          <ng-container *ngIf="formDisable == true">
+            <ng-container *ngIf="carId == 0">
+              <h1>Dodaj Samochód</h1>
+            </ng-container>
+            <ng-container *ngIf="carId != 0">
+              <h1>Edytuj dane samochodu</h1>
+              Obecne dane: {{cars[tableIndex].brandName}}, {{cars[tableIndex].model}}, {{cars[tableIndex].registrationNumber}}, {{cars[tableIndex].vin}}, {{cars[tableIndex].productionYear}}
+            </ng-container>
+
+            <form [formGroup]="addCarForm" (ngSubmit)="onSubmit(carId)">
+              <div class="form-group">
+                <label >Marka</label>
+                <select formControlName="carBrand" class="form-control">
+                  <option>--Wybierz markę--</option>
+                  <option *ngFor="let carBrand of carsBrands">{{carBrand}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label >Model</label>
+                <input type="text" formControlName="model" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.model.errors }" />
+                <div *ngIf="submitted && f.model.errors" class="invalid-feedback">
+                  <div *ngIf="f.model.errors.required">Username is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label >Numer rejestracyjny</label>
+                <input type="text" formControlName="registrationNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.registrationNumber.errors }" />
+                <div *ngIf="submitted && f.registrationNumber.errors" class="invalid-feedback">
+                  <div *ngIf="f.registrationNumber.errors.required">Password is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label >Vin</label>
+                <input type="text" formControlName="vin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.vin.errors }" />
+                <div *ngIf="submitted && f.vin.errors" class="invalid-feedback">
+                  <div *ngIf="f.vin.errors.required">Password is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label >Rok produkcji</label>
+                <input type="text" formControlName="productionYear" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.productionYear.errors }" />
+                <div *ngIf="submitted && f.productionYear.errors" class="invalid-feedback">
+                  <div *ngIf="f.productionYear.errors.required">Password is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">Dodaj</button>
+                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+              </div>
+            </form>
+
+            <button (click)="coverForm()" class="btn btn-primary">Anuluj</button>
+          </ng-container>
+
+          <ng-container *ngIf="managementDisable == true">
+            <app-car-add-coowner [id]="carId"></app-car-add-coowner>
+            <app-car-rm-coowner [id]="carId"></app-car-rm-coowner>
+            <app-car-add-company [id]="carId"></app-car-add-company>
+            <app-car-rm-company [id]="carId"></app-car-rm-company>
+            <div>
+              <button (click)="coverManagement()">Powrót</button>
+              <button (click)="deleteCar(carId)">Usuń samochod</button>
             </div>
           </ng-container>
         </div>
