@@ -123,3 +123,10 @@ export interface CompanyModel {
     name?: string;
     nip?: string;
 }
+
+export interface AddVisitModel {
+    accessToken: String;
+    carId: number;
+    visitDate: String;
+    isOverview: boolean;
+}
