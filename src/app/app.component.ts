@@ -80,12 +80,18 @@ export interface RemoveEmployeeModel {
   quitDate: String;
 }
 
+
 export interface VisitModel {
     car: CarModel;
     id: number;
     notVerifiedOwners;
     owners: UserData[];
     visitDate: DateConstructor;
+}
+
+export interface BanUser {
+  username: String;
+  accessToken: String;
 }
 
 export interface CarIdModel {
