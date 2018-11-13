@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {
-    AddCarModel, AddVisitModel, CarEditModel, CarHasCompanyModel, CarIdModel, ClientUpdateModel, CoownerModel, LoginModel,
-    RegisterEmployeeModel,
-    RegisterModel,
-    RemoveEmployeeModel,
-    TokenModel,
-    BanUser
+  AddCarModel, CarEditModel, CarHasCompanyModel, CarIdModel, CoownerModel, AddVisitModel,
+  BanUser,
+  ClientUpdateModel,
+  LoginModel,
+  RegisterEmployeeModel,
+  RegisterModel,
+  RemoveEmployeeModel,
+  TokenModel, CarBrandModel, CarPartModel
+
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
@@ -252,5 +255,33 @@ export class AuthService {
         }
       );
     }
+
+  addCarBrand(form: CarBrandModel) {
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/addCarBrand', form).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (data) => {
+        console.log(data);
+      }
+    );
+  }
+
+  addCarPart(form: CarPartModel) {
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/CarParts/addCarPart', form).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (data) => {
+        console.log(data);
+      }
+    );
+  }
 
 }

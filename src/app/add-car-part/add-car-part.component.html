@@ -1,0 +1,28 @@
+<div id="site-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 backgroundClear">
+        <div  id="site-background">
+          <h1>Dodaj część</h1>
+          <form [formGroup]="addCarPartForm" (ngSubmit)="submit()">
+            <div class="form-group">
+              <label for="producerName">Podaj nazwę producenta</label>
+              <input type="text" id="producerName" formControlName="producerName" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="partName">Podaj nazwę części</label>
+              <input type="text" id="partName" formControlName="partName" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="tax">Podaj podatek</label>
+              <input type="number" id="tax" formControlName="tax" class="form-control">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Edytuj część</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
