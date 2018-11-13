@@ -149,6 +149,9 @@ export interface CarPartResponse {
   producer: String;
   id: number;
 }
+export interface AddCompanyModel extends CompanyModel {
+  accessToken: String;
+}
 
 export interface AddVisitModel {
     accessToken: String;
@@ -156,4 +159,3 @@ export interface AddVisitModel {
     visitDate: String;
     isOverview: boolean;
 }
-

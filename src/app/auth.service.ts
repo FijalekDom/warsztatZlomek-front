@@ -8,8 +8,7 @@ import {
   RegisterEmployeeModel,
   RegisterModel,
   RemoveEmployeeModel,
-  TokenModel, CarBrandModel, CarPartModel
-
+  TokenModel, CarBrandModel, CarPartModel, CompanyModel, AddCompanyModel
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
@@ -26,7 +25,7 @@ export class AuthService {
         return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/signIn', loginM)
             .pipe(map(user => {
                 if (user && user.accessToken) {
-                    console.log(user)
+                    console.log(user);
                     localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
                 }
                 return user;
@@ -275,6 +274,20 @@ export class AuthService {
       return;
     }
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/CarParts/addCarPart', form).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (data) => {
+        console.log(data);
+      }
+    );
+  }
+
+  addCompany(form: AddCompanyModel) {
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/addCompany', form).subscribe(
       (data) => {
         console.log(data);
       },

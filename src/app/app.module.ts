@@ -33,6 +33,7 @@ import { BanUserComponent } from './ban-user/ban-user.component';
 import { AddCarBrandComponent } from './add-car-brand/add-car-brand.component';
 import { AddCarPartComponent } from './add-car-part/add-car-part.component';
 import { EditCarPartComponent } from './edit-car-part/edit-car-part.component';
+import { AddCompanyComponent } from './add-company/add-company.component';
 
 
 
@@ -120,6 +121,10 @@ const appRoutes: Routes = [
           {
             path: 'addCarPart',
             component: AddCarPartComponent
+          },
+          {
+            path: 'addCompany',
+            component: AddCompanyComponent
           }
         ]
       },
@@ -160,7 +165,8 @@ const appRoutes: Routes = [
     BanUserComponent,
     AddCarBrandComponent,
     AddCarPartComponent,
-    EditCarPartComponent
+    EditCarPartComponent,
+    AddCompanyComponent
 
   ],
   imports: [
