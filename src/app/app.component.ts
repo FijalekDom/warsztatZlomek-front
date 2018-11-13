@@ -89,6 +89,13 @@ export interface VisitModel {
     visitDate: DateConstructor;
 }
 
+export interface ShowVisitModel {
+    car: CarModel;
+    id: number;
+    visitDate: DateConstructor;
+    isOverview: boolean;
+}
+
 export interface BanUser {
   username: String;
   accessToken: String;
@@ -142,7 +149,13 @@ export interface CarPartResponse {
   producer: String;
   id: number;
 }
-
 export interface AddCompanyModel extends CompanyModel {
   accessToken: String;
+}
+
+export interface AddVisitModel {
+    accessToken: String;
+    carId: number;
+    visitDate: String;
+    isOverview: boolean;
 }
