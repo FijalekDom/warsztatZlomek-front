@@ -3,7 +3,15 @@
     <div class="row">
       <div class="col-md-12 backgroundClear">
         <div  id="site-background">
-
+          <h1>Przyszłe wizyty</h1>
+          <ng-container *ngIf="visits.length == 0">
+            Brak umówionych wizyt.
+          </ng-container>
+          <ng-container *ngIf="visits.length != 0">
+            <div *ngFor="let visit of visits">
+              {{visit.car.registrationNumber}}, {{visit.visitDate}}, {{visit.id}} <br>
+            </div>
+          </ng-container>
         </div>
       </div>
     </div>

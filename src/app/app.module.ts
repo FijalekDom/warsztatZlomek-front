@@ -44,11 +44,11 @@ const appRoutes: Routes = [
 
   {
     path: 'account',
+    canActivate: [ClientAuthGuard],
     children: [
         {
           path: '',
-          component: AccountComponent,
-          canActivate: [ClientAuthGuard]
+          component: AccountComponent
         },
         {
           path: 'visits',

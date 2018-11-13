@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {
-  AddCarModel, CarEditModel, CarHasCompanyModel, CarIdModel, CoownerModel,
+  AddCarModel, CarEditModel, CarHasCompanyModel, CarIdModel, CoownerModel, AddVisitModel,
   BanUser,
   ClientUpdateModel,
   LoginModel,
@@ -9,6 +9,7 @@ import {
   RegisterModel,
   RemoveEmployeeModel,
   TokenModel, CarBrandModel, CarPartModel
+
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
@@ -25,6 +26,7 @@ export class AuthService {
         return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/signIn', loginM)
             .pipe(map(user => {
                 if (user && user.accessToken) {
+                    console.log(user)
                     localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
                 }
                 return user;
@@ -107,6 +109,14 @@ export class AuthService {
             }));
     }
 
+    getFutureVisits(token: TokenModel) {
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/getFutureVisits', token)
+            .pipe(map( visits => {
+                localStorage.setItem('currentUser', JSON.stringify(visits.accessToken.valueOf()));
+                return visits;
+            }));
+    }
+
     getCarBrands() {
         return this.http.get<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/getAllCarBrands')
             .pipe(map(cars => {
@@ -165,6 +175,14 @@ export class AuthService {
 
     removeCarFromCompany(company: CarHasCompanyModel) {
         return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/removeCarFromCompany', company)
+            .pipe(map( user => {
+                localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
+                return user;
+            }));
+    }
+
+    addVisit(visit: AddVisitModel) {
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/add', visit)
             .pipe(map( user => {
                 localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
                 return user;
