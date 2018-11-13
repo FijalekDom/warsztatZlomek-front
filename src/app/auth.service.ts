@@ -8,7 +8,7 @@ import {
   RegisterEmployeeModel,
   RegisterModel,
   RemoveEmployeeModel,
-  TokenModel
+  TokenModel, CarBrandModel, CarPartModel
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
@@ -237,5 +237,33 @@ export class AuthService {
         }
       );
     }
+
+  addCarBrand(form: CarBrandModel) {
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/addCarBrand', form).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (data) => {
+        console.log(data);
+      }
+    );
+  }
+
+  addCarPart(form: CarPartModel) {
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/CarParts/addCarPart', form).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (data) => {
+        console.log(data);
+      }
+    );
+  }
 
 }

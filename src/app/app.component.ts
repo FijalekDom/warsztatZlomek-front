@@ -123,3 +123,22 @@ export interface CompanyModel {
     name?: string;
     nip?: string;
 }
+
+export interface CarBrandModel {
+  brandName: String;
+  accessToken: String;
+}
+
+export interface CarPartModel {
+  name: String;
+  tax: number;
+  producer: String;
+  accessToken: String;
+}
+
+export interface CarPartResponse {
+  name: String;
+  tax: number;
+  producer: String;
+  id: number;
+}
