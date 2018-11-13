@@ -14,19 +14,24 @@ export class MenuComponent implements OnInit {
       if (currentUrl.includes('/employee/account')) {
         this.rightMenu = this.employeeLoginRightMenu;
         this.leftMenu = this.employeeLoginLeftMenu;
+        this.logoHref = 'http://localhost:4200/employee/account';
       } else if (currentUrl.includes('/employee')) {
         this.rightMenu = this.employeeBeginRightMenu;
         this.leftMenu = this.employeeBeginLeftMenu;
+        this.logoHref = 'http://localhost:4200/employee';
       } else if (currentUrl.includes('/account')) {
         this.leftMenu = this.loginLeftMenu;
         this.rightMenu = this.loginRightMenu;
+        this.logoHref = 'http://localhost:4200/account';
       } else {
         this.leftMenu = this.beginLeftMenu;
         this.rightMenu = this.beginRightMenu;
+        this.logoHref = 'http://localhost:4200';
       }
     });
   }
 
+  logoHref: string;
   leftMenu = [];
   rightMenu = [];
 

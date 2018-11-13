@@ -27,19 +27,14 @@ export class VisitsComponent implements OnInit {
           .subscribe(
               data => {
                   this.visits = data.visits;
-                  this.convertDates();
-                  console.log(this.visits);
+                  for (let i = 0; i < data.visits.length; i++) {
+                      const date = new Date(data.visits[i].visitDate);
+                      data.visits[i].visitDate = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
+                  }
               },
               error => {
                   console.log(error);
               });
-
-  }
-
-  convertDates() {
-      this.visits.forEach((visit) => {
-
-      });
 
   }
 

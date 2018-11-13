@@ -3,7 +3,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav" style="width: 100%;">
         <li>
-          <a href="http://localhost:4200"><img src="assets/css/images/logo_dark1.jpg" style="width: 160px; height: 40px"></a>
+          <a href="{{logoHref}}"><img src="assets/css/images/logo_dark1.jpg" style="width: 160px; height: 40px"></a>
         </li>
         <li *ngFor="let item of leftMenu" class="nav-item active" >
           <a routerLink="{{ item.url }}" class="nav-link">{{ item.text }}</a>

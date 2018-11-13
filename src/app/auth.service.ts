@@ -1,22 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {
-<<<<<<< HEAD
     AddCarModel, AddVisitModel, CarEditModel, CarHasCompanyModel, CarIdModel, ClientUpdateModel, CoownerModel, LoginModel,
     RegisterEmployeeModel,
     RegisterModel,
     RemoveEmployeeModel,
-    TokenModel
-=======
-  AddCarModel, CarEditModel, CarHasCompanyModel, CarIdModel, CoownerModel,
-  BanUser,
-  ClientUpdateModel,
-  LoginModel,
-  RegisterEmployeeModel,
-  RegisterModel,
-  RemoveEmployeeModel,
-  TokenModel
->>>>>>> 5e20d5c915cc80e5bf30e565814da75dc3cd666d
+    TokenModel,
+    BanUser
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
@@ -110,6 +100,14 @@ export class AuthService {
 
     getAllClientVisits(token: TokenModel) {
         return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/getAllClientsVisits', token)
+            .pipe(map( visits => {
+                localStorage.setItem('currentUser', JSON.stringify(visits.accessToken.valueOf()));
+                return visits;
+            }));
+    }
+
+    getFutureVisits(token: TokenModel) {
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/getFutureVisits', token)
             .pipe(map( visits => {
                 localStorage.setItem('currentUser', JSON.stringify(visits.accessToken.valueOf()));
                 return visits;
