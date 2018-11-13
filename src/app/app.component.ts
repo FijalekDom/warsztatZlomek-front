@@ -142,3 +142,7 @@ export interface CarPartResponse {
   producer: String;
   id: number;
 }
+
+export interface AddCompanyModel extends CompanyModel {
+  accessToken: String;
+}
