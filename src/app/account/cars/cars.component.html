@@ -10,11 +10,28 @@
               Do twojego konta nie przpisano żadnych samochodów.
             </ng-container>
             <ng-container *ngIf="cars.length != 0">
-              <div *ngFor="let car of cars; let i = index">
-                {{car.brandName}}, {{car.model}}, {{car.productionYear}}, {{car.registrationNumber}}, {{car.vin}}
-                <button (click)="showForm(car.id, i)">Edytuj</button>
-                <button (click)="showManagement(car.id)">Zarządzaj</button>
-              </div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <td>Marka</td>
+                    <td>Model</td>
+                    <td>Numer rejestracyjny</td>
+                    <td>Numer VIN</td>
+                    <td>Rok produkcji</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </thead>
+                <tr *ngFor="let car of cars; let i = index">
+                  <td>{{car.brandName}}</td>
+                  <td>{{car.model}}</td>
+                  <td>{{car.registrationNumber}}</td>
+                  <td>{{car.vin}}</td>
+                  <td>{{car.productionYear}}</td>
+                  <td><button (click)="showForm(car.id, i)">Edytuj</button></td>
+                  <td><button (click)="showManagement(car.id)">Zarządzaj</button></td>
+                </tr>
+              </table>
             </ng-container>
           </ng-container>
 

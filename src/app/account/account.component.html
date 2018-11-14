@@ -5,12 +5,29 @@
         <div  id="site-background">
           <h1>Przyszłe wizyty</h1>
           <ng-container *ngIf="visits.length == 0">
-            Brak umówionych wizyt.
+            Brak wizyt w historii.
           </ng-container>
           <ng-container *ngIf="visits.length != 0">
-            <div *ngFor="let visit of visits">
-              {{visit.car.registrationNumber}}, {{visit.visitDate}}, {{visit.id}} <br>
-            </div>
+            <table class="table">
+              <thead>
+              <tr>
+                <td>Lp.</td>
+                <td>Marka</td>
+                <td>Model</td>
+                <td>Numer rejestracyjny</td>
+                <td>Data wizyty</td>
+                <td></td>
+              </tr>
+              </thead>
+              <tr *ngFor="let visit of visits;  let i = index">
+                <td>{{i}}</td>
+                <td>{{visit.car.brandName}}</td>
+                <td>{{visit.car.model}}</td>
+                <td>{{visit.car.registrationNumber}}</td>
+                <td>{{visit.visitDate}}</td>
+                <td><button (click)="removeVisit(visit.id)">Odwołaj wizytę</button></td>
+              </tr>
+            </table>
           </ng-container>
         </div>
       </div>

@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {
-  AddCarModel, CarEditModel, CarHasCompanyModel, CarIdModel, CoownerModel, AddVisitModel,
+import {AddCarModel, CarEditModel, CarHasCompanyModel, CarIdModel, CoownerModel, AddVisitModel,
   BanUser,
   ClientUpdateModel,
   LoginModel,
   RegisterEmployeeModel,
   RegisterModel,
   RemoveEmployeeModel,
-  TokenModel, CarBrandModel, CarPartModel, CompanyModel, AddCompanyModel
+  TokenModel, CarBrandModel, CarPartModel, CompanyModel, AddCompanyModel, RemoveVisitModel
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
@@ -188,6 +187,14 @@ export class AuthService {
             }));
     }
 
+    removeVisit(visit: RemoveVisitModel) {
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/removeVisit', visit)
+            .pipe(map( user => {
+                localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
+                return user;
+            }));
+    }
+
     getClientsCompanies(token: TokenModel) {
         return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/getClientsCompanies', token)
             .pipe(map( companies => {
@@ -224,6 +231,21 @@ export class AuthService {
         console.log(data);
       }
     );
+  }
+
+  employeeAddVisit(visit: AddVisitModel) {
+      if (visit.accessToken == null) {
+          return;
+      }
+      return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/addEmptyVisit', visit)
+          .subscribe(
+          (data) => {
+              console.log(data);
+          },
+          (data) => {
+              console.log(data);
+          }
+      );
   }
 
   getAccessToken() {
