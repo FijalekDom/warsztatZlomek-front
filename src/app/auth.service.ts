@@ -232,6 +232,21 @@ export class AuthService {
     );
   }
 
+  employeeAddVisit(visit: AddVisitModel) {
+      if (visit.accessToken == null) {
+          return;
+      }
+      return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/addEmptyVisit', visit)
+          .subscribe(
+          (data) => {
+              console.log(data);
+          },
+          (data) => {
+              console.log(data);
+          }
+      );
+  }
+
   getAccessToken() {
       const value = localStorage.getItem('warsztatZlomekEmployee');
       if (value == null) {

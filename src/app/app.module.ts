@@ -30,6 +30,7 @@ import { CarRmCoownerComponent } from './account/cars/car-rm-coowner/car-rm-coow
 import { CarAddCompanyComponent } from './account/cars/car-add-company/car-add-company.component';
 import { CarRmCompanyComponent } from './account/cars/car-rm-company/car-rm-company.component';
 import { BanUserComponent } from './ban-user/ban-user.component';
+import { EmployeeAddVisitComponent } from './employee-add-visit/employee-add-visit.component';
 
 
 
@@ -99,6 +100,10 @@ const appRoutes: Routes = [
             component: EmployeeWelcomeSiteComponent
           },
           {
+            path: 'add-visit',
+            component: EmployeeAddVisitComponent
+          },
+          {
             path: 'registerEmployee',
             component: RegisterEmployeeComponent
           },
@@ -146,7 +151,8 @@ const appRoutes: Routes = [
     CarRmCoownerComponent,
     CarAddCompanyComponent,
     CarRmCompanyComponent,
-    BanUserComponent
+    BanUserComponent,
+    EmployeeAddVisitComponent
 
   ],
   imports: [
