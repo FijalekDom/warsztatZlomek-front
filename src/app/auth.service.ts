@@ -6,7 +6,7 @@ import {
     RegisterModel,
     RemoveEmployeeModel,
     TokenModel,
-    BanUser
+    BanUser, RemoveVisitModel
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
@@ -180,6 +180,14 @@ export class AuthService {
 
     addVisit(visit: AddVisitModel) {
         return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/add', visit)
+            .pipe(map( user => {
+                localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
+                return user;
+            }));
+    }
+
+    removeVisit(visit: RemoveVisitModel) {
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/removeVisit', visit)
             .pipe(map( user => {
                 localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
                 return user;

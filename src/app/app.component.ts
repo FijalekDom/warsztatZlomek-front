@@ -29,7 +29,7 @@ export interface RegisterModel {
 }
 
 export interface TokenModel {
-    accessToken?: string;
+    accessToken: string;
 }
 
 export interface UserData {
@@ -136,6 +136,10 @@ export interface AddVisitModel {
     carId: number;
     visitDate: String;
     isOverview: boolean;
+}
+
+export interface RemoveVisitModel extends TokenModel {
+    visitId: number;
 }
 
 

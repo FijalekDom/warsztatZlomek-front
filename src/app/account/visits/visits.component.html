@@ -9,13 +9,15 @@
           </ng-container>
           <ng-container *ngIf="visits.length != 0">
             <table class="table">
-              <tr>
-                <td>Lp.</td>
-                <td>Marka</td>
-                <td>Model</td>
-                <td>Numer rejestracyjny</td>
-                <td>data</td>
-              </tr>
+              <thead>
+                <tr>
+                  <td>Lp.</td>
+                  <td>Marka</td>
+                  <td>Model</td>
+                  <td>Numer rejestracyjny</td>
+                  <td>Data wizyty</td>
+                </tr>
+              </thead>
               <tr *ngFor="let visit of visits;  let i = index">
                 <td>{{i}}</td>
                 <td>{{visit.car.brandName}}</td>

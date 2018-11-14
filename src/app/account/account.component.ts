@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ShowVisitModel, TokenModel, VisitModel} from '../app.component';
+import {RemoveVisitModel, ShowVisitModel, TokenModel, VisitModel} from '../app.component';
 import {AuthService} from '../auth.service';
 import {first} from 'rxjs/operators';
 
@@ -36,6 +36,24 @@ export class AccountComponent implements OnInit {
               });
   }
 
+  removeVisit(id: number) {
+      const visit: RemoveVisitModel = {
+        accessToken: JSON.parse(localStorage.getItem('currentUser')),
+        visitId: id
+      };
+
+      if (confirm('Na pewno chcesz odwołać wizytę?') == true) {
+          this.connection.removeVisit(visit)
+              .pipe(first())
+              .subscribe(
+                  user => {
+                      window.location.reload();
+                  },
+                  error => {
+                      console.log(error);
+                  });
+      }
+  }
 
 
 }
