@@ -31,6 +31,10 @@ import { CarAddCompanyComponent } from './account/cars/car-add-company/car-add-c
 import { CarRmCompanyComponent } from './account/cars/car-rm-company/car-rm-company.component';
 import { BanUserComponent } from './ban-user/ban-user.component';
 import { EmployeeAddVisitComponent } from './employee-add-visit/employee-add-visit.component';
+import { AddCarBrandComponent } from './add-car-brand/add-car-brand.component';
+import { AddCarPartComponent } from './add-car-part/add-car-part.component';
+import { EditCarPartComponent } from './edit-car-part/edit-car-part.component';
+import { AddCompanyComponent } from './add-company/add-company.component';
 
 
 
@@ -114,6 +118,18 @@ const appRoutes: Routes = [
           {
             path: 'banUser',
             component: BanUserComponent
+          },
+          {
+            path: 'addCarBrand',
+            component: AddCarBrandComponent
+          },
+          {
+            path: 'addCarPart',
+            component: AddCarPartComponent
+          },
+          {
+            path: 'addCompany',
+            component: AddCompanyComponent
           }
         ]
       },
@@ -153,7 +169,10 @@ const appRoutes: Routes = [
     CarRmCompanyComponent,
     BanUserComponent,
     EmployeeAddVisitComponent
-
+    AddCarBrandComponent,
+    AddCarPartComponent,
+    EditCarPartComponent,
+    AddCompanyComponent
   ],
   imports: [
     BrowserModule,

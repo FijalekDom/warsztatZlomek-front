@@ -131,6 +131,28 @@ export interface CompanyModel {
     nip?: string;
 }
 
+export interface CarBrandModel {
+  brandName: String;
+  accessToken: String;
+}
+
+export interface CarPartModel {
+  name: String;
+  tax: number;
+  producer: String;
+  accessToken: String;
+}
+
+export interface CarPartResponse {
+  name: String;
+  tax: number;
+  producer: String;
+  id: number;
+}
+export interface AddCompanyModel extends CompanyModel {
+  accessToken: String;
+}
+
 export interface AddVisitModel {
     accessToken: String;
     carId: number;
@@ -141,5 +163,4 @@ export interface AddVisitModel {
 export interface RemoveVisitModel extends TokenModel {
     visitId: number;
 }
-
 

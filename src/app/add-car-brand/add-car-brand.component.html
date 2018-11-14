@@ -1,0 +1,20 @@
+<div id="site-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 backgroundClear">
+        <div  id="site-background">
+          <h1>Dodaj markę</h1>
+          <form [formGroup]="addCarBrandForm" (ngSubmit)="submit()">
+            <div class="form-group">
+              <label for="brandName">Podaj nazwę marki</label>
+              <input type="text" id="brandName" formControlName="brandName" class="form-control">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Dodaj markę</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
