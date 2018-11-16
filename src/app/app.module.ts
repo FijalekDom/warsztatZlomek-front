@@ -35,6 +35,9 @@ import { AddCarBrandComponent } from './add-car-brand/add-car-brand.component';
 import { AddCarPartComponent } from './add-car-part/add-car-part.component';
 import { EditCarPartComponent } from './edit-car-part/edit-car-part.component';
 import { AddCompanyComponent } from './add-company/add-company.component';
+import { EmployeeGetNotFinishedVisitsComponent } from './employee-get-not-finished-visits/employee-get-not-finished-visits.component';
+import { EmployeeGetNewVisitsComponent } from './employee-get-new-visits/employee-get-new-visits.component';
+import { EmployeeEmployeesVisitsComponent } from './employee-employees-visits/employee-employees-visits.component';
 
 
 
@@ -130,6 +133,18 @@ const appRoutes: Routes = [
           {
             path: 'addCompany',
             component: AddCompanyComponent
+          },
+          {
+            path: 'showNotFinishedVisits',
+            component: EmployeeGetNotFinishedVisitsComponent
+          },
+          {
+            path: 'shoNewVisits',
+            component: EmployeeGetNewVisitsComponent
+          },
+          {
+            path: 'showEmployeeVisits',
+            component: EmployeeEmployeesVisitsComponent
           }
         ]
       },
@@ -168,11 +183,14 @@ const appRoutes: Routes = [
     CarAddCompanyComponent,
     CarRmCompanyComponent,
     BanUserComponent,
-    EmployeeAddVisitComponent
+    EmployeeAddVisitComponent,
     AddCarBrandComponent,
     AddCarPartComponent,
     EditCarPartComponent,
-    AddCompanyComponent
+    AddCompanyComponent,
+    EmployeeGetNotFinishedVisitsComponent,
+    EmployeeGetNewVisitsComponent,
+    EmployeeEmployeesVisitsComponent
   ],
   imports: [
     BrowserModule,
