@@ -248,6 +248,36 @@ export class AuthService {
       );
   }
 
+    getNotFinishedVisits(token: TokenModel) {
+        if (token.accessToken == null) {
+            return;
+        }
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/getNotFinishedVisits', token)
+            .pipe(map( visits => {
+                return visits;
+            }));
+    }
+
+    getNewVisits(token: TokenModel) {
+        if (token.accessToken == null) {
+            return;
+        }
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/getNewVisits', token)
+            .pipe(map( visits => {
+                return visits;
+            }));
+    }
+
+    getEmployeesVisits(token: TokenModel) {
+        if (token.accessToken == null) {
+            return;
+        }
+        return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/getAllEmployeeVisits', token)
+            .pipe(map( visits => {
+                return visits;
+            }));
+    }
+
   getAccessToken() {
       const value = localStorage.getItem('warsztatZlomekEmployee');
       if (value == null) {
