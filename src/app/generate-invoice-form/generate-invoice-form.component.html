@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div id="site-background">
+        <form [formGroup]="generateInvoiceForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="companyName">Nazwa firmy</label>
+            <input type="text" formControlName="companyName" id="companyName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Username is required</div>
+            </div>
+            <label for="date" >Data płatności</label>
+            <input type="date" formControlName="date" id="date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Username is required</div>
+            </div>
+            <label for="paymentMethod">Metoda płatności</label>
+            <select  id="paymentMethod" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" >
+              <option value="">Wybierz metodę płatności</option>
+              <option value="CARD">Karta</option>
+              <option value="CASH">Gotówka</option>
+              <option value="TRANSFER">Przelew</option>
+            </select>
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Username is required</div>
+            </div>
+            <label for="discount" >Zniżka</label>
+            <input type="number" formControlName="discount" id="discount" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Username is required</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Zatwierdź</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

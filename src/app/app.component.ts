@@ -29,7 +29,7 @@ export interface RegisterModel {
 }
 
 export interface TokenModel {
-    accessToken?: string;
+    accessToken: string;
 }
 
 export interface UserData {
@@ -153,6 +153,12 @@ export interface AddCompanyModel extends CompanyModel {
   accessToken: String;
 }
 
+export interface ServiceModel {
+    serviceName: String;
+    price: String;
+    count: number;
+}
+
 export interface AddVisitModel {
     accessToken: String;
     carId: number;
@@ -172,9 +178,60 @@ export interface CarResponseModel {
 
 export interface VisitResponse {
   id: number;
-  visitDate: number;
+  visitDate: String;
   car: CarResponseModel;
   owners: UserData[];
   notVerifiedOwners: UserData[];
   status: String;
+}
+export interface RemoveVisitModel extends TokenModel {
+    visitId: number;
+}
+
+export interface AddEmployeeToVisit extends TokenModel {
+    visitId: number;
+}
+
+
+
+export interface SubmitVisitModel extends AddEmployeeToVisit {
+    carParts: CarPartModel[];
+    services: ServiceModel[];
+    countYears: number;
+    status: String;
+}
+
+export interface ShowEmployeeVisitModel extends VisitModel {
+    status: String;
+}
+
+export interface InvoiceForm {
+  accessToken: string;
+  discount: number;
+  methodOfPayment: string;
+  paymentDate: string;
+  visitId: number;
+  companyName: string;
+}
+
+export interface InvoiceResponse {
+  dayOfIssue: string;
+  discount: number;
+  grossValue: string;
+  netValue: string;
+  invoiceNumber: string;
+  methodOfPayment: string;
+  paymentDate: string;
+  carServiceData: CompanyModel;
+  companyData: CompanyModel;
+  positions: InvoicePositionResponse[];
+}
+
+export interface InvoicePositionResponse {
+  positionName: string;
+  grossPrice: string;
+  netPrice: string;
+  unitOfMeasure: string;
+  valueOfVat: string;
+  vatTax: string;
 }

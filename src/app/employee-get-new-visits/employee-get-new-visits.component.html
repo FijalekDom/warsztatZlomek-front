@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12 backgroundClear">
         <div  id="site-background">
-          <h1>Przyszłe wizyty</h1>
+          <h1>Nowe wizyty</h1>
           <ng-container *ngIf="visits.length == 0">
             Brak wizyt w historii.
           </ng-container>
@@ -25,7 +25,7 @@
                 <td>{{visit.car.model}}</td>
                 <td>{{visit.car.registrationNumber}}</td>
                 <td>{{visit.visitDate}}</td>
-                <td><button (click)="removeVisit(visit.id)">Odwołaj wizytę</button></td>
+                <td><button (click)="getVisit(visit.id)">Przyjmij</button></td>
               </tr>
             </table>
           </ng-container>
@@ -34,3 +34,4 @@
     </div>
   </div>
 </div>
+

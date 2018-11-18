@@ -30,12 +30,18 @@ import { CarRmCoownerComponent } from './account/cars/car-rm-coowner/car-rm-coow
 import { CarAddCompanyComponent } from './account/cars/car-add-company/car-add-company.component';
 import { CarRmCompanyComponent } from './account/cars/car-rm-company/car-rm-company.component';
 import { BanUserComponent } from './ban-user/ban-user.component';
+import { EmployeeAddVisitComponent } from './employee-add-visit/employee-add-visit.component';
 import { AddCarBrandComponent } from './add-car-brand/add-car-brand.component';
 import { AddCarPartComponent } from './add-car-part/add-car-part.component';
 import { EditCarPartComponent } from './edit-car-part/edit-car-part.component';
 import { AddCompanyComponent } from './add-company/add-company.component';
 import { AddCarServiceDataComponent } from './add-car-service-data/add-car-service-data.component';
 import { GenerateInvoiceComponent } from './generate-invoice/generate-invoice.component';
+
+import { EmployeeGetNotFinishedVisitsComponent } from './employee-get-not-finished-visits/employee-get-not-finished-visits.component';
+import { EmployeeGetNewVisitsComponent } from './employee-get-new-visits/employee-get-new-visits.component';
+import { EmployeeEmployeesVisitsComponent } from './employee-employees-visits/employee-employees-visits.component';
+import { GenerateInvoiceFormComponent } from './generate-invoice-form/generate-invoice-form.component';
 
 
 
@@ -105,6 +111,10 @@ const appRoutes: Routes = [
             component: EmployeeWelcomeSiteComponent
           },
           {
+            path: 'add-visit',
+            component: EmployeeAddVisitComponent
+          },
+          {
             path: 'registerEmployee',
             component: RegisterEmployeeComponent
           },
@@ -129,12 +139,29 @@ const appRoutes: Routes = [
             component: AddCompanyComponent
           },
           {
+
             path: 'addCarServiceData',
             component: AddCarServiceDataComponent
           },
           {
             path: 'generateInvoice',
             component: GenerateInvoiceComponent
+          },
+          {
+            path: 'showNotFinishedVisits',
+            component: EmployeeGetNotFinishedVisitsComponent
+          },
+          {
+            path: 'showNewVisits',
+            component: EmployeeGetNewVisitsComponent
+          },
+          {
+            path: 'showEmployeeVisits',
+            component: EmployeeEmployeesVisitsComponent
+          },
+          {
+            path: 'generateInvoiceForm/:id',
+            component: GenerateInvoiceFormComponent
           }
         ]
       },
@@ -173,13 +200,17 @@ const appRoutes: Routes = [
     CarAddCompanyComponent,
     CarRmCompanyComponent,
     BanUserComponent,
+    EmployeeAddVisitComponent,
     AddCarBrandComponent,
     AddCarPartComponent,
     EditCarPartComponent,
     AddCompanyComponent,
     AddCarServiceDataComponent,
-    GenerateInvoiceComponent
-
+    GenerateInvoiceComponent,
+    EmployeeGetNotFinishedVisitsComponent,
+    EmployeeGetNewVisitsComponent,
+    EmployeeEmployeesVisitsComponent,
+    GenerateInvoiceFormComponent
   ],
   imports: [
     BrowserModule,

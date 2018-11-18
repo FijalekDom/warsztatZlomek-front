@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth.service';
+import {TokenModel, VisitResponse} from '../app.component';
+import {visit} from '@angular/compiler-cli/src/ngtsc/util/src/visitor';
+import {first} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-generate-invoice',
@@ -8,10 +12,24 @@ import {AuthService} from '../auth.service';
 })
 export class GenerateInvoiceComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
-
+  constructor(private authService: AuthService,
+              private router: Router) { }
+  private visits: VisitResponse[];
   ngOnInit() {
-    this.authService.getVisitsArray();
+    const accessToken: TokenModel = {
+      accessToken: this.authService.getAccessToken()
+    };
+    this.authService.getEmployeesVisits(accessToken).subscribe(data => {
+      this.visits = data.visits;
+      this.visits.forEach(obj => {
+        const date = new Date(parseInt(obj.visitDate.valueOf(), 10));
+        obj.visitDate = date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear();
+      });
+    });
+  }
+
+  createInvoice(i: number) {
+    this.router.navigate(['employee/account/generateInvoiceForm', this.visits[i].id]);
   }
 
 }
