@@ -35,9 +35,13 @@ import { AddCarBrandComponent } from './add-car-brand/add-car-brand.component';
 import { AddCarPartComponent } from './add-car-part/add-car-part.component';
 import { EditCarPartComponent } from './edit-car-part/edit-car-part.component';
 import { AddCompanyComponent } from './add-company/add-company.component';
+import { AddCarServiceDataComponent } from './add-car-service-data/add-car-service-data.component';
+import { GenerateInvoiceComponent } from './generate-invoice/generate-invoice.component';
+
 import { EmployeeGetNotFinishedVisitsComponent } from './employee-get-not-finished-visits/employee-get-not-finished-visits.component';
 import { EmployeeGetNewVisitsComponent } from './employee-get-new-visits/employee-get-new-visits.component';
 import { EmployeeEmployeesVisitsComponent } from './employee-employees-visits/employee-employees-visits.component';
+import { GenerateInvoiceFormComponent } from './generate-invoice-form/generate-invoice-form.component';
 
 
 
@@ -135,6 +139,15 @@ const appRoutes: Routes = [
             component: AddCompanyComponent
           },
           {
+
+            path: 'addCarServiceData',
+            component: AddCarServiceDataComponent
+          },
+          {
+            path: 'generateInvoice',
+            component: GenerateInvoiceComponent
+          },
+          {
             path: 'showNotFinishedVisits',
             component: EmployeeGetNotFinishedVisitsComponent
           },
@@ -145,6 +158,10 @@ const appRoutes: Routes = [
           {
             path: 'showEmployeeVisits',
             component: EmployeeEmployeesVisitsComponent
+          },
+          {
+            path: 'generateInvoiceForm/:id',
+            component: GenerateInvoiceFormComponent
           }
         ]
       },
@@ -188,9 +205,12 @@ const appRoutes: Routes = [
     AddCarPartComponent,
     EditCarPartComponent,
     AddCompanyComponent,
+    AddCarServiceDataComponent,
+    GenerateInvoiceComponent,
     EmployeeGetNotFinishedVisitsComponent,
     EmployeeGetNewVisitsComponent,
-    EmployeeEmployeesVisitsComponent
+    EmployeeEmployeesVisitsComponent,
+    GenerateInvoiceFormComponent
   ],
   imports: [
     BrowserModule,

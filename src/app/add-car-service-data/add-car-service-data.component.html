@@ -1,0 +1,52 @@
+<div >
+  <div id="site-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 backgroundClear">
+          <div  id="site-background">
+            <form [formGroup]="addCarServiceForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label >E-mail</label>
+                <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Username is required</div>
+                </div>
+                <div class="form-group">
+                  <label >Podaj nazwę</label>
+                  <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                </div>
+                <div class="form-group">
+                  <label >Podaj NIP</label>
+                  <input type="text" formControlName="nip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                </div>
+                <div class="form-group">
+                  <label >Podaj nazwę miasta</label>
+                  <input type="text" formControlName="cityName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                </div>
+                <div class="form-group">
+                  <label >Podaj ulicę</label>
+                  <input type="text" formControlName="streetName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                </div>
+                <div class="form-group">
+                  <label >Podaj numer budynku</label>
+                  <input type="text" formControlName="buildingNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                </div>
+                <div class="form-group">
+                  <label >Podaj numer pomieszczenia</label>
+                  <input type="text" formControlName="aptNum" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                </div>
+                <div class="form-group">
+                  <label >Podaj kod pocztowy</label>
+                  <input type="text" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">Dodaj firmę</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
