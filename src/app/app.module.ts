@@ -139,7 +139,7 @@ const appRoutes: Routes = [
             component: EmployeeGetNotFinishedVisitsComponent
           },
           {
-            path: 'shoNewVisits',
+            path: 'showNewVisits',
             component: EmployeeGetNewVisitsComponent
           },
           {
