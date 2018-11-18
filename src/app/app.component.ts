@@ -153,6 +153,12 @@ export interface AddCompanyModel extends CompanyModel {
   accessToken: String;
 }
 
+export interface ServiceModel {
+    serviceName: String;
+    price: String;
+    count: number;
+}
+
 export interface AddVisitModel {
     accessToken: String;
     carId: number;
@@ -162,5 +168,22 @@ export interface AddVisitModel {
 
 export interface RemoveVisitModel extends TokenModel {
     visitId: number;
+}
+
+export interface AddEmployeeToVisit extends TokenModel {
+    visitId: number;
+}
+
+
+
+export interface SubmitVisitModel extends AddEmployeeToVisit {
+    carParts: CarPartModel[];
+    services: ServiceModel[];
+    countYears: number;
+    status: String;
+}
+
+export interface ShowEmployeeVisitModel extends VisitModel {
+    status: String;
 }
 

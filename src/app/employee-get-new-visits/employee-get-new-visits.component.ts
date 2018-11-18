@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth.service';
-import {TokenModel, VisitModel} from '../app.component';
+import {AddEmployeeToVisit, TokenModel, VisitModel} from '../app.component';
 import {first} from 'rxjs/internal/operators';
 
 @Component({
@@ -34,6 +34,26 @@ export class EmployeeGetNewVisitsComponent implements OnInit {
                     console.log(error);
                 }
             );
+    }
+
+    getVisit(id: number) {
+        const visit: AddEmployeeToVisit = {
+            accessToken: this.connection.getAccessToken(),
+            visitId: id
+        };
+
+        console.log(visit);
+
+        this.connection.addEmployeeToVisit(visit)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    console.log(data);
+                    window.location.reload();
+                },
+                error => {
+                    console.log(error);
+                });
     }
 
 }
