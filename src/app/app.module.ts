@@ -34,6 +34,8 @@ import { AddCarBrandComponent } from './add-car-brand/add-car-brand.component';
 import { AddCarPartComponent } from './add-car-part/add-car-part.component';
 import { EditCarPartComponent } from './edit-car-part/edit-car-part.component';
 import { AddCompanyComponent } from './add-company/add-company.component';
+import { AddCarServiceDataComponent } from './add-car-service-data/add-car-service-data.component';
+import { GenerateInvoiceComponent } from './generate-invoice/generate-invoice.component';
 
 
 
@@ -125,6 +127,14 @@ const appRoutes: Routes = [
           {
             path: 'addCompany',
             component: AddCompanyComponent
+          },
+          {
+            path: 'addCarServiceData',
+            component: AddCarServiceDataComponent
+          },
+          {
+            path: 'generateInvoice',
+            component: GenerateInvoiceComponent
           }
         ]
       },
@@ -166,7 +176,9 @@ const appRoutes: Routes = [
     AddCarBrandComponent,
     AddCarPartComponent,
     EditCarPartComponent,
-    AddCompanyComponent
+    AddCompanyComponent,
+    AddCarServiceDataComponent,
+    GenerateInvoiceComponent
 
   ],
   imports: [

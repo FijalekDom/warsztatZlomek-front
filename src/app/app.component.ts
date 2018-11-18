@@ -159,3 +159,22 @@ export interface AddVisitModel {
     visitDate: String;
     isOverview: boolean;
 }
+
+export interface CarResponseModel {
+  accessToken: String;
+  id: number;
+  vin: String;
+  registrationNumber: String;
+  model: String;
+  productionYear: number;
+  brandName: String;
+}
+
+export interface VisitResponse {
+  id: number;
+  visitDate: number;
+  car: CarResponseModel;
+  owners: UserData[];
+  notVerifiedOwners: UserData[];
+  status: String;
+}
