@@ -137,9 +137,20 @@ export interface CarBrandModel {
 }
 
 export interface CarPartModel {
+  name: string;
+  tax: number;
+  producer: string;
+  accessToken: String;
+}
+
+export interface EditCarPartModel extends CarPartResponse {
+  accessToken: string;
+}
+
+export interface ServiceModel {
+  id: number;
   name: String;
   tax: number;
-  producer: String;
   accessToken: String;
 }
 
@@ -151,12 +162,6 @@ export interface CarPartResponse {
 }
 export interface AddCompanyModel extends CompanyModel {
   accessToken: String;
-}
-
-export interface ServiceModel {
-    serviceName: String;
-    price: String;
-    count: number;
 }
 
 export interface AddVisitModel {

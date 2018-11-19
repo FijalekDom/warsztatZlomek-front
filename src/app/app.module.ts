@@ -33,7 +33,7 @@ import { BanUserComponent } from './ban-user/ban-user.component';
 import { EmployeeAddVisitComponent } from './employee-add-visit/employee-add-visit.component';
 import { AddCarBrandComponent } from './add-car-brand/add-car-brand.component';
 import { AddCarPartComponent } from './add-car-part/add-car-part.component';
-import { EditCarPartComponent } from './edit-car-part/edit-car-part.component';
+import { EditVisitElementsComponent } from './edit-visit-elements/edit-visit-elements-component';
 import { AddCompanyComponent } from './add-company/add-company.component';
 import { AddCarServiceDataComponent } from './add-car-service-data/add-car-service-data.component';
 import { GenerateInvoiceComponent } from './generate-invoice/generate-invoice.component';
@@ -162,6 +162,10 @@ const appRoutes: Routes = [
           {
             path: 'generateInvoiceForm/:id',
             component: GenerateInvoiceFormComponent
+          },
+          {
+            path: 'editVisitElementsPart',
+            component: EditVisitElementsComponent
           }
         ]
       },
@@ -203,7 +207,7 @@ const appRoutes: Routes = [
     EmployeeAddVisitComponent,
     AddCarBrandComponent,
     AddCarPartComponent,
-    EditCarPartComponent,
+    EditVisitElementsComponent,
     AddCompanyComponent,
     AddCarServiceDataComponent,
     GenerateInvoiceComponent,

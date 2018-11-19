@@ -47,6 +47,7 @@ export class GenerateInvoiceFormComponent implements OnInit {
     };
     this.authService.generateInvoice(generateInvoice) .pipe(first())
       .subscribe(data => {
+        this.authService.setExpirationDate();
         this.invoice = data.invoice;
         const dayOfIssue = new Date(this.invoice.dayOfIssue);
         this.invoice.dayOfIssue = dayOfIssue.getDate() + '-' + (dayOfIssue.getMonth() + 1) + '-' + dayOfIssue.getFullYear();

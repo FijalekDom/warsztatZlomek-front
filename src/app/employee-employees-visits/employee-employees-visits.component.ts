@@ -23,6 +23,7 @@ export class EmployeeEmployeesVisitsComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                  this.connection.setExpirationDate();
                     console.log(data);
                     this.visits = data.visits;
                     for (let i = 0; i < data.visits.length; i++) {
@@ -72,6 +73,7 @@ export class EmployeeEmployeesVisitsComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                  this.connection.setExpirationDate();
                     console.log(data);
                 },
                 error => {

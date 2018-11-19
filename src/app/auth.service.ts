@@ -10,7 +10,7 @@ import {
   RegisterModel,
   RemoveEmployeeModel,
   TokenModel, CarBrandModel, CarPartModel, CompanyModel, AddCompanyModel, VisitResponse,
-  RemoveVisitModel, AddEmployeeToVisit, SubmitVisitModel, InvoiceForm
+  RemoveVisitModel, AddEmployeeToVisit, SubmitVisitModel, InvoiceForm, CarPartResponse, EditCarPartModel, ServiceModel
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
@@ -213,6 +213,7 @@ export class AuthService {
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/registerEmployee',
       registerEmployeeModel).subscribe(
       () => {
+        this.setExpirationDate();
         console.log('sukces');
       },
       (data) => {
@@ -228,6 +229,7 @@ export class AuthService {
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/removeEmployee',
       removeEmployeeModel).subscribe(
       (data) => {
+        this.setExpirationDate();
         console.log(data);
       },
       (data) => {
@@ -243,6 +245,7 @@ export class AuthService {
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/addEmptyVisit', visit)
       .subscribe(
         (data) => {
+          this.setExpirationDate();
           console.log(data);
         },
         (data) => {
@@ -302,6 +305,7 @@ export class AuthService {
     }
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/banUser', form).subscribe(
       (data) => {
+        this.setExpirationDate();
         console.log(data);
       },
       (data) => {
@@ -316,6 +320,7 @@ export class AuthService {
     }
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/addCarBrand', form).subscribe(
       (data) => {
+        this.setExpirationDate();
         console.log(data);
       },
       (data) => {
@@ -330,6 +335,7 @@ export class AuthService {
     }
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/CarParts/addCarPart', form).subscribe(
       (data) => {
+        this.setExpirationDate();
         console.log(data);
       },
       (data) => {
@@ -344,6 +350,7 @@ export class AuthService {
     }
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/addCompany', form).subscribe(
       (data) => {
+        this.setExpirationDate();
         console.log(data);
       },
       (data) => {
@@ -358,6 +365,7 @@ export class AuthService {
     }
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/addCarServiceData', form).subscribe(
       (data) => {
+        this.setExpirationDate();
         console.log(data);
       },
       (data) => {
@@ -396,4 +404,48 @@ export class AuthService {
       }));
   }
 
+  setExpirationDate() {
+    let token = localStorage.getItem('warsztatZlomekEmployee').valueOf();
+    const array = token.split(';');
+    const date = new Date();
+    date.setTime(date.getTime() + (20 * 60 * 1000));
+    array[1] = date.toString();
+    token = array.join(';');
+    localStorage.setItem('warsztatZlomekEmployee', token);
+  }
+
+  getVisitElements() {
+    return this.http.get<any>('http://localhost:8080/warsztatZlomek/rest/visits/getDataForVisit')
+      .pipe(map(result => {
+        return result;
+      }));
+  }
+  editCarPart(form: EditCarPartModel) {
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/CarParts/editCarPart', form).subscribe(
+      (data) => {
+        this.setExpirationDate();
+        console.log(data);
+      },
+      (data) => {
+        console.log(data);
+      }
+    );
+  }
+  editService(form: ServiceModel) {
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/editService', form).subscribe(
+      (data) => {
+        this.setExpirationDate();
+        console.log(data);
+      },
+      (data) => {
+        console.log(data);
+      }
+    );
+  }
 }

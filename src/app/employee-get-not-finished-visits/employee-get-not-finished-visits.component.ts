@@ -23,6 +23,7 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
         .pipe(first())
         .subscribe(
             data => {
+              this.connection.setExpirationDate();
                 this.visits = data.visits;
                 for (let i = 0; i < data.visits.length; i++) {
                     const date = new Date(data.visits[i].visitDate);
