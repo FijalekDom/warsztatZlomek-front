@@ -1,0 +1,47 @@
+<div>
+  <div id="site-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 backgroundClear">
+          <div id="site-background">
+            <ng-container>
+              <table class="table">
+                <thead>
+                <tr>
+                  <td>
+                    Lp.
+                  </td>
+                  <td>
+                    Nazwa firmy
+                  </td>
+                  <td>
+                    NIP
+                  </td>
+                  <td></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let company of companies; let i = index">
+                  <td>
+                    {{i+1}}
+                  </td>
+                  <td>
+                    {{company.name}}
+                  </td>
+                  <td>
+                    {{company.nip}}
+                  </td>
+                  <td>
+                    <button class="btn btn-primary" (click)="edit(i)">Edytuj</button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </ng-container>
+            <button class="btn btn-primary" (click)="addCompany()">Dodaj firmę</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

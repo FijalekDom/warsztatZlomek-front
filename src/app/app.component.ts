@@ -101,6 +101,10 @@ export interface BanUser {
   accessToken: String;
 }
 
+export interface GetCompanyModel extends TokenModel {
+  companyId: number;
+}
+
 export interface CarIdModel {
     carId: number;
     accessToken: String;
@@ -141,6 +145,11 @@ export interface CarPartModel {
   tax: number;
   producer: string;
   accessToken: String;
+}
+
+export interface EditCompanyModel extends CompanyModel{
+  id: number;
+  accessToken: string;
 }
 
 export interface EditCarPartModel extends CarPartResponse {

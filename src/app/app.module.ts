@@ -42,6 +42,8 @@ import { EmployeeGetNotFinishedVisitsComponent } from './employee-get-not-finish
 import { EmployeeGetNewVisitsComponent } from './employee-get-new-visits/employee-get-new-visits.component';
 import { EmployeeEmployeesVisitsComponent } from './employee-employees-visits/employee-employees-visits.component';
 import { GenerateInvoiceFormComponent } from './generate-invoice-form/generate-invoice-form.component';
+import { CompanyListComponent } from './company-list/company-list.component';
+import { EditCompanyFormComponent } from './edit-company-form/edit-company-form.component';
 
 
 
@@ -166,6 +168,14 @@ const appRoutes: Routes = [
           {
             path: 'editVisitElementsPart',
             component: EditVisitElementsComponent
+          },
+          {
+            path: 'companyList',
+            component: CompanyListComponent
+          },
+          {
+            path: 'editCompany/:id',
+            component: EditCompanyFormComponent
           }
         ]
       },
@@ -214,7 +224,9 @@ const appRoutes: Routes = [
     EmployeeGetNotFinishedVisitsComponent,
     EmployeeGetNewVisitsComponent,
     EmployeeEmployeesVisitsComponent,
-    GenerateInvoiceFormComponent
+    GenerateInvoiceFormComponent,
+    CompanyListComponent,
+    EditCompanyFormComponent
   ],
   imports: [
     BrowserModule,

@@ -2,15 +2,33 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {
 
-  AddCarModel, CarEditModel, CarHasCompanyModel, CarIdModel, CoownerModel, AddVisitModel,
+  AddCarModel,
+  CarEditModel,
+  CarHasCompanyModel,
+  CarIdModel,
+  CoownerModel,
+  AddVisitModel,
   BanUser,
   ClientUpdateModel,
   LoginModel,
   RegisterEmployeeModel,
   RegisterModel,
   RemoveEmployeeModel,
-  TokenModel, CarBrandModel, CarPartModel, CompanyModel, AddCompanyModel, VisitResponse,
-  RemoveVisitModel, AddEmployeeToVisit, SubmitVisitModel, InvoiceForm, CarPartResponse, EditCarPartModel, ServiceModel
+  TokenModel,
+  CarBrandModel,
+  CarPartModel,
+  CompanyModel,
+  AddCompanyModel,
+  VisitResponse,
+  RemoveVisitModel,
+  AddEmployeeToVisit,
+  SubmitVisitModel,
+  InvoiceForm,
+  CarPartResponse,
+  EditCarPartModel,
+  ServiceModel,
+  GetCompanyModel,
+  EditCompanyModel
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
@@ -439,6 +457,47 @@ export class AuthService {
       return;
     }
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/editService', form).subscribe(
+      (data) => {
+        this.setExpirationDate();
+        console.log(data);
+      },
+      (data) => {
+        console.log(data);
+      }
+    );
+  }
+
+  getAllCompanies() {
+    const form: TokenModel = {
+      accessToken: this.getAccessToken()
+    };
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/getAllCompanies', form).pipe(map((result) => {
+      return result;
+      }
+    ));
+  }
+  getCompanyById(id: number) {
+    const form: GetCompanyModel = {
+      accessToken: this.getAccessToken(),
+      companyId: id
+    };
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/getCompanyData', form).pipe(map((result) => {
+        return result;
+      }
+    ));
+  }
+
+  editCompany(form: EditCompanyModel) {
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/editCompany', form).subscribe(
       (data) => {
         this.setExpirationDate();
         console.log(data);
