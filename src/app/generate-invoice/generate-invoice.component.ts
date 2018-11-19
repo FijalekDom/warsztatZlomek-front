@@ -20,6 +20,7 @@ export class GenerateInvoiceComponent implements OnInit {
       accessToken: this.authService.getAccessToken()
     };
     this.authService.getEmployeesVisits(accessToken).subscribe(data => {
+      this.authService.setExpirationDate();
       this.visits = data.visits;
       this.visits.forEach(obj => {
         const date = new Date(parseInt(obj.visitDate.valueOf(), 10));
