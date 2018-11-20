@@ -209,8 +209,8 @@ export interface AddEmployeeToVisit extends TokenModel {
 
 
 export interface SubmitVisitModel extends AddEmployeeToVisit {
-    carParts: CarPartModel[];
-    services: ServiceModel[];
+    carParts: CarPartEditVisitModel[];
+    services: ServiceEditVisitModel[];
     countYears: number;
     status: String;
 }
@@ -218,6 +218,24 @@ export interface SubmitVisitModel extends AddEmployeeToVisit {
 export interface ShowEmployeeVisitModel extends VisitModel {
     status: String;
 }
+
+
+export interface CarPartEditVisitModel {
+    price: String;
+    count: number;
+    id: number;
+}
+
+export interface ServiceModel {
+    id: number;
+    name: String;
+    tax: number;
+}
+
+export interface ServiceEditVisitModel {
+    name: String;
+    price: String;
+    count: number;
 
 export interface InvoiceForm {
   accessToken: string;

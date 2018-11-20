@@ -467,6 +467,15 @@ export class AuthService {
     );
   }
 
+
+  getEditVisitData() {
+      return this.http.get<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/getDataForVisit')
+           .pipe(map( visits => {
+               return visits;
+           }));
+  }
+
+
   getAllCompanies() {
     const form: TokenModel = {
       accessToken: this.getAccessToken()
@@ -507,4 +516,5 @@ export class AuthService {
       }
     );
   }
+
 }

@@ -4,30 +4,118 @@
       <div class="col-md-12 backgroundClear">
         <div  id="site-background">
           <h1>Nie ukończone wizyty</h1>
-          <ng-container *ngIf="visits.length == 0">
-            Brak wizyt w historii.
+          <ng-container *ngIf="showList">
+            <ng-container *ngIf="visits.length == 0">
+              Brak wizyt w historii.
+            </ng-container>
+            <ng-container *ngIf="visits.length != 0">
+              <table class="table">
+                <thead>
+                <tr>
+                  <td>Lp.</td>
+                  <td>Marka</td>
+                  <td>Model</td>
+                  <td>Numer rejestracyjny</td>
+                  <td>Data wizyty</td>
+                  <td></td>
+                </tr>
+                </thead>
+                <tr *ngFor="let visit of visits;  let i = index">
+                  <td>{{i}}</td>
+                  <td>{{visit.car.brandName}}</td>
+                  <td>{{visit.car.model}}</td>
+                  <td>{{visit.car.registrationNumber}}</td>
+                  <td>{{visit.visitDate}}</td>
+                  <ng-container *ngIf="visit.status === 'ACCEPTED'">
+                    <td><button (click)="changeStatus(visit.id, 'in progress')">Potwierdź odbiór</button></td>
+                  </ng-container>
+                  <ng-container *ngIf="visit.status === 'IN_PROGRESS'">
+                    <td><button (click)="submitPickup(visit.id)">Do odbioru</button></td>
+                  </ng-container>
+                  <ng-container *ngIf="visit.status === 'FOR_PICKUP'">
+                    <td><button (click)="changeStatus(visit.id, 'finished')">Odebrano</button></td>
+                  </ng-container>
+                </tr>
+              </table>
+            </ng-container>
           </ng-container>
-          <ng-container *ngIf="visits.length != 0">
-            <table class="table">
-              <thead>
-              <tr>
-                <td>Lp.</td>
-                <td>Marka</td>
-                <td>Model</td>
-                <td>Numer rejestracyjny</td>
-                <td>Data wizyty</td>
-                <td></td>
-              </tr>
-              </thead>
-              <tr *ngFor="let visit of visits;  let i = index">
-                <td>{{i}}</td>
-                <td>{{visit.car.brandName}}</td>
-                <td>{{visit.car.model}}</td>
-                <td>{{visit.car.registrationNumber}}</td>
-                <td>{{visit.visitDate}}</td>
-                <td><button >Przyjmij</button></td>
-              </tr>
-            </table>
+          <ng-container *ngIf="!showList">
+            <ng-container *ngIf="carParts.length == 0">Brak części w wizycie</ng-container>
+            <ng-container *ngIf="carParts.length != 0">
+              <table>
+                <thead>
+                  <tr>
+                    <td>Id</td>
+                    <td>Ilość</td>
+                    <td>Cena</td>
+                  </tr>
+                </thead>
+                  <tr *ngFor="let carPart of carParts">
+                    <td>{{carPart.id}}</td>
+                    <td>{{carPart.count}}</td>
+                    <td>{{carPart.price}}</td>
+                  </tr>
+              </table>
+            </ng-container>
+            <form [formGroup]="addCarPartForm" (ngSubmit)="pushPart()">
+              <div class="form-group">
+                <label for="part">Wybierz część</label>
+                <select id="part" formControlName="part" class="form-control">
+                  <option *ngFor="let part of carPartsList" [ngValue]="part.id">{{part.name}}, {{part.producer}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="price">Podaj cene</label>
+                <input type="text" id="price" formControlName="price" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="count">Podaj ilość</label>
+                <input type="number" id="count" formControlName="count" class="form-control">
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Dodaj część</button>
+              </div>
+            </form>
+
+            <ng-container *ngIf="services.length == 0">Brak części w wizycie</ng-container>
+            <ng-container *ngIf="services.length != 0">
+              <table>
+                <thead>
+                <tr>
+                  <td>Nazwa</td>
+                  <td>Ilość</td>
+                  <td>Cena</td>
+                </tr>
+                </thead>
+                <tr *ngFor="let service of services">
+                  <td>{{service.name}}</td>
+                  <td>{{service.count}}</td>
+                  <td>{{service.price}}</td>
+                </tr>
+              </table>
+            </ng-container>
+            <form [formGroup]="addServiceForm" (ngSubmit)="pushService()">
+              <div class="form-group">
+                <label for="service">Wybierz usługę</label>
+                <select id="service" formControlName="service" class="form-control">
+                  <option *ngFor="let service of servicesList" [ngValue]="service.id">{{service.id}}, {{service.name}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="price">Podaj cene</label>
+                <input type="text" id="servicePrice" formControlName="servicePrice" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="count">Podaj ilość</label>
+                <input type="number" id="serviceCount" formControlName="serviceCount" class="form-control">
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Dodaj usługę</button>
+              </div>
+            </form>
+
+            <button (click)="sendRequest()">Zapisz wizyte</button>
+
           </ng-container>
         </div>
       </div>
