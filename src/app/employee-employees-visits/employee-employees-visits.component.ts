@@ -36,48 +36,5 @@ export class EmployeeEmployeesVisitsComponent implements OnInit {
             );
     }
 
-    confirmReceival(id: number) {
-        const visit: SubmitVisitModel = {
-            accessToken: this.connection.getAccessToken(),
-            visitId: id,
-            carParts: [],
-            services: [],
-            countYears: null,
-            status: 'in progress'
-        };
-
-        this.connection.editVisit(visit)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    console.log(data);
-                },
-                error => {
-                    console.log(error);
-                }
-            );
-    }
-
-    changeStatus(id: number, status: String) {
-        const visit: SubmitVisitModel = {
-            accessToken: this.connection.getAccessToken(),
-            visitId: id,
-            carParts: [],
-            services: [],
-            countYears: null,
-            status: 'for pickup'
-        };
-
-        this.connection.editVisit(visit)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    console.log(data);
-                },
-                error => {
-                    console.log(error);
-                }
-            );
-    }
 
 }
