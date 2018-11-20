@@ -6,27 +6,56 @@
           <form [formGroup]="registerEmployeeForm" (ngSubmit)="submit()">
             <div class="form-group">
               <label for="firstName">Imię</label>
-              <input type="text" id="firstName" formControlName="firstName" class="form-control">
+              <input type="text" id="firstName" formControlName="firstName" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+              <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName.errors.required">Imię jest wymagane</div>
+                <div *ngIf="f.firstName.errors.pattern">Imię jest nieprawidłowe</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="lastName">Nazwisko</label>
-              <input type="text" id="lastName" formControlName="lastName" class="form-control">
+              <input type="text" id="lastName" formControlName="lastName" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+              <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                <div *ngIf="f.lastName.errors.required">Nazwisko jest wymagane</div>
+                <div *ngIf="f.lastName.errors.pattern">Nazwisko jest nieprawidłowe</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="text" id="email" formControlName="email" class="form-control">
+              <input type="text" id="email" formControlName="email" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email jest wymagany</div>
+                <div *ngIf="f.email.errors.pattern">Email jest nieprawidłowy</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="password">Hasło</label>
-              <input type="password" id="password" formControlName="password" class="form-control">
+              <input type="password" id="password" formControlName="password" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Hasło jest wymagane</div>
+                <div *ngIf="f.password.errors.pattern">Hasło jest nieprawidłowe</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="confirmPassword">Powtórz hasło</label>
-              <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control">
+              <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+              <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                <div *ngIf="f.confirmPassword.errors.required">Potwierdzenie hasła jest wymagane</div>
+                <div *ngIf="f.confirmPassword.errors.pattern">Potwierdzenie hasła jest nieprawidłowe</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="hireDate">Data zatrudnienia</label>
               <input type="date" id="hireDate" formControlName="hireDate" class="form-control">
+              <div *ngIf="submitted && f.hireDate.errors" class="invalid-feedback"
+                   [ngClass]="{ 'is-invalid': submitted && f.hireDate.errors }">
+                <div *ngIf="f.hireDate.errors.required">Data zatrudnienia jest wymagana</div>
+              </div>
             </div>
             <div class="form-group">
               <button class="btn btn-primary" id="submit">Zarejestruj</button>

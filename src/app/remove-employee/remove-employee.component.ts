@@ -9,13 +9,14 @@ import {RegisterEmployeeModel, RemoveEmployeeModel} from '../app.component';
   styleUrls: ['./remove-employee.component.css']
 })
 export class RemoveEmployeeComponent implements OnInit {
+  private submitted = false;
   private removeEmployeeForm: FormGroup;
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService) { }
 
   ngOnInit() {
     this.removeEmployeeForm = this.formBuilder.group({
-      email: ['', Validators.pattern('^[A-Za-z0-9._-]{1,}@[a-z]{1,6}.[a-z]{2,3}$')],
+      email: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9._-]{1,}@[a-z]{1,6}.[a-z]{2,3}$')]],
       quitDate: ['', Validators.required]
     });
   }
@@ -25,6 +26,10 @@ export class RemoveEmployeeComponent implements OnInit {
   }
 
   submit() {
+    this.submitted = true;
+    if (this.removeEmployeeForm.invalid){
+      return;
+    }
     const date = new Date(this.f.quitDate.value);
     const removeEmployeeModel: RemoveEmployeeModel = {
       employeeMail: this.f.email.value,

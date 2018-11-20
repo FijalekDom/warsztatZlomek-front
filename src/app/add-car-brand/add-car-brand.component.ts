@@ -9,7 +9,7 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./add-car-brand.component.css']
 })
 export class AddCarBrandComponent implements OnInit {
-
+  private submitted = false;
   private addCarBrandForm: FormGroup;
   constructor(private builder: FormBuilder,
               private service: AuthService) { }
@@ -25,7 +25,9 @@ export class AddCarBrandComponent implements OnInit {
   }
 
   submit() {
-    if (this.f.brandName.errors) {
+    this.submitted = true;
+    console.log(this.f.brandName.errors);
+    if (this.addCarBrandForm.invalid) {
       return;
     }
     const model: CarBrandModel = {

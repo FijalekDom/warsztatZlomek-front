@@ -9,20 +9,20 @@ import {AddCompanyModel} from '../app.component';
   styleUrls: ['./add-car-service-data.component.css']
 })
 export class AddCarServiceDataComponent implements OnInit {
-
+  private submitted = false;
   private addCarServiceForm: FormGroup;
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService) {}
 
   ngOnInit() {
     this.addCarServiceForm = this.formBuilder.group({
-      email: ['', Validators.pattern('[A-Za-z0-9._-]{1,}@[a-z]{1,6}.[a-z]{2,3}')],
+      email: ['', [Validators.required, Validators.pattern('[A-Za-z0-9._-]{1,}@[a-z]{1,6}.[a-z]{2,3}')]],
       name: ['', Validators.required],
-      nip: ['', Validators.pattern('[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}')],
-      cityName: ['', Validators.pattern('[A-ZŹĄĘÓŁŻ]{1}[a-z,ąęółńćźż]{2,}')],
-      streetName: ['', Validators.pattern('[A-ZŹĄĘÓŁŻ]{1}[a-z,ąęółńćźż]{2,}')],
-      zipCode: ['', Validators.pattern('[0-9]{2}-[0-9]{3}')],
-      buildingNumber: [0, Validators.required],
+      nip: ['', [Validators.required, Validators.pattern('[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}')]],
+      cityName: ['', [Validators.required, Validators.pattern('[A-ZŹĄĘÓŁŻ]{1}[a-z,ąęółńćźż]{2,}')]],
+      streetName: ['', [Validators.required, Validators.pattern('[A-ZŹĄĘÓŁŻ]{1}[a-z,ąęółńćźż]{2,}')]],
+      zipCode: ['', [Validators.required, Validators.pattern('[0-9]{2}-[0-9]{3}')]],
+      buildingNumber: [null, Validators.required],
       aptNum: [null]
     });
   }
@@ -31,9 +31,10 @@ export class AddCarServiceDataComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
+    console.log(this.f.email.errors);
     const f = this.f;
-    if (f.email.errors || f.name.errors || f.nip.errors || f.cityName.errors ||
-      f.streetName.errors || f.zipCode.errors || f.buildingNumber.errors) {
+    if (this.addCarServiceForm.invalid) {
       return;
     }
     const company: AddCompanyModel = {

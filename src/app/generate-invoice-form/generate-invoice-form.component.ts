@@ -12,6 +12,7 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./generate-invoice-form.component.css']
 })
 export class GenerateInvoiceFormComponent implements OnInit {
+  private submitted = false;
   private generateInvoiceForm: FormGroup;
   private invoice: InvoiceResponse;
   constructor(private router: Router,
@@ -23,7 +24,7 @@ export class GenerateInvoiceFormComponent implements OnInit {
     this.generateInvoiceForm = this.formBuilder.group({
       companyName: ['', Validators.required],
       date: [null, Validators.required],
-      discount: [0, Validators.required]
+      discount: [0, [Validators.required, Validators.min(0)]]
     });
     this.visitId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
   }
@@ -32,8 +33,9 @@ export class GenerateInvoiceFormComponent implements OnInit {
     return this.generateInvoiceForm.controls;
   }
   onSubmit() {
+    this.submitted = true;
     const methodOfPayment = $('#paymentMethod').val();
-    if (this.f.companyName.errors || this.f.date.errors || this.f.discount.errors || methodOfPayment === '' || this.visitId === 0 ) {
+    if (this.generateInvoiceForm.invalid || methodOfPayment === '' || this.visitId === 0 ) {
       return;
     }
     let paymentDate = new Date(this.f.date.value);

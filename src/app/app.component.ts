@@ -147,7 +147,12 @@ export interface CarPartModel {
   accessToken: String;
 }
 
-export interface EditCompanyModel extends CompanyModel{
+export interface EditCompanyModel extends CompanyModel {
+  id: number;
+  accessToken: string;
+}
+
+export interface GetInvoiceModel {
   id: number;
   accessToken: string;
 }
@@ -233,10 +238,10 @@ export interface ServiceModel {
 }
 
 export interface ServiceEditVisitModel {
-    name: String;
-    price: String;
-    count: number;
-
+  name: String;
+  price: String;
+  count: number;
+}
 export interface InvoiceForm {
   accessToken: string;
   discount: number;
@@ -246,7 +251,12 @@ export interface InvoiceForm {
   companyName: string;
 }
 
+export interface EditInvoice extends InvoiceForm {
+  invoiceId: number;
+}
+
 export interface InvoiceResponse {
+  id: number;
   dayOfIssue: string;
   discount: number;
   grossValue: string;
