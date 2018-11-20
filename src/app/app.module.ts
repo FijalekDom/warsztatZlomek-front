@@ -184,7 +184,7 @@ const appRoutes: Routes = [
             component: InvoiceListComponent
           },
           {
-            path: 'editInvoice/:id',
+            path: 'invoices/:id',
             component: EditInvoiceComponent
           }
         ]

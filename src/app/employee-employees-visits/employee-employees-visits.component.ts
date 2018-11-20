@@ -37,6 +37,7 @@ export class EmployeeEmployeesVisitsComponent implements OnInit {
             );
     }
 
+
     confirmReceival(id: number) {
         const visit: SubmitVisitModel = {
             accessToken: this.connection.getAccessToken(),
@@ -81,5 +82,6 @@ export class EmployeeEmployeesVisitsComponent implements OnInit {
                 }
             );
     }
+
 
 }
