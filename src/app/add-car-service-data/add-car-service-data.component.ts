@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
-import {AddCompanyModel, BanUser, CompanyModel} from '../app.component';
+import {AddCompanyModel} from '../app.component';
 
 @Component({
-  selector: 'app-add-company',
-  templateUrl: './add-company.component.html',
-  styleUrls: ['./add-company.component.css']
+  selector: 'app-add-car-service-data',
+  templateUrl: './add-car-service-data.component.html',
+  styleUrls: ['./add-car-service-data.component.css']
 })
-export class AddCompanyComponent implements OnInit {
-  private addCompanyForm: FormGroup;
+export class AddCarServiceDataComponent implements OnInit {
+
+  private addCarServiceForm: FormGroup;
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService) {}
 
   ngOnInit() {
-    this.addCompanyForm = this.formBuilder.group({
+    this.addCarServiceForm = this.formBuilder.group({
       email: ['', Validators.pattern('[A-Za-z0-9._-]{1,}@[a-z]{1,6}.[a-z]{2,3}')],
       name: ['', Validators.required],
       nip: ['', Validators.pattern('[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}')],
@@ -26,7 +27,7 @@ export class AddCompanyComponent implements OnInit {
     });
   }
   get f() {
-    return this.addCompanyForm.controls;
+    return this.addCarServiceForm.controls;
   }
 
   onSubmit() {
@@ -46,7 +47,6 @@ export class AddCompanyComponent implements OnInit {
       aptNum: f.aptNum.value,
       accessToken: this.authService.getAccessToken()
     };
-    this.authService.addCompany(company);
+    this.authService.addCarService(company);
   }
-
 }

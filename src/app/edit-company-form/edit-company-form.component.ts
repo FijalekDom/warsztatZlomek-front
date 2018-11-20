@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
-import {AddCompanyModel, BanUser, CompanyModel} from '../app.component';
+import {AddCompanyModel, CompanyModel, EditCompanyModel} from '../app.component';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-add-company',
-  templateUrl: './add-company.component.html',
-  styleUrls: ['./add-company.component.css']
+  selector: 'app-edit-company-form',
+  templateUrl: './edit-company-form.component.html',
+  styleUrls: ['./edit-company-form.component.css']
 })
-export class AddCompanyComponent implements OnInit {
-  private addCompanyForm: FormGroup;
-  constructor(private formBuilder: FormBuilder,
-              private authService: AuthService) {}
+export class EditCompanyFormComponent implements OnInit {
+  private editCompanyForm: FormGroup;
+  private company: CompanyModel;
+  constructor(private builder: FormBuilder,
+              private authService: AuthService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.addCompanyForm = this.formBuilder.group({
+    this.editCompanyForm = this.builder.group({
       email: ['', Validators.pattern('[A-Za-z0-9._-]{1,}@[a-z]{1,6}.[a-z]{2,3}')],
       name: ['', Validators.required],
       nip: ['', Validators.pattern('[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}')],
@@ -24,18 +28,23 @@ export class AddCompanyComponent implements OnInit {
       buildingNumber: [0, Validators.required],
       aptNum: [null]
     });
+    const companyId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+    this.authService.getCompanyById(companyId).subscribe((result) => {
+      this.company = result;
+    });
   }
+
   get f() {
-    return this.addCompanyForm.controls;
+    return this.editCompanyForm.controls;
   }
 
   onSubmit() {
     const f = this.f;
-    if (f.email.errors || f.name.errors || f.nip.errors || f.cityName.errors ||
+    if (f.email.errors || f.cityName.errors ||
       f.streetName.errors || f.zipCode.errors || f.buildingNumber.errors) {
       return;
     }
-    const company: AddCompanyModel = {
+    const company: EditCompanyModel = {
       email: f.email.value,
       name: f.name.value,
       nip: f.nip.value,
@@ -44,9 +53,10 @@ export class AddCompanyComponent implements OnInit {
       zipCode: f.zipCode.value,
       buildingNum: f.buildingNumber.value,
       aptNum: f.aptNum.value,
-      accessToken: this.authService.getAccessToken()
+      accessToken: this.authService.getAccessToken(),
+      id: this.company.id
     };
-    this.authService.addCompany(company);
+    this.authService.editCompany(company);
   }
 
 }

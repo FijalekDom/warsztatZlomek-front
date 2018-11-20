@@ -101,6 +101,10 @@ export interface BanUser {
   accessToken: String;
 }
 
+export interface GetCompanyModel extends TokenModel {
+  companyId: number;
+}
+
 export interface CarIdModel {
     carId: number;
     accessToken: String;
@@ -137,9 +141,25 @@ export interface CarBrandModel {
 }
 
 export interface CarPartModel {
+  name: string;
+  tax: number;
+  producer: string;
+  accessToken: String;
+}
+
+export interface EditCompanyModel extends CompanyModel{
+  id: number;
+  accessToken: string;
+}
+
+export interface EditCarPartModel extends CarPartResponse {
+  accessToken: string;
+}
+
+export interface ServiceModel {
+  id: number;
   name: String;
   tax: number;
-  producer: String;
   accessToken: String;
 }
 
@@ -160,6 +180,24 @@ export interface AddVisitModel {
     isOverview: boolean;
 }
 
+export interface CarResponseModel {
+  accessToken: String;
+  id: number;
+  vin: String;
+  registrationNumber: String;
+  model: String;
+  productionYear: number;
+  brandName: String;
+}
+
+export interface VisitResponse {
+  id: number;
+  visitDate: String;
+  car: CarResponseModel;
+  owners: UserData[];
+  notVerifiedOwners: UserData[];
+  status: String;
+}
 export interface RemoveVisitModel extends TokenModel {
     visitId: number;
 }
@@ -181,6 +219,7 @@ export interface ShowEmployeeVisitModel extends VisitModel {
     status: String;
 }
 
+
 export interface CarPartEditVisitModel {
     price: String;
     count: number;
@@ -197,4 +236,34 @@ export interface ServiceEditVisitModel {
     name: String;
     price: String;
     count: number;
+
+export interface InvoiceForm {
+  accessToken: string;
+  discount: number;
+  methodOfPayment: string;
+  paymentDate: string;
+  visitId: number;
+  companyName: string;
+}
+
+export interface InvoiceResponse {
+  dayOfIssue: string;
+  discount: number;
+  grossValue: string;
+  netValue: string;
+  invoiceNumber: string;
+  methodOfPayment: string;
+  paymentDate: string;
+  carServiceData: CompanyModel;
+  companyData: CompanyModel;
+  positions: InvoicePositionResponse[];
+}
+
+export interface InvoicePositionResponse {
+  positionName: string;
+  grossPrice: string;
+  netPrice: string;
+  unitOfMeasure: string;
+  valueOfVat: string;
+  vatTax: string;
 }
