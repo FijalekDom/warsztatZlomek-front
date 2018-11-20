@@ -6,7 +6,12 @@
           <form [formGroup]="removeEmployeeForm" (ngSubmit)="submit()">
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="text" id="email" formControlName="email" class="form-control">
+              <input type="text" id="email" formControlName="email" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email jest wymagany</div>
+                <div *ngIf="f.email.errors.pattern">Email jest nieprawidłowy</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="quitDate">Data zatrudnienia</label>

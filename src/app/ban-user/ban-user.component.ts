@@ -9,6 +9,7 @@ import {BanUser} from '../app.component';
   styleUrls: ['./ban-user.component.css']
 })
 export class BanUserComponent implements OnInit {
+  private submitted = false;
   private banUserForm: FormGroup;
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService) {}
@@ -23,6 +24,10 @@ export class BanUserComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
+    if (this.banUserForm.invalid){
+      return;
+    }
     const banUser: BanUser = {
       username:  this.f.email.value,
       accessToken: this.authService.getAccessToken()

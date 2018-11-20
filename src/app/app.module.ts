@@ -44,6 +44,8 @@ import { EmployeeEmployeesVisitsComponent } from './employee-employees-visits/em
 import { GenerateInvoiceFormComponent } from './generate-invoice-form/generate-invoice-form.component';
 import { CompanyListComponent } from './company-list/company-list.component';
 import { EditCompanyFormComponent } from './edit-company-form/edit-company-form.component';
+import { InvoiceListComponent } from './invoice-list/invoice-list.component';
+import { EditInvoiceComponent } from './edit-invoice/edit-invoice.component';
 
 
 
@@ -176,6 +178,14 @@ const appRoutes: Routes = [
           {
             path: 'editCompany/:id',
             component: EditCompanyFormComponent
+          },
+          {
+            path: 'invoices',
+            component: InvoiceListComponent
+          },
+          {
+            path: 'editInvoice/:id',
+            component: EditInvoiceComponent
           }
         ]
       },
@@ -226,7 +236,9 @@ const appRoutes: Routes = [
     EmployeeEmployeesVisitsComponent,
     GenerateInvoiceFormComponent,
     CompanyListComponent,
-    EditCompanyFormComponent
+    EditCompanyFormComponent,
+    InvoiceListComponent,
+    EditInvoiceComponent
   ],
   imports: [
     BrowserModule,

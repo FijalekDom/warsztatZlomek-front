@@ -9,7 +9,7 @@
                 <label >E-mail</label>
                 <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                 <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                  <div *ngIf="f.email.errors.required">Username is required</div>
+                  <div *ngIf="f.email.errors.required">Nazwa użytkownika jest wymagana</div>
                 </div>
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">Zablokuj tego użytkownika</button>

@@ -10,6 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./edit-company-form.component.css']
 })
 export class EditCompanyFormComponent implements OnInit {
+  private submitted = false;
   private editCompanyForm: FormGroup;
   private company: CompanyModel;
   constructor(private builder: FormBuilder,
@@ -19,12 +20,12 @@ export class EditCompanyFormComponent implements OnInit {
 
   ngOnInit() {
     this.editCompanyForm = this.builder.group({
-      email: ['', Validators.pattern('[A-Za-z0-9._-]{1,}@[a-z]{1,6}.[a-z]{2,3}')],
+      email: ['', [Validators.required, Validators.pattern('[A-Za-z0-9._-]{1,}@[a-z]{1,6}.[a-z]{2,3}')]],
       name: ['', Validators.required],
-      nip: ['', Validators.pattern('[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}')],
-      cityName: ['', Validators.pattern('[A-ZŹĄĘÓŁŻ]{1}[a-z,ąęółńćźż]{2,}')],
-      streetName: ['', Validators.pattern('[A-ZŹĄĘÓŁŻ]{1}[a-z,ąęółńćźż]{2,}')],
-      zipCode: ['', Validators.pattern('[0-9]{2}-[0-9]{3}')],
+      nip: ['', [Validators.required, Validators.pattern('[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}')]],
+      cityName: ['', [Validators.required, Validators.pattern('[A-ZŹĄĘÓŁŻ]{1}[a-z,ąęółńćźż]{2,}')]],
+      streetName: ['', [Validators.required, Validators.pattern('[A-ZŹĄĘÓŁŻ]{1}[a-z,ąęółńćźż]{2,}')]],
+      zipCode: ['', [Validators.required, Validators.pattern('[0-9]{2}-[0-9]{3}')]],
       buildingNumber: [0, Validators.required],
       aptNum: [null]
     });
@@ -39,9 +40,9 @@ export class EditCompanyFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
     const f = this.f;
-    if (f.email.errors || f.cityName.errors ||
-      f.streetName.errors || f.zipCode.errors || f.buildingNumber.errors) {
+    if (this.editCompanyForm.invalid) {
       return;
     }
     const company: EditCompanyModel = {
