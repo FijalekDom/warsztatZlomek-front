@@ -17,7 +17,7 @@ import {Router} from '@angular/router';
 export class EmployeeSignInComponentComponent implements OnInit {
 
   employeeSignInForm: FormGroup;
-
+  private submitted = false;
   constructor(private http: HttpClient,
               private formBuilder: FormBuilder,
               private authService: AuthService,
@@ -25,8 +25,8 @@ export class EmployeeSignInComponentComponent implements OnInit {
 
   ngOnInit() {
     this.employeeSignInForm = this.formBuilder.group({
-      email: ['', Validators.pattern('^[A-Za-z0-9._-]{1,}@[a-z]{1,6}.[a-z]{2,3}$')],
-      password: ['', Validators.pattern('[A-Za-z0-9ĄŻŹÓŁĘążźćńłóę!@#%*\^]{6,20}')]
+      email: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9._-]{1,}@[a-z]{1,6}.[a-z]{2,3}$')]],
+      password: ['', [Validators.required, Validators.pattern('[A-Za-z0-9ĄŻŹÓŁĘążźćńłóę!@#%*\^]{6,20}')]]
     });
   }
 
@@ -35,10 +35,8 @@ export class EmployeeSignInComponentComponent implements OnInit {
   }
 
   submit() {
-    if (this.f.email.errors ) {
-      return;
-    }
-    if (this.f.password.errors) {
+    this.submitted = true;
+    if (this.employeeSignInForm.invalid){
       return;
     }
     const loginModel: LoginModel = {

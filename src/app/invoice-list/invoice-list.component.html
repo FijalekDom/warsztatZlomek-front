@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div id="site-background">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>
+                Lp.
+              </td>
+              <td>
+                Data wystawienia
+              </td>
+              <td>
+                Firma
+              </td>
+              <td>
+                NIP
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let invoice of invoices; let i = index;">
+              <td>{{i+1}}</td>
+              <td>{{invoice.dayOfIssue}}</td>
+              <td>{{invoice.companyData.name}}</td>
+              <td>{{invoice.companyData.nip}}</td>
+              <td>
+                <button class="btn btn-primary">Pobierz</button>
+              </td>
+              <td>
+                <button class="btn btn-primary" (click)="edit(invoice.id)">Edytuj</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
