@@ -16,6 +16,7 @@
                 <td>Model</td>
                 <td>Numer rejestracyjny</td>
                 <td>Data wizyty</td>
+                <td>Status</td>
                 <td></td>
               </tr>
               </thead>
@@ -25,7 +26,10 @@
                 <td>{{visit.car.model}}</td>
                 <td>{{visit.car.registrationNumber}}</td>
                 <td>{{visit.visitDate}}</td>
-                <td><button (click)="removeVisit(visit.id)">Odwołaj wizytę</button></td>
+                <td>{{visit.status}}</td>
+                <ng-container *ngIf="visit.status === 'NEW'">
+                  <td><button (click)="removeVisit(visit.id)">Odwołaj wizytę</button></td>
+                </ng-container>
               </tr>
             </table>
           </ng-container>

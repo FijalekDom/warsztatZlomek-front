@@ -94,6 +94,7 @@ export interface ShowVisitModel {
     id: number;
     visitDate: DateConstructor;
     isOverview: boolean;
+    status: String;
 }
 
 export interface BanUser {
@@ -236,6 +237,7 @@ export interface ServiceEditVisitModel {
     name: String;
     price: String;
     count: number;
+}
 
 export interface InvoiceForm {
   accessToken: string;
