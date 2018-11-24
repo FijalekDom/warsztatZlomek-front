@@ -279,3 +279,7 @@ export interface InvoicePositionResponse {
   valueOfVat: string;
   vatTax: string;
 }
+
+export interface AcceptProFormaInvoice extends TokenModel {
+  proFormaInvoiceId: number;
+}
