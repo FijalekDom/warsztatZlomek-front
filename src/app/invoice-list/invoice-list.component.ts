@@ -14,7 +14,7 @@ export class InvoiceListComponent implements OnInit {
               private  router: Router) { }
 
   ngOnInit() {
-    this.auth.getInvoices().subscribe((result) => {
+    this.auth.getInvoices('http://localhost:8080/warsztatZlomek/rest/invoice/getInvoicesList').subscribe((result) => {
       this.auth.setExpirationDate();
       this.invoices = result.invoices;
       this.invoices.forEach((invoice) => {

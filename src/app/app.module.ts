@@ -46,6 +46,7 @@ import { CompanyListComponent } from './company-list/company-list.component';
 import { EditCompanyFormComponent } from './edit-company-form/edit-company-form.component';
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 import { EditInvoiceComponent } from './edit-invoice/edit-invoice.component';
+import { GetProFormaInvoicesListComponent } from './get-pro-forma-invoices-list/get-pro-forma-invoices-list.component';
 
 
 
@@ -186,6 +187,10 @@ const appRoutes: Routes = [
           {
             path: 'invoices/:id',
             component: EditInvoiceComponent
+          },
+          {
+            path: 'proFormaInvoices',
+            component: GetProFormaInvoicesListComponent
           }
         ]
       },
@@ -238,7 +243,8 @@ const appRoutes: Routes = [
     CompanyListComponent,
     EditCompanyFormComponent,
     InvoiceListComponent,
-    EditInvoiceComponent
+    EditInvoiceComponent,
+    GetProFormaInvoicesListComponent
   ],
   imports: [
     BrowserModule,

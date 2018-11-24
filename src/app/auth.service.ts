@@ -28,7 +28,7 @@ import {
   EditCarPartModel,
   ServiceModel,
   GetCompanyModel,
-  EditCompanyModel, GetInvoiceModel, EditInvoice
+  EditCompanyModel, GetInvoiceModel, EditInvoice, AcceptProFormaInvoice
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
@@ -517,14 +517,14 @@ export class AuthService {
     );
   }
 
-  getInvoices() {
+  getInvoices(url: string) {
     const form: TokenModel = {
       accessToken: this.getAccessToken()
     };
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/invoice/getInvoicesList', form).pipe(map((result) => {
+    return this.http.post<any>(url, form).pipe(map((result) => {
         return result;
       })
     );
@@ -548,6 +548,16 @@ export class AuthService {
       return;
     }
     return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/invoice/editInvoice', form)
+      .pipe(map(result => {
+        return result;
+      }));
+  }
+
+  acceptProFormaInvoice(form: AcceptProFormaInvoice) {
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/invoice/acceptProFormaInvoice', form)
       .pipe(map(result => {
         return result;
       }));
