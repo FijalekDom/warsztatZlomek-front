@@ -36,5 +36,7 @@ export class GetProFormaInvoicesListComponent implements OnInit {
       console.log(result);
     });
   }
-
+  createProFormaInvoice() {
+    this.router.navigate(['employee/account/addProFormaInvoice']);
+  }
 }

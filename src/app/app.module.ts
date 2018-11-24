@@ -191,6 +191,14 @@ const appRoutes: Routes = [
           {
             path: 'proFormaInvoices',
             component: GetProFormaInvoicesListComponent
+          },
+          {
+            path: 'addProFormaInvoice',
+            component: GenerateInvoiceComponent
+          },
+          {
+            path: 'generateProFormaInvoiceForm/:id',
+            component: GenerateInvoiceFormComponent
           }
         ]
       },
@@ -244,7 +252,7 @@ const appRoutes: Routes = [
     EditCompanyFormComponent,
     InvoiceListComponent,
     EditInvoiceComponent,
-    GetProFormaInvoicesListComponent
+    GetProFormaInvoicesListComponent,
   ],
   imports: [
     BrowserModule,

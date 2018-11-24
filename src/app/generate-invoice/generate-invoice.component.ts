@@ -4,6 +4,7 @@ import {TokenModel, VisitResponse} from '../app.component';
 import {visit} from '@angular/compiler-cli/src/ngtsc/util/src/visitor';
 import {first} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
   selector: 'app-generate-invoice',
@@ -14,7 +15,7 @@ export class GenerateInvoiceComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private router: Router) { }
-  visits: VisitResponse[];
+  private visits: VisitResponse[] = [];
 
   ngOnInit() {
     const accessToken: TokenModel = {
@@ -31,7 +32,11 @@ export class GenerateInvoiceComponent implements OnInit {
   }
 
   createInvoice(i: number) {
-    this.router.navigate(['employee/account/generateInvoiceForm', this.visits[i].id]);
+    if (this.router.url.includes('ProForma')) {
+      this.router.navigate(['employee/account/generateProFormaInvoiceForm', this.visits[i].id]);
+    } else {
+      this.router.navigate(['employee/account/generateInvoiceForm', this.visits[i].id]);
+    }
   }
 
 }
