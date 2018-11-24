@@ -412,11 +412,11 @@ export class AuthService {
       }));
   }
 
-  generateInvoice(form: InvoiceForm) {
+  generateInvoice(form: InvoiceForm, url) {
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/invoice/addInvoice', form)
+    return this.http.post<any>(url, form)
       .pipe(map(result => {
         return result;
       }));

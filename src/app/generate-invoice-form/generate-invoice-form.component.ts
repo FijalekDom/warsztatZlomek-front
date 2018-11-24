@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {first, switchMap} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -15,11 +15,15 @@ export class GenerateInvoiceFormComponent implements OnInit {
   private submitted = false;
   private generateInvoiceForm: FormGroup;
   private invoice: InvoiceResponse;
+
   constructor(private router: Router,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder,
-              private authService: AuthService) { }
+              private authService: AuthService) {
+  }
+
   visitId: number;
+
   ngOnInit() {
     this.generateInvoiceForm = this.formBuilder.group({
       companyName: ['', Validators.required],
@@ -32,10 +36,11 @@ export class GenerateInvoiceFormComponent implements OnInit {
   get f() {
     return this.generateInvoiceForm.controls;
   }
+
   onSubmit() {
     this.submitted = true;
     const methodOfPayment = $('#paymentMethod').val();
-    if (this.generateInvoiceForm.invalid || methodOfPayment === '' || this.visitId === 0 ) {
+    if (this.generateInvoiceForm.invalid || methodOfPayment === '' || this.visitId === 0) {
       return;
     }
     let paymentDate = new Date(this.f.date.value);
@@ -47,7 +52,13 @@ export class GenerateInvoiceFormComponent implements OnInit {
       visitId: this.visitId,
       companyName: this.f.companyName.value
     };
-    this.authService.generateInvoice(generateInvoice) .pipe(first())
+    let url: string;
+    if (this.router.url.includes('ProForma')) {
+      url = 'http://localhost:8080/warsztatZlomek/rest/invoice/addProFormaInvoice';
+    } else {
+      url = 'http://localhost:8080/warsztatZlomek/rest/invoice/addInvoice';
+    }
+    this.authService.generateInvoice(generateInvoice, url).pipe(first())
       .subscribe(data => {
         this.authService.setExpirationDate();
         this.invoice = data.invoice;
