@@ -45,6 +45,7 @@ export interface UserData {
     phoneNumber: string;
     streetName: string;
     zipCode: string;
+    companies: CompanyModel;
 }
 
 export interface CarModel {
@@ -280,4 +281,13 @@ export interface InvoicePositionResponse {
 
 export interface AcceptProFormaInvoice extends TokenModel {
   proFormaInvoiceId: number;
+}
+
+export interface ClientCompany extends TokenModel {
+  companyName: string;
+  username: string;
+}
+
+export interface GetClientData extends TokenModel {
+  username: string;
 }

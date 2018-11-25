@@ -25,7 +25,7 @@ export class EmployeeSignInComponentComponent implements OnInit {
 
   ngOnInit() {
     this.employeeSignInForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9._-]{1,}@[a-z]{1,6}.[a-z]{2,3}$')]],
+      email: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9._-]{1,}@[a-z0-9]{1,6}.[a-z]{2,3}$')]],
       password: ['', [Validators.required, Validators.pattern('[A-Za-z0-9ĄŻŹÓŁĘążźćńłóę!@#%*\^]{6,20}')]]
     });
   }
