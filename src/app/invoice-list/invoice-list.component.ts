@@ -29,6 +29,7 @@ export class InvoiceListComponent implements OnInit {
   }
 
   load(i) {
-    // dopisz pobranie faktury
+    // dostęp do obiektu faktury
+    console.log(this.invoices[i]);
   }
 }

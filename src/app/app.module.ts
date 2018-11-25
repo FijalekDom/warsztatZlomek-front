@@ -47,6 +47,8 @@ import { EditCompanyFormComponent } from './edit-company-form/edit-company-form.
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 import { EditInvoiceComponent } from './edit-invoice/edit-invoice.component';
 import { GetProFormaInvoicesListComponent } from './get-pro-forma-invoices-list/get-pro-forma-invoices-list.component';
+import { AddClientToCompanyFormComponent } from './add-client-to-company-form/add-client-to-company-form.component';
+import { RemoveClientFromCompanyComponent } from './remove-client-from-company/remove-client-from-company.component';
 
 
 
@@ -199,6 +201,14 @@ const appRoutes: Routes = [
           {
             path: 'generateProFormaInvoiceForm/:id',
             component: GenerateInvoiceFormComponent
+          },
+          {
+            path: 'addClientToCompany',
+            component: AddClientToCompanyFormComponent
+          },
+          {
+            path: 'removeClientFromCompany',
+            component: RemoveClientFromCompanyComponent
           }
         ]
       },
@@ -253,6 +263,8 @@ const appRoutes: Routes = [
     InvoiceListComponent,
     EditInvoiceComponent,
     GetProFormaInvoicesListComponent,
+    AddClientToCompanyFormComponent,
+    RemoveClientFromCompanyComponent,
   ],
   imports: [
     BrowserModule,

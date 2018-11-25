@@ -1,0 +1,33 @@
+<div>
+  <div id="site-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 backgroundClear">
+          <div id="site-background">
+            <form [formGroup]="addClientToCompanyForm" (ngSubmit)="onSubmit()">
+              <label for="select">Wybierz firmę</label>
+              <select id="select" class="form-control">
+                <option value="">Wybierz firmę</option>
+                <option *ngFor="let company of companies" value="{{company.name}}">
+                  {{company.name}} {{company.nip}}
+                </option>
+              </select>
+              <div class="form-group">
+                <label>E-mail</label>
+                <input type="text" formControlName="email" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email jest wymagany</div>
+                  <div *ngIf="f.email.errors.pattern">Email Jest niepoprawny</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit">Dodaj</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

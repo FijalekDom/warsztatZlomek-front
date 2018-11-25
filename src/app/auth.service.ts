@@ -28,7 +28,7 @@ import {
   EditCarPartModel,
   ServiceModel,
   GetCompanyModel,
-  EditCompanyModel, GetInvoiceModel, EditInvoice, AcceptProFormaInvoice
+  EditCompanyModel, GetInvoiceModel, EditInvoice, AcceptProFormaInvoice, GetClientData, ClientCompany
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
@@ -563,4 +563,33 @@ export class AuthService {
       }));
   }
 
+  addClientToCompany(form: ClientCompany) {
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/updateClient/addClientToCompany', form).subscribe(result => {
+      this.setExpirationDate();
+    }, (result) => {
+      console.log(result);
+    });
+  }
+
+  getClientData(form: GetClientData) {
+    if (form.accessToken === null) {
+      return;
+    }
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/authorization/getClientData', form).pipe(map((result) => {
+      return result;
+    }));
+  }
+
+  removeClientFromCompany(form: ClientCompany) {
+    if (form.accessToken === null) {
+      return;
+    }
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/updateClient/removeClientFromCompany',
+      form).pipe(map((result) => {
+      return result;
+    }));
+  }
 }

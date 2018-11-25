@@ -28,7 +28,7 @@
               <td>{{invoice.companyData.name}}</td>
               <td>{{invoice.companyData.nip}}</td>
               <td>
-                <button class="btn btn-primary">Pobierz</button>
+                <button class="btn btn-primary" (click)="load(i)">Pobierz</button>
               </td>
               <td>
                 <button class="btn btn-primary" (click)="edit(invoice.id)">Edytuj</button>

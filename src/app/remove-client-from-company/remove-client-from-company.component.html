@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="col-md-12">
+    <div id="site-background">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <label for="username">Email klienta</label>
+            <input id="username" type="text" class="form-control">
+            <button (click)="getClient()" class="btn btn-primary">Prześlij</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div *ngIf="client !== null">
+              {{client.email}}
+              <table class="table">
+                <thead>
+                <tr>
+                  <td>
+                    Nazwa firmy
+                  </td>
+                  <td>
+                    NIP
+                  </td>
+                  <td></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let company of client.companies; let i = index">
+                  <td>
+                    {{company.name}}
+                  </td>
+                  <td>
+                    {{company.nip}}
+                  </td>
+                  <td>
+                    <button (click)="remove(i)" class="btn btn-danger">Usuń</button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -16,7 +16,7 @@ export class AddCarServiceDataComponent implements OnInit {
 
   ngOnInit() {
     this.addCarServiceForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern('[A-Za-z0-9._-]{1,}@[a-z]{1,6}.[a-z]{2,3}')]],
+      email: ['', [Validators.required, Validators.pattern('[A-Za-z0-9._-]{1,}@[a-z0-9]{1,6}.[a-z]{2,3}')]],
       name: ['', Validators.required],
       nip: ['', [Validators.required, Validators.pattern('[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}')]],
       cityName: ['', [Validators.required, Validators.pattern('[A-ZŹĄĘÓŁŻ]{1}[a-z,ąęółńćźż]{2,}')]],
