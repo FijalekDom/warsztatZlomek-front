@@ -16,6 +16,7 @@ export class GenerateInvoiceComponent implements OnInit {
   constructor(private authService: AuthService,
               private router: Router) { }
   private visits: VisitResponse[] = [];
+
   ngOnInit() {
     const accessToken: TokenModel = {
       accessToken: this.authService.getAccessToken()

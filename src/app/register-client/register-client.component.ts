@@ -35,8 +35,8 @@ export class RegisterClientComponent implements OnInit {
             buildNum: ['', Validators.required],
             aptNum: ['', Validators.pattern('[0-9]*')],
             zipCode: ['', [Validators.required, Validators.pattern('[0-9]{2}-[0-9]{3}')]],
-            password: ['', [Validators.required, Validators.minLength(6)]],
-            confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+            password: ['', [Validators.required, Validators.pattern('[A-Za-z0-9ĄŻŹÓŁĘążźćńłóę!@#%*^]{6,20}')]],
+            confirmPassword: ['', [Validators.required, Validators.pattern('[A-Za-z0-9ĄŻŹÓŁĘążźćńłóę!@#%*^]{6,20}')]]
         });
     }
 
