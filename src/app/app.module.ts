@@ -36,7 +36,7 @@ import { AddCarPartComponent } from './add-car-part/add-car-part.component';
 import { EditVisitElementsComponent } from './edit-visit-elements/edit-visit-elements-component';
 import { AddCompanyComponent } from './add-company/add-company.component';
 import { AddCarServiceDataComponent } from './add-car-service-data/add-car-service-data.component';
-import { GenerateInvoiceComponent } from './generate-invoice/generate-invoice.component';
+import { VisitsListComponent } from './visits-list/visits-list-component';
 
 import { EmployeeGetNotFinishedVisitsComponent } from './employee-get-not-finished-visits/employee-get-not-finished-visits.component';
 import { EmployeeGetNewVisitsComponent } from './employee-get-new-visits/employee-get-new-visits.component';
@@ -49,6 +49,9 @@ import { EditInvoiceComponent } from './edit-invoice/edit-invoice.component';
 import { GetProFormaInvoicesListComponent } from './get-pro-forma-invoices-list/get-pro-forma-invoices-list.component';
 import { AddClientToCompanyFormComponent } from './add-client-to-company-form/add-client-to-company-form.component';
 import { RemoveClientFromCompanyComponent } from './remove-client-from-company/remove-client-from-company.component';
+import { AddServiceComponent } from './add-service/add-service.component';
+import { DisplayVisitDetailsComponent } from './display-visit-details/display-visit-details.component';
+import { CheckCarByVinComponent } from './check-car-by-vin/check-car-by-vin.component';
 
 
 
@@ -57,7 +60,10 @@ const appRoutes: Routes = [
     path: '',
     component: HomePageComponent
   },
-
+  {
+    path: 'checkVin',
+    component: CheckCarByVinComponent
+  },
   {
     path: 'account',
     canActivate: [ClientAuthGuard],
@@ -151,8 +157,8 @@ const appRoutes: Routes = [
             component: AddCarServiceDataComponent
           },
           {
-            path: 'generateInvoice',
-            component: GenerateInvoiceComponent
+            path: 'visitsList',
+            component: VisitsListComponent
           },
           {
             path: 'showNotFinishedVisits',
@@ -196,7 +202,7 @@ const appRoutes: Routes = [
           },
           {
             path: 'addProFormaInvoice',
-            component: GenerateInvoiceComponent
+            component: VisitsListComponent
           },
           {
             path: 'generateProFormaInvoiceForm/:id',
@@ -209,7 +215,15 @@ const appRoutes: Routes = [
           {
             path: 'removeClientFromCompany',
             component: RemoveClientFromCompanyComponent
-          }
+          },
+          {
+            path: 'addService',
+            component: AddServiceComponent
+          },
+          {
+            path: 'showVisitDetails/:id',
+            component: DisplayVisitDetailsComponent
+          },
         ]
       },
       {
@@ -253,7 +267,7 @@ const appRoutes: Routes = [
     EditVisitElementsComponent,
     AddCompanyComponent,
     AddCarServiceDataComponent,
-    GenerateInvoiceComponent,
+    VisitsListComponent,
     EmployeeGetNotFinishedVisitsComponent,
     EmployeeGetNewVisitsComponent,
     EmployeeEmployeesVisitsComponent,
@@ -265,6 +279,9 @@ const appRoutes: Routes = [
     GetProFormaInvoicesListComponent,
     AddClientToCompanyFormComponent,
     RemoveClientFromCompanyComponent,
+    AddServiceComponent,
+    DisplayVisitDetailsComponent,
+    CheckCarByVinComponent,
   ],
   imports: [
     BrowserModule,

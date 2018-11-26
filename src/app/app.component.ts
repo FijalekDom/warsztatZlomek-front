@@ -198,13 +198,21 @@ export interface CarResponseModel {
   brandName: String;
 }
 
+export interface VisitElementResponse {
+  name: string;
+  count: number;
+  price: number;
+}
+
 export interface VisitResponse {
   id: number;
-  visitDate: String;
-  car: CarResponseModel;
+  visitDate: string;
+  car: CarModel;
   owners: UserData[];
   notVerifiedOwners: UserData[];
-  status: String;
+  visitStatus: String;
+  parts: VisitElementResponse[];
+  services: VisitElementResponse[];
 }
 
 export interface RemoveVisitModel extends TokenModel {
@@ -224,7 +232,7 @@ export interface SubmitVisitModel extends AddEmployeeToVisit {
 }
 
 export interface ShowEmployeeVisitModel extends VisitModel {
-  status: String;
+  status: string;
 }
 
 
@@ -299,4 +307,13 @@ export interface VerificationModel extends TokenModel {
   owners: UserData[];
   notOwners: UserData[];
   car: CarModel;
+}
+
+export interface AddServiceForm extends TokenModel {
+  name: string;
+  tax: number;
+}
+
+export interface GetVisitDetails extends TokenModel {
+  visitId: number;
 }

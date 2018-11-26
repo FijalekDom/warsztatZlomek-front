@@ -28,10 +28,19 @@ import {
   EditCarPartModel,
   ServiceModel,
   GetCompanyModel,
-  EditCompanyModel, GetInvoiceModel, EditInvoice, AcceptProFormaInvoice, GetClientData, ClientCompany, VerificationModel
+  EditCompanyModel,
+  GetInvoiceModel,
+  EditInvoice,
+  AcceptProFormaInvoice,
+  GetClientData,
+  ClientCompany,
+  VerificationModel,
+  AddServiceForm,
+  GetVisitDetails
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
+import {AddServiceComponent} from './add-service/add-service.component';
 
 @Injectable({
   providedIn: 'root'
@@ -597,6 +606,33 @@ export class AuthService {
       return;
     }
     return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/updateClient/verifyCarOwnership',
+      form).pipe(map((result) => {
+      return result;
+    }));
+  }
+
+  addService(form: AddServiceForm) {
+    if (form.accessToken === null) {
+      return;
+    }
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/visits/addService',
+      form).pipe(map((result) => {
+      return result;
+    }));
+  }
+
+  getVisitDetails(form: GetVisitDetails) {
+    if (form.accessToken === null) {
+      return;
+    }
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/visits/getSingleVisitDetails',
+      form).pipe(map((result) => {
+      return result;
+    }));
+  }
+
+  checkCar(form) {
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/visits/getAllCarVisits',
       form).pipe(map((result) => {
       return result;
     }));
