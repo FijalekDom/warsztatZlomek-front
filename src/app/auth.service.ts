@@ -28,7 +28,7 @@ import {
   EditCarPartModel,
   ServiceModel,
   GetCompanyModel,
-  EditCompanyModel, GetInvoiceModel, EditInvoice, AcceptProFormaInvoice, GetClientData, ClientCompany
+  EditCompanyModel, GetInvoiceModel, EditInvoice, AcceptProFormaInvoice, GetClientData, ClientCompany, VerificationModel
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
@@ -588,6 +588,15 @@ export class AuthService {
       return;
     }
     return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/updateClient/removeClientFromCompany',
+      form).pipe(map((result) => {
+      return result;
+    }));
+  }
+  verifyOwnership(form: VerificationModel) {
+    if (form.accessToken === null) {
+      return;
+    }
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/updateClient/verifyCarOwnership',
       form).pipe(map((result) => {
       return result;
     }));
