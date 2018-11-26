@@ -35,10 +35,12 @@ export class MenuComponent implements OnInit {
   leftMenu = [];
   rightMenu = [];
 
-  beginLeftMenu = [{url: '#', text: 'O firmie'}, {url: '#', text: 'Oferta'}, {url: '#', text: 'Kontakt'}];
+  beginLeftMenu = [{url: '#', text: 'O firmie'}, {url: '#', text: 'Oferta'}, {url: '#', text: 'Kontakt'},
+    {url: 'localhost:4200/checkVin', text: 'Sprawdź historię napraw'}];
   beginRightMenu = [{url: '/login', text: 'Zaloguj'}, {url: 'register', text: 'Zarejestruj'}];
 
-  loginLeftMenu = [{url: 'account/visits', text: 'Wizyty'}, {url: 'account/cars', text: 'Samochody'}, {url: 'account/new-visit', text: 'Nowa wizyta'}];
+  loginLeftMenu = [{url: 'account/visits', text: 'Wizyty'}, {url: 'account/cars', text: 'Samochody'},
+    {url: 'account/new-visit', text: 'Nowa wizyta'}];
   loginRightMenu = [{url: 'account/my-account', text: 'Moje konto'}, {url: '/logout', text: 'wyloguj'}];
 
   employeeBeginLeftMenu = [{url: '#', text: ''}, {url: '#', text: ''}, {url: '#', text: ''}];

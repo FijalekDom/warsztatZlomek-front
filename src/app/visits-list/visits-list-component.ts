@@ -7,11 +7,11 @@ import {Router} from '@angular/router';
 import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
-  selector: 'app-generate-invoice',
-  templateUrl: './generate-invoice.component.html',
-  styleUrls: ['./generate-invoice.component.css']
+  selector: 'app-visits-list',
+  templateUrl: './visits-list-component.html',
+  styleUrls: ['./visits-list-component.css']
 })
-export class GenerateInvoiceComponent implements OnInit {
+export class VisitsListComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private router: Router) { }
@@ -37,6 +37,10 @@ export class GenerateInvoiceComponent implements OnInit {
     } else {
       this.router.navigate(['employee/account/generateInvoiceForm', this.visits[i].id]);
     }
+  }
+
+  showMore(i: number) {
+    this.router.navigate(['employee/account/showVisitDetails', this.visits[i].id]);
   }
 
 }

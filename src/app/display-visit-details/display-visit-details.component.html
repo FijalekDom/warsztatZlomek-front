@@ -1,0 +1,108 @@
+<div id="site-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 backgroundClear">
+        <div id="site-background">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table">
+                  <tbody>
+                  <tr>
+                    <td>
+                      Data wizyty
+                    </td>
+                    <td>
+                      {{visit.visitDate}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Status</td>
+                    <td>{{visit.visitStatus}}</td>
+                  </tr>
+                  <tr>
+                    <td>Samochód</td>
+                    <td>{{visit.car.brandName}} {{visit.car.model}} {{visit.car.registrationNumber}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+                <table class="table">
+                  <thead>
+                  <th>Części:</th>
+                  <tr>
+                    <td>
+                      Nazwa części
+                    </td>
+                    <td>
+                      Cena
+                    </td>
+                    <td>
+                      Ilość
+                    </td>
+                    <td>
+                      Suma
+                    </td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let part of visit.parts">
+                    <td>
+                      {{part.name}}
+                    </td>
+                    <td>
+                      {{part.price}}
+                    </td>
+                    <td>
+                      {{part.count}}
+                    </td>
+                    <td>
+                      {{part.price*part.count | number:'1.2-2'}}
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+
+                <table class="table">
+                  <thead>
+                  <th>Usługi:</th>
+                  <tr>
+                    <td>
+                      Nazwa usługi
+                    </td>
+                    <td>
+                      Cena
+                    </td>
+                    <td>
+                      Ilość
+                    </td>
+                    <td>
+                      Suma
+                    </td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let service of visit.services">
+                    <td>
+                      {{service.name}}
+                    </td>
+                    <td>
+                      {{service.price}}
+                    </td>
+                    <td>
+                      {{service.count}}
+                    </td>
+                    <td>
+                      {{service.price*service.count | number:'1.2-2'}}
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <button class="btn btn-primary" (click)="createInvoice()">Wygeneruj fakturę</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,12 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {
   CarPartEditVisitModel, CarPartModel, CarPartResponse, ServiceEditVisitModel, ServiceModel, ShowEmployeeVisitModel, SubmitVisitModel,
   TokenModel, UserData, VerificationModel,
-  VisitModel
+  VisitModel, VisitResponse
 } from '../app.component';
 import {AuthService} from '../auth.service';
 import {first} from 'rxjs/internal/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {forEach} from '@angular/router/src/utils/collection';
 import * as $ from 'jquery';
 
 @Component({
@@ -18,7 +17,7 @@ import * as $ from 'jquery';
 export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
   i: number;
   showList = true;
-  visits: ShowEmployeeVisitModel[] = [];
+  visits: VisitResponse[] = [];
   carParts: CarPartEditVisitModel[] = [];
   services: ServiceEditVisitModel[] = [];
   servicesList: ServiceModel[] = [];
@@ -144,6 +143,8 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
   }
 
   sendRequest() {
+    this.owners = [];
+    this.notVerified = [];
     const visit: SubmitVisitModel = {
       visitId: this.id,
       carParts: this.carParts,
@@ -174,7 +175,7 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          // window.location.reload();
+          alert('Udało się!');
         },
         error => {
           console.log(error);

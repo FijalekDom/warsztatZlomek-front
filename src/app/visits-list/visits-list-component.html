@@ -17,6 +17,7 @@
                 <td>Numer rejestracyjny</td>
                 <td>Data wizyty</td>
                 <td></td>
+                <td></td>
               </tr>
               </thead>
               <tr *ngFor="let visit of visits;  let i = index">
@@ -25,7 +26,8 @@
                 <td>{{visit.car.model}}</td>
                 <td>{{visit.car.registrationNumber}}</td>
                 <td>{{visit.visitDate}}</td>
-                <button (click)="createInvoice(i)">Generuj fakturę</button>
+                <button (click)="createInvoice(i)" class="btn btn-primary" style="margin-right: 10px">Generuj fakturę</button>
+                <button (click)="showMore(i)" class="btn btn-primary">Zobacz szczegóły</button>
               </tr>
             </table>
           </ng-container>

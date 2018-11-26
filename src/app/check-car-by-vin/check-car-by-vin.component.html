@@ -1,0 +1,70 @@
+<div>
+  <div id="site-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 backgroundClear">
+          <div id="site-background">
+            <form [formGroup]="checkCar" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label>Vin</label>
+                <input type="text" formControlName="vin" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.vin.errors }"/>
+                <div *ngIf="submitted && f.vin.errors" class="invalid-feedback">
+                  <div *ngIf="f.vin.errors.required">Numer VIN jest wymagany</div>
+                  <div *ngIf="f.vin.errors.pattern">Numer VIN jest niepoprawny</div>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">Sprawdź</button>
+                </div>
+              </div>
+            </form>
+            <div *ngIf="visits !== []">
+              <div class="panel-group">
+                <div *ngFor="let visit of visits; let i = index" class="card">
+                  <div class="card-header bg-primary text-white" (click)="toggle(i)">{{visit.visitDate}}</div>
+                  <div class="card-body" id="{{i}}" style="display: none">
+                    <table class="table">
+                      <thead>
+                      <th>Części:</th>
+                      <tr>
+                        <td>
+                          Nazwa części
+                        </td>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let part of visit.parts">
+                        <td>
+                          {{part.name}}
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                    <table class="table">
+                      <thead>
+                      <th>Usługi:</th>
+                      <tr>
+                        <td>
+                          Nazwa usługi
+                        </td>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let service of visit.services">
+                        <td>
+                          {{service.name}}
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
