@@ -20,7 +20,7 @@
                   <td></td>
                 </tr>
                 </thead>
-                <tr *ngFor="let visit of visits;  let i = index">
+                <tr *ngFor="let visit of visits;  let i = index" [ngClass]="{ 'is-invalid': visit.notVerifiedOwners.length !== 0 }">
                   <td>{{i}}</td>
                   <td>{{visit.car.brandName}}</td>
                   <td>{{visit.car.model}}</td>
@@ -30,7 +30,7 @@
                     <td><button (click)="changeStatus(visit.id, 'in progress')">Potwierdź odbiór</button></td>
                   </ng-container>
                   <ng-container *ngIf="visit.status === 'IN_PROGRESS'">
-                    <td><button (click)="submitPickup(visit.id)">Do odbioru</button></td>
+                    <td><button (click)="submitPickup(i)">Do odbioru</button></td>
                   </ng-container>
                   <ng-container *ngIf="visit.status === 'FOR_PICKUP'">
                     <td><button (click)="changeStatus(visit.id, 'finished')">Odebrano</button></td>
@@ -113,7 +113,26 @@
                 <button type="submit" class="btn btn-primary">Dodaj usługę</button>
               </div>
             </form>
-
+            <div *ngIf="i !== undefined && visits[i].notVerifiedOwners.length !== 0 && visits[i].status === 'IN_PROGRESS'">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    Obecny/i właściciel(e)
+                    <div *ngFor="let owner of visits[i].owners">
+                      <input type="checkbox" id="v{{i}}">
+                      <label>{{owner.firstName}} {{owner.lastName}}</label>
+                    </div>
+                  </div>
+                  <div>
+                    Niezweryfikowany/i właściciel(e)
+                    <div *ngFor="let owner of visits[i].notVerifiedOwners; let i = index">
+                      <input type="checkbox" id="nv{{i}}">
+                      <label>{{owner.firstName}} {{owner.lastName}}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <button (click)="sendRequest()">Zapisz wizyte</button>
 
           </ng-container>
