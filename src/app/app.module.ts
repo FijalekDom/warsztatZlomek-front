@@ -44,6 +44,11 @@ import { EmployeeEmployeesVisitsComponent } from './employee-employees-visits/em
 import { GenerateInvoiceFormComponent } from './generate-invoice-form/generate-invoice-form.component';
 import { CompanyListComponent } from './company-list/company-list.component';
 import { EditCompanyFormComponent } from './edit-company-form/edit-company-form.component';
+import { InvoiceListComponent } from './invoice-list/invoice-list.component';
+import { EditInvoiceComponent } from './edit-invoice/edit-invoice.component';
+import { GetProFormaInvoicesListComponent } from './get-pro-forma-invoices-list/get-pro-forma-invoices-list.component';
+import { AddClientToCompanyFormComponent } from './add-client-to-company-form/add-client-to-company-form.component';
+import { RemoveClientFromCompanyComponent } from './remove-client-from-company/remove-client-from-company.component';
 
 
 
@@ -176,6 +181,34 @@ const appRoutes: Routes = [
           {
             path: 'editCompany/:id',
             component: EditCompanyFormComponent
+          },
+          {
+            path: 'invoices',
+            component: InvoiceListComponent
+          },
+          {
+            path: 'invoices/:id',
+            component: EditInvoiceComponent
+          },
+          {
+            path: 'proFormaInvoices',
+            component: GetProFormaInvoicesListComponent
+          },
+          {
+            path: 'addProFormaInvoice',
+            component: GenerateInvoiceComponent
+          },
+          {
+            path: 'generateProFormaInvoiceForm/:id',
+            component: GenerateInvoiceFormComponent
+          },
+          {
+            path: 'addClientToCompany',
+            component: AddClientToCompanyFormComponent
+          },
+          {
+            path: 'removeClientFromCompany',
+            component: RemoveClientFromCompanyComponent
           }
         ]
       },
@@ -226,7 +259,12 @@ const appRoutes: Routes = [
     EmployeeEmployeesVisitsComponent,
     GenerateInvoiceFormComponent,
     CompanyListComponent,
-    EditCompanyFormComponent
+    EditCompanyFormComponent,
+    InvoiceListComponent,
+    EditInvoiceComponent,
+    GetProFormaInvoicesListComponent,
+    AddClientToCompanyFormComponent,
+    RemoveClientFromCompanyComponent,
   ],
   imports: [
     BrowserModule,

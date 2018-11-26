@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {first, switchMap} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -15,20 +15,25 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 })
 export class GenerateInvoiceFormComponent implements OnInit {
 
+  private submitted = false;
   private generateInvoiceForm: FormGroup;
   private invoice: InvoiceResponse;
+
   constructor(private router: Router,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder,
-              private authService: AuthService) { }
+              private authService: AuthService) {
+  }
+
   visitId: number;
   private pdf: {};
+
 
   ngOnInit() {
     this.generateInvoiceForm = this.formBuilder.group({
       companyName: ['', Validators.required],
       date: [null, Validators.required],
-      discount: [0, Validators.required]
+      discount: [0, [Validators.required, Validators.min(0)]]
     });
     this.visitId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
   }
@@ -36,9 +41,11 @@ export class GenerateInvoiceFormComponent implements OnInit {
   get f() {
     return this.generateInvoiceForm.controls;
   }
+
   onSubmit() {
+    this.submitted = true;
     const methodOfPayment = $('#paymentMethod').val();
-    if (this.f.companyName.errors || this.f.date.errors || this.f.discount.errors || methodOfPayment === '' || this.visitId === 0 ) {
+    if (this.generateInvoiceForm.invalid || methodOfPayment === '' || this.visitId === 0) {
       return;
     }
     let paymentDate = new Date(this.f.date.value);
@@ -51,7 +58,13 @@ export class GenerateInvoiceFormComponent implements OnInit {
       companyName: this.f.companyName.value
     };
 
-    this.authService.generateInvoice(generateInvoice) .pipe(first())
+    let url: string;
+    if (this.router.url.includes('ProForma')) {
+      url = 'http://localhost:8080/warsztatZlomek/rest/invoice/addProFormaInvoice';
+    } else {
+      url = 'http://localhost:8080/warsztatZlomek/rest/invoice/addInvoice';
+    }
+    this.authService.generateInvoice(generateInvoice, url).pipe(first())
       .subscribe(data => {
         this.authService.setExpirationDate();
         this.invoice = data.invoice;

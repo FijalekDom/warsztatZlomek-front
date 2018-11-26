@@ -10,7 +10,9 @@ import * as $ from 'jquery';
   styleUrls: ['./edit-visit-elements-component.css']
 })
 export class EditVisitElementsComponent implements OnInit {
-  private selectedValue = -1;
+  private submitted = false;
+  private serviceSubmitted = false;
+  private selectedValue = '-1';
   private editCarPartForm: FormGroup;
   constructor(private builder: FormBuilder,
               private auth: AuthService) { }
@@ -19,7 +21,7 @@ export class EditVisitElementsComponent implements OnInit {
   private carPart: CarPartResponse;
   private service: ServiceModel;
   private editServiceForm: FormGroup;
-  private selectedService = -1;
+  private selectedService = '-1';
   ngOnInit() {
     this.auth.getVisitElements().subscribe((result) => {
       this.carParts = result.parts;
@@ -46,7 +48,8 @@ export class EditVisitElementsComponent implements OnInit {
   }
 
   submit() {
-    if (this.f.partName.errors || this.f.producerName.errors || this.f.tax.errors) {
+    this.submitted = true;
+    if (this.editCarPartForm.invalid) {
       return;
     }
     const model: EditCarPartModel = {
@@ -71,7 +74,8 @@ export class EditVisitElementsComponent implements OnInit {
   }
 
   submitServicesForm() {
-    if (this.g.serviceName.errors || this.g.serviceTax.errors) {
+    this.serviceSubmitted = true;
+    if (this.editServiceForm.invalid) {
       return;
     }
     const model: ServiceModel = {

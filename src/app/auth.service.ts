@@ -28,7 +28,7 @@ import {
   EditCarPartModel,
   ServiceModel,
   GetCompanyModel,
-  EditCompanyModel
+  EditCompanyModel, GetInvoiceModel, EditInvoice, AcceptProFormaInvoice, GetClientData, ClientCompany, VerificationModel
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
 import {v} from '@angular/core/src/render3';
@@ -412,11 +412,11 @@ export class AuthService {
       }));
   }
 
-  generateInvoice(form: InvoiceForm) {
+  generateInvoice(form: InvoiceForm, url) {
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/invoice/addInvoice', form)
+    return this.http.post<any>(url, form)
       .pipe(map(result => {
         return result;
       }));
@@ -517,17 +517,88 @@ export class AuthService {
     );
   }
 
-  getInvoicesList() {
-      const form: TokenModel = {
-          accessToken: this.getAccessToken()
-      };
-      if (form.accessToken == null) {
-          return;
-      }
-      return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/invoice/getInvoicesList', form).pipe(map((result) => {
-              return result;
-          }
-      ));
+  getInvoices(url: string) {
+    const form: TokenModel = {
+      accessToken: this.getAccessToken()
+    };
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>(url, form).pipe(map((result) => {
+        return result;
+      })
+    );
+  }
+  getInvoice(id: number) {
+    const form: GetInvoiceModel = {
+      accessToken: this.getAccessToken(),
+      id: id
+    };
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/invoice/getInvoiceDetails', form).pipe(map((result) => {
+        return result;
+      })
+    );
   }
 
+  editInvoice(form: EditInvoice) {
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/invoice/editInvoice', form)
+      .pipe(map(result => {
+        return result;
+      }));
+  }
+
+  acceptProFormaInvoice(form: AcceptProFormaInvoice) {
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/invoice/acceptProFormaInvoice', form)
+      .pipe(map(result => {
+        return result;
+      }));
+  }
+
+  addClientToCompany(form: ClientCompany) {
+    if (form.accessToken == null) {
+      return;
+    }
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/updateClient/addClientToCompany', form).subscribe(result => {
+      this.setExpirationDate();
+    }, (result) => {
+      console.log(result);
+    });
+  }
+
+  getClientData(form: GetClientData) {
+    if (form.accessToken === null) {
+      return;
+    }
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/authorization/getClientData', form).pipe(map((result) => {
+      return result;
+    }));
+  }
+
+  removeClientFromCompany(form: ClientCompany) {
+    if (form.accessToken === null) {
+      return;
+    }
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/updateClient/removeClientFromCompany',
+      form).pipe(map((result) => {
+      return result;
+    }));
+  }
+  verifyOwnership(form: VerificationModel) {
+    if (form.accessToken === null) {
+      return;
+    }
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/updateClient/verifyCarOwnership',
+      form).pipe(map((result) => {
+      return result;
+    }));
+  }
 }

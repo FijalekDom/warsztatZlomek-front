@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,58 +10,59 @@ export class AppComponent {
 }
 
 export interface LoginModel {
-    email?: string;
-    password?: string;
+  email?: string;
+  password?: string;
 }
 
 export interface RegisterModel {
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    phoneNumber?: string;
-    cityName?: string;
-    streetName?: string;
-    buildNum?: string;
-    aptNum?: string;
-    zipCode?: string;
-    password?: string;
-    confirmPassword?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phoneNumber?: string;
+  cityName?: string;
+  streetName?: string;
+  buildNum?: string;
+  aptNum?: string;
+  zipCode?: string;
+  password?: string;
+  confirmPassword?: string;
 }
 
 export interface TokenModel {
-    accessToken: string;
+  accessToken: string;
 }
 
 export interface UserData {
-    accessToken: string;
-    aptNum: string;
-    buildNum: string;
-    cityName: string;
-    confirmPassword: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-    password: string;
-    phoneNumber: string;
-    streetName: string;
-    zipCode: string;
+  accessToken: string;
+  aptNum: string;
+  buildNum: string;
+  cityName: string;
+  confirmPassword: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  phoneNumber: string;
+  streetName: string;
+  zipCode: string;
+  companies: CompanyModel;
 }
 
 export interface CarModel {
-    id?: number;
-    vin?: string;
-    registrationNumber?: string;
-    model?: string;
-    productionYear?: number;
-    brandName?: string;
+  id?: number;
+  vin?: string;
+  registrationNumber?: string;
+  model?: string;
+  productionYear?: number;
+  brandName?: string;
 }
 
 export interface ClientUpdateModel extends RegisterModel {
-    accessToken: string;
+  accessToken: string;
 }
 
 export interface AddCarModel extends CarModel {
-    accessToken?: string;
+  accessToken?: string;
 }
 
 export interface RegisterEmployeeModel {
@@ -82,19 +83,19 @@ export interface RemoveEmployeeModel {
 
 
 export interface VisitModel {
-    car: CarModel;
-    id: number;
-    notVerifiedOwners;
-    owners: UserData[];
-    visitDate: DateConstructor;
+  car: CarModel;
+  id: number;
+  notVerifiedOwners: UserData[];
+  owners: UserData[];
+  visitDate: DateConstructor;
 }
 
 export interface ShowVisitModel {
-    car: CarModel;
-    id: number;
-    visitDate: DateConstructor;
-    isOverview: boolean;
-    status: String;
+  car: CarModel;
+  id: number;
+  visitDate: DateConstructor;
+  isOverview: boolean;
+  status: String;
 }
 
 export interface BanUser {
@@ -107,33 +108,33 @@ export interface GetCompanyModel extends TokenModel {
 }
 
 export interface CarIdModel {
-    carId: number;
-    accessToken: String;
+  carId: number;
+  accessToken: String;
 }
 
 export interface CarEditModel extends CarModel {
-    carId: number;
-    accessToken: String;
+  carId: number;
+  accessToken: String;
 }
 
 export interface CoownerModel extends CarIdModel {
-    coownerUsername: String;
+  coownerUsername: String;
 }
 
 export interface CarHasCompanyModel extends CarIdModel {
-    companyId: number;
+  companyId: number;
 }
 
 export interface CompanyModel {
-    aptNum?: string;
-    buildingNum?: string;
-    cityName?: string;
-    streetName?: string;
-    zipCode?: string;
-    email?: string;
-    id?: number;
-    name?: string;
-    nip?: string;
+  aptNum?: string;
+  buildingNum?: string;
+  cityName?: string;
+  streetName?: string;
+  zipCode?: string;
+  email?: string;
+  id?: number;
+  name?: string;
+  nip?: string;
 }
 
 export interface CarBrandModel {
@@ -148,7 +149,12 @@ export interface CarPartModel {
   accessToken: String;
 }
 
-export interface EditCompanyModel extends CompanyModel{
+export interface EditCompanyModel extends CompanyModel {
+  id: number;
+  accessToken: string;
+}
+
+export interface GetInvoiceModel {
   id: number;
   accessToken: string;
 }
@@ -170,15 +176,16 @@ export interface CarPartResponse {
   producer: String;
   id: number;
 }
+
 export interface AddCompanyModel extends CompanyModel {
   accessToken: String;
 }
 
 export interface AddVisitModel {
-    accessToken: String;
-    carId: number;
-    visitDate: String;
-    isOverview: boolean;
+  accessToken: String;
+  carId: number;
+  visitDate: String;
+  isOverview: boolean;
 }
 
 export interface CarResponseModel {
@@ -199,44 +206,44 @@ export interface VisitResponse {
   notVerifiedOwners: UserData[];
   status: String;
 }
+
 export interface RemoveVisitModel extends TokenModel {
-    visitId: number;
+  visitId: number;
 }
 
 export interface AddEmployeeToVisit extends TokenModel {
-    visitId: number;
+  visitId: number;
 }
-
 
 
 export interface SubmitVisitModel extends AddEmployeeToVisit {
-    carParts: CarPartEditVisitModel[];
-    services: ServiceEditVisitModel[];
-    countYears: number;
-    status: String;
+  carParts: CarPartEditVisitModel[];
+  services: ServiceEditVisitModel[];
+  countYears: number;
+  status: String;
 }
 
 export interface ShowEmployeeVisitModel extends VisitModel {
-    status: String;
+  status: String;
 }
 
 
 export interface CarPartEditVisitModel {
-    price: String;
-    count: number;
-    id: number;
+  price: String;
+  count: number;
+  id: number;
 }
 
 export interface ServiceModel {
-    id: number;
-    name: String;
-    tax: number;
+  id: number;
+  name: String;
+  tax: number;
 }
 
 export interface ServiceEditVisitModel {
-    name: String;
-    price: String;
-    count: number;
+  name: String;
+  price: String;
+  count: number;
 }
 
 export interface InvoiceForm {
@@ -248,7 +255,12 @@ export interface InvoiceForm {
   companyName: string;
 }
 
+export interface EditInvoice extends InvoiceForm {
+  invoiceId: number;
+}
+
 export interface InvoiceResponse {
+  id: number;
   dayOfIssue: string;
   discount: number;
   grossValue: string;
@@ -268,4 +280,23 @@ export interface InvoicePositionResponse {
   unitOfMeasure: string;
   valueOfVat: string;
   vatTax: string;
+}
+
+export interface AcceptProFormaInvoice extends TokenModel {
+  proFormaInvoiceId: number;
+}
+
+export interface ClientCompany extends TokenModel {
+  companyName: string;
+  username: string;
+}
+
+export interface GetClientData extends TokenModel {
+  username: string;
+}
+
+export interface VerificationModel extends TokenModel {
+  owners: UserData[];
+  notOwners: UserData[];
+  car: CarModel;
 }

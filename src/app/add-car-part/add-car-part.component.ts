@@ -9,7 +9,7 @@ import {CarBrandModel, CarPartModel} from '../app.component';
   styleUrls: ['./add-car-part.component.css']
 })
 export class AddCarPartComponent implements OnInit {
-
+  private submitted = false
   private addCarPartForm: FormGroup;
   constructor(private builder: FormBuilder,
               private service: AuthService) { }
@@ -27,7 +27,8 @@ export class AddCarPartComponent implements OnInit {
   }
 
   submit() {
-    if (this.f.partName.errors || this.f.producerName.errors || this.f.tax.errors) {
+    this.submitted = true;
+    if (this.addCarPartForm.invalid) {
       return;
     }
     const model: CarPartModel = {
