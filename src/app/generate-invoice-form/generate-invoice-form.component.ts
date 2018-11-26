@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import * as $ from 'jquery';
 import {InvoiceForm, InvoiceResponse} from '../app.component';
 import {AuthService} from '../auth.service';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
 @Component({
   selector: 'app-generate-invoice-form',
@@ -12,6 +14,7 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./generate-invoice-form.component.css']
 })
 export class GenerateInvoiceFormComponent implements OnInit {
+
   private submitted = false;
   private generateInvoiceForm: FormGroup;
   private invoice: InvoiceResponse;
@@ -23,6 +26,8 @@ export class GenerateInvoiceFormComponent implements OnInit {
   }
 
   visitId: number;
+  private pdf: {};
+
 
   ngOnInit() {
     this.generateInvoiceForm = this.formBuilder.group({
@@ -52,6 +57,7 @@ export class GenerateInvoiceFormComponent implements OnInit {
       visitId: this.visitId,
       companyName: this.f.companyName.value
     };
+
     let url: string;
     if (this.router.url.includes('ProForma')) {
       url = 'http://localhost:8080/warsztatZlomek/rest/invoice/addProFormaInvoice';
@@ -67,6 +73,82 @@ export class GenerateInvoiceFormComponent implements OnInit {
         paymentDate = new Date(this.invoice.paymentDate);
         this.invoice.paymentDate = paymentDate.getDate() + '-' + (paymentDate.getMonth() + 1) + '-' + paymentDate.getFullYear();
         console.log(this.invoice);
+        this.makePDF();
       });
+  }
+
+  makePDF() {
+      pdfMake.vfs = pdfFonts.pdfMake.vfs;
+      this.pdf = {
+          content: [
+              { text: 'Faktura VAT nr ' + this.invoice.invoiceNumber, style: 'header' },
+              { text: 'Oryginał', style: 'bold' },
+              { text: 'Data wystawienia: ' + this.invoice.dayOfIssue, style: ['anotherStyle']},
+              { text: 'Data sprzedaży: ', style: ['anotherStyle']},
+              { text: 'Termin zapłaty: ' + this.invoice.paymentDate, style: ['anotherStyle']},
+              { text: ''},
+              {canvas: [{ type: 'line', x1: 0, y1: 5, x2: 595 - 2 * 40, y2: 5, lineWidth: 3}], margin: [0,20,0,0]},
+              { columns: [
+                      [
+                          { text: 'Sprzedawca: ', bold: true},
+                          { text: this.invoice.carServiceData.name },
+                          { text: 'ul.' + this.invoice.carServiceData.streetName + ' ' + this.invoice.carServiceData.buildingNum },
+                          { text: this.invoice.carServiceData.zipCode + ' ' + this.invoice.carServiceData.cityName },
+                          { text: 'NIP' + this.invoice.carServiceData.nip }
+                      ],
+                      [
+                          { text: 'Nabywca: ', bold: true},
+                          { text: this.invoice.companyData.name},
+                          { text: 'ul.' + this.invoice.companyData.streetName + ' ' + this.invoice.companyData.buildingNum},
+                          { text: this.invoice.companyData.zipCode + ' ' + this.invoice.companyData.cityName },
+                          { text: 'NIP' + this.invoice.companyData.nip }
+                      ]
+                  ],  margin: [ 0, 20, 0, 0 ]
+              },
+              { table: {
+                      body: this.buildTableBody()
+                  },
+                  margin: [0,20,0,0],
+                  widths: ['5%', '20%', '15%', '15%', '15%', '15%']
+              },
+          ],
+          styles: {
+              header: {
+                  fontSize: 22,
+                  bold: true
+              },
+              anotherStyle: {
+                  italics: true,
+                  alignment: 'right'
+              }
+          }
+      };
+      pdfMake.createPdf(this.pdf).download();
+  }
+
+  buildTableBody () {
+        let i = 0;
+        const body = [
+            [ { text: 'Nr', fillColor: '#eeeeee'},
+                { text: 'Nazwa towaru', fillColor: '#eeeeee'},
+                { text: 'Cena netto', fillColor: '#eeeeee'},
+                { text: 'Cena brutto', fillColor: '#eeeeee'},
+                { text: 'Wartość netto', fillColor: '#eeeeee'},
+                { text: 'Wartość brutto', fillColor: '#eeeeee'}
+            ] ];
+
+            this.invoice.positions.forEach(function(column) {
+                i = i + 1;
+                let netP = column.netPrice.split('.', 2);
+                let netPrc = netP[0] + '.' + netP[1].substr(0, 2);
+                let vatV = column.valueOfVat.split('.', 2);
+                let vatVal = vatV[0] + '.' + vatV[1].substr(0, 2);
+                body.push([ i, column.positionName, netPrc, column.grossPrice, column.vatTax, vatVal]);
+            });
+
+
+        console.log(body);
+
+        return body;
   }
 }
