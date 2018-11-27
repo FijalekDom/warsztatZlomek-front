@@ -26,6 +26,10 @@ export class EditVisitElementsComponent implements OnInit {
     this.auth.getVisitElements().subscribe((result) => {
       this.carParts = result.parts;
       this.services = result.services;
+    }, result => {
+      if (result.accessToken !== null) {
+        this.auth.setExpirationDate();
+      }
     });
     this.editCarPartForm = this.builder.group({
       producerName: ['', Validators.required],

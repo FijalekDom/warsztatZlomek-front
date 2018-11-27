@@ -25,9 +25,13 @@ export class DisplayVisitDetailsComponent implements OnInit {
       const date = new Date(parseInt(this.visit.visitDate, 10));
       this.visit.visitDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
       this.visit.visitStatus = this.convertStatus();
+      this.auth.setExpirationDate();
       console.log(this.visit);
     }, (result) => {
       console.log(result);
+      if (result.accessToken !== null) {
+        this.auth.setExpirationDate();
+      }
     });
   }
 

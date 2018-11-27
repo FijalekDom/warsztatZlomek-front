@@ -73,6 +73,10 @@ export class GenerateInvoiceFormComponent implements OnInit {
         paymentDate = new Date(this.invoice.paymentDate);
         this.invoice.paymentDate = paymentDate.getDate() + '-' + (paymentDate.getMonth() + 1) + '-' + paymentDate.getFullYear();
         console.log(this.invoice);
+      }, result => {
+        if (result.accessToken !== null) {
+          this.authService.setExpirationDate();
+        }
         this.makePDF();
       });
   }

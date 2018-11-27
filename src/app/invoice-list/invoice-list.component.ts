@@ -21,6 +21,10 @@ export class InvoiceListComponent implements OnInit {
         const date = new Date(invoice.dayOfIssue);
         invoice.dayOfIssue = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
       });
+    }, result => {
+      if (result.accessToken !== null) {
+        this.auth.setExpirationDate();
+      }
     });
   }
 

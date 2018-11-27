@@ -40,6 +40,10 @@ export class EditInvoiceComponent implements OnInit {
         const date = new Date(parseInt(obj.visitDate.valueOf(), 10));
         obj.visitDate = date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear();
       });
+    }, result => {
+      if (result.accessToken !== null) {
+        this.authService.setExpirationDate();
+      }
     });
     this.invoiceId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
     this.authService.getInvoice(this.invoiceId).subscribe((result) => {
@@ -47,6 +51,10 @@ export class EditInvoiceComponent implements OnInit {
       this.invoice = result.invoice;
       const date = new Date(this.invoice.paymentDate);
       this.invoice.paymentDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    }, result => {
+      if (result.accessToken !== null) {
+        this.authService.setExpirationDate();
+      }
     });
   }
 
@@ -68,9 +76,11 @@ export class EditInvoiceComponent implements OnInit {
     };
     console.log(form);
     this.authService.editInvoice(form).subscribe((result) => {
-      console.log(result);
+      this.authService.setExpirationDate();
     }, (result) => {
-      console.log(result);
+      if (result.accessToken !== null) {
+        this.authService.setExpirationDate();
+      }
     });
   }
 }

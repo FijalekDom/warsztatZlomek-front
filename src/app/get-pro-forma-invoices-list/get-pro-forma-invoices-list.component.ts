@@ -22,6 +22,10 @@ export class GetProFormaInvoicesListComponent implements OnInit {
         invoice.dayOfIssue = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
         console.log(invoice);
       });
+    }, result => {
+      if (result.accessToken !== null) {
+        this.auth.setExpirationDate();
+      }
     });
   }
   save(i) {
@@ -31,9 +35,11 @@ export class GetProFormaInvoicesListComponent implements OnInit {
     };
     console.log(i);
     this.auth.acceptProFormaInvoice(form).subscribe((result) => {
-      console.log(result);
+      this.auth.setExpirationDate();
     }, (result) => {
-      console.log(result);
+      if (result.accessToken !== null) {
+        this.auth.setExpirationDate();
+      }
     });
   }
   createProFormaInvoice() {
