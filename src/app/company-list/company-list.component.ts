@@ -22,6 +22,10 @@ export class CompanyListComponent implements OnInit {
         this.authService.setExpirationDate();
         this.companies = result.companies;
         console.log(this.companies);
+      }, result => {
+        if (result.accessToken !== null) {
+          this.authService.setExpirationDate();
+        }
       }
     );
   }

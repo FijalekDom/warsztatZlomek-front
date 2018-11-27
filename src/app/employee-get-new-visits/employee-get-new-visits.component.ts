@@ -33,6 +33,9 @@ export class EmployeeGetNewVisitsComponent implements OnInit {
                 },
                 error => {
                     console.log(error);
+                  if (error.accessToken !== null) {
+                    this.connection.setExpirationDate();
+                  }
                 }
             );
     }
@@ -54,7 +57,9 @@ export class EmployeeGetNewVisitsComponent implements OnInit {
                     window.location.reload();
                 },
                 error => {
-                    console.log(error);
+                  if (error.accessToken !== null) {
+                    this.connection.setExpirationDate();
+                  }
                 });
     }
 

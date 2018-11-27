@@ -17,14 +17,11 @@ import {
   TokenModel,
   CarBrandModel,
   CarPartModel,
-  CompanyModel,
   AddCompanyModel,
-  VisitResponse,
   RemoveVisitModel,
   AddEmployeeToVisit,
   SubmitVisitModel,
   InvoiceForm,
-  CarPartResponse,
   EditCarPartModel,
   ServiceModel,
   GetCompanyModel,
@@ -39,8 +36,6 @@ import {
   GetVisitDetails
 } from './app.component';
 import {map} from 'rxjs/internal/operators';
-import {v} from '@angular/core/src/render3';
-import {AddServiceComponent} from './add-service/add-service.component';
 
 @Injectable({
   providedIn: 'root'
@@ -79,8 +74,9 @@ export class AuthService {
       .pipe(map(user => {
         if (user && user.accessToken) {
           const date = new Date();
-          date.setTime(date.getTime() + (20 * 60 * 1000));
+          // date.setTime(date.getTime() + (20 * 60 * 1000));
           localStorage.setItem('warsztatZlomekEmployee', user.accessToken.valueOf() + ';' + date.toString());
+          this.setExpirationDate();
         }
         console.log(user.accessToken);
         return user;
@@ -242,9 +238,13 @@ export class AuthService {
       () => {
         this.setExpirationDate();
         console.log('sukces');
+        this.setExpirationDate();
       },
       (data) => {
         console.log(data);
+        if (data.accessToken !== null) {
+          this.setExpirationDate();
+        }
       }
     );
   }
@@ -277,6 +277,9 @@ export class AuthService {
         },
         (data) => {
           console.log(data);
+          if (data.accessToken !== null) {
+            this.setExpirationDate();
+          }
         }
       );
   }
@@ -337,6 +340,9 @@ export class AuthService {
       },
       (data) => {
         console.log(data);
+        if (data.accessToken !== null) {
+          this.setExpirationDate();
+        }
       }
     );
   }
@@ -351,7 +357,9 @@ export class AuthService {
         console.log(data);
       },
       (data) => {
-        console.log(data);
+        if (data.accessToken !== null) {
+          this.setExpirationDate();
+        }
       }
     );
   }
@@ -366,7 +374,9 @@ export class AuthService {
         console.log(data);
       },
       (data) => {
-        console.log(data);
+        if (data.accessToken !== null) {
+          this.setExpirationDate();
+        }
       }
     );
   }
@@ -381,7 +391,9 @@ export class AuthService {
         console.log(data);
       },
       (data) => {
-        console.log(data);
+        if (data.accessToken !== null) {
+          this.setExpirationDate();
+        }
       }
     );
   }
@@ -396,7 +408,9 @@ export class AuthService {
         console.log(data);
       },
       (data) => {
-        console.log(data);
+        if (data.accessToken !== null) {
+          this.setExpirationDate();
+        }
       }
     );
   }
@@ -457,7 +471,9 @@ export class AuthService {
         console.log(data);
       },
       (data) => {
-        console.log(data);
+        if (data.accessToken !== null) {
+          this.setExpirationDate();
+        }
       }
     );
   }
@@ -471,7 +487,9 @@ export class AuthService {
         console.log(data);
       },
       (data) => {
-        console.log(data);
+        if (data.accessToken !== null) {
+          this.setExpirationDate();
+        }
       }
     );
   }
@@ -521,7 +539,9 @@ export class AuthService {
         console.log(data);
       },
       (data) => {
-        console.log(data);
+        if (data.accessToken !== null) {
+          this.setExpirationDate();
+        }
       }
     );
   }
@@ -579,7 +599,9 @@ export class AuthService {
     return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/updateClient/addClientToCompany', form).subscribe(result => {
       this.setExpirationDate();
     }, (result) => {
-      console.log(result);
+      if (result.accessToken !== null) {
+        this.setExpirationDate();
+      }
     });
   }
 

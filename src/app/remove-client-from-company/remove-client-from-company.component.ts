@@ -29,6 +29,10 @@ export class RemoveClientFromCompanyComponent implements OnInit {
     this.auth.getClientData(form).subscribe((result) => {
       this.auth.setExpirationDate();
       this.client = result;
+    }, result => {
+      if (result.accessToken !== null) {
+        this.auth.setExpirationDate();
+      }
     });
   }
   remove(i) {
@@ -41,6 +45,10 @@ export class RemoveClientFromCompanyComponent implements OnInit {
     this.auth.removeClientFromCompany(form).subscribe(() => {
       this.auth.setExpirationDate();
       this.getClientData();
+    }, result => {
+      if (result.accessToken !== null) {
+        this.auth.setExpirationDate();
+      }
     });
   }
 }

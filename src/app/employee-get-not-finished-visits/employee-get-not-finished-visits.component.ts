@@ -51,7 +51,9 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
           console.log(this.visits);
         },
         error => {
-          console.log(error);
+          if (error.accessToken !== null) {
+            this.connection.setExpirationDate();
+          }
         }
       );
   }
@@ -70,7 +72,9 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
           this.servicesList = data.services;
         },
         error => {
-          console.log(error);
+          if (error.accessToken !== null) {
+            this.connection.setExpirationDate();
+          }
         }
       );
 
@@ -163,8 +167,12 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
       };
       this.connection.verifyOwnership(form).subscribe(result => {
         console.log(result);
+        this.connection.setExpirationDate();
       }, result => {
         console.log(result);
+        if (result.accessToken !== null) {
+          this.connection.setExpirationDate();
+        }
       });
     } else if (this.visits[this.i].notVerifiedOwners.length !== 0) {
       return;

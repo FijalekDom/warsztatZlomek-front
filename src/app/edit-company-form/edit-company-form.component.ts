@@ -31,7 +31,12 @@ export class EditCompanyFormComponent implements OnInit {
     });
     const companyId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
     this.authService.getCompanyById(companyId).subscribe((result) => {
+      this.authService.setExpirationDate();
       this.company = result;
+    }, result => {
+      if (result.accessToken !== null) {
+        this.authService.setExpirationDate();
+      }
     });
   }
 

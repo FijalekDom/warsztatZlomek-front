@@ -41,6 +41,9 @@ export class AddServiceComponent implements OnInit {
       this.auth.setExpirationDate();
     }, (result) => {
       console.log(result);
+      if (result.accessToken !== null) {
+        this.auth.setExpirationDate();
+      }
     })
   }
 }

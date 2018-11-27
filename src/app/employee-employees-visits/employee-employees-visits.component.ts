@@ -53,9 +53,13 @@ export class EmployeeEmployeesVisitsComponent implements OnInit {
             .subscribe(
                 data => {
                     console.log(data);
+                    this.connection.setExpirationDate();
                 },
                 error => {
                     console.log(error);
+                  if (error.accessToken !== null) {
+                    this.connection.setExpirationDate();
+                  }
                 }
             );
     }
@@ -79,6 +83,9 @@ export class EmployeeEmployeesVisitsComponent implements OnInit {
                 },
                 error => {
                     console.log(error);
+                  if (error.accessToken !== null) {
+                    this.connection.setExpirationDate();
+                  }
                 }
             );
     }

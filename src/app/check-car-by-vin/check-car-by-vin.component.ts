@@ -33,13 +33,16 @@ export class CheckCarByVinComponent implements OnInit {
       vin: this.f.vin.value
     };
     this.auth.checkCar(form).subscribe((result) => {
+      this.auth.setExpirationDate();
       this.visits = result.visits;
       for (let i = 0; i < this.visits.length; i++) {
         const date = new Date(parseInt(this.visits[i].visitDate, 10));
         this.visits[i].visitDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
       }
     }, (result) => {
-      console.log(result);
+      if (result.accessToken !== null) {
+        this.auth.setExpirationDate();
+      }
     });
   }
 
