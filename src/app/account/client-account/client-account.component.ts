@@ -45,7 +45,6 @@ export class ClientAccountComponent implements OnInit {
       this.registerForm = this.formBuilder.group({
           firstName: ['', Validators.required],
           lastName: ['', Validators.required],
-          email: ['', [Validators.required, Validators.email]],
           phoneNumber: ['', [Validators.required, Validators.pattern('[1-9]{1}[0-9]{8}')]],
           cityName: ['', Validators.required],
           streetName: ['', Validators.required],
@@ -69,7 +68,7 @@ export class ClientAccountComponent implements OnInit {
         const client: ClientUpdateModel = {
             firstName: this.f.firstName.value,
             lastName: this.f.lastName.value,
-            email: this.f.email.value,
+            email: this.userData.email,
             phoneNumber: this.f.phoneNumber.value,
             cityName: this.f.cityName.value,
             streetName: this.f.streetName.value,

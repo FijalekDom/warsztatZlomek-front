@@ -74,9 +74,8 @@ export class AuthService {
       .pipe(map(user => {
         if (user && user.accessToken) {
           const date = new Date();
-          // date.setTime(date.getTime() + (20 * 60 * 1000));
+          date.setTime(date.getTime() + (20 * 60 * 1000));
           localStorage.setItem('warsztatZlomekEmployee', user.accessToken.valueOf() + ';' + date.toString());
-          this.setExpirationDate();
         }
         console.log(user.accessToken);
         return user;
