@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {
-  CarPartEditVisitModel, CarPartModel, CarPartResponse, ServiceEditVisitModel, ServiceModel, ShowEmployeeVisitModel, SubmitVisitModel,
-  TokenModel, UserData, VerificationModel,
-  VisitModel, VisitResponse
+    CarPartEditVisitModel, CarPartModel, CarPartResponse, ServiceEditVisitModel, ServiceModel, ShowEmployeeVisitModel, SubmitVisitModel,
+    TokenModel, UserData, VerificationModel,
+    VisitModel, VisitResponse, VisitResponseOverview
 } from '../app.component';
 import {AuthService} from '../auth.service';
 import {first} from 'rxjs/internal/operators';
@@ -17,7 +17,7 @@ import * as $ from 'jquery';
 export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
   i: number;
   showList = true;
-  visits: VisitResponse[] = [];
+  visits: VisitResponseOverview[] = [];
   carParts: CarPartEditVisitModel[] = [];
   services: ServiceEditVisitModel[] = [];
   servicesList: ServiceModel[] = [];
@@ -28,8 +28,9 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
   private owners: UserData[] = [];
   private notVerified: UserData[] = [];
   constructor(
-    private formBuilder: FormBuilder,
-    private connection: AuthService) {
+  private formBuilder: FormBuilder,
+
+  private connection: AuthService) {
   }
 
   ngOnInit() {

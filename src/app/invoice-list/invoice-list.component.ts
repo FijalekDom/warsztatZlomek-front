@@ -29,7 +29,7 @@ export class InvoiceListComponent implements OnInit {
   }
 
   edit(i) {
-    this.router.navigate(['/employee/account/editInvoice', i]);
+    this.router.navigate(['/employee/account/invoices', i]);
   }
 
   load(i) {

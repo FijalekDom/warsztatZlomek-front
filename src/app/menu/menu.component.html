@@ -1,5 +1,5 @@
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="logo">
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav" style="width: 100%;">
         <li>
@@ -16,4 +16,83 @@
         </li>
       </ul>
     </div>
+  </nav>
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark" *ngIf="!logo">
+    <ul class="navbar-nav" style="width: 100%;">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+          Wizyty
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/employee/account/add-visit">Dodaj wizytę</a>
+          <a class="dropdown-item" href="/employee/account/showNotFinishedVisits">Wizyty w toku</a>
+          <a class="dropdown-item" href="/employee/account/showNewVisits">Nowe wizyty</a>
+          <a class="dropdown-item" href="/employee/account/showEmployeeVisits">Wizyty wykonane pracownika</a>
+      </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+          Faktury
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/employee/account/visitList">Utwórz fakturę</a>
+          <a class="dropdown-item" href="/employee/account/invoices">Lista faktur VAT</a>
+          <a class="dropdown-item" href="/employee/account/proFormaInvoices">Lista faktur pro-forma</a>
+         </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+          Klienci
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/employee/account/banUser">Zablokuj</a>
+          <a class="dropdown-item" href="/employee/account/addClientToCompany">Dodaj do firmy</a>
+          <a class="dropdown-item" href="/employee/account/removeClientFromCompany">Usuń z firmy</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+          Pracownicy
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/employee/account/registerEmployee">Dodaj pracownika</a>
+          <a class="dropdown-item" href="/employee/account/removeEmployee">Usuń pracownika</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+          Samochody
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/employee/account/addCarBrand">Dodaj markę</a>
+          <a class="dropdown-item" href="/employee/account/addCarPart">Dodaj część</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+          Firmy
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/employee/account/">Dodaj</a>
+          <a class="dropdown-item" href="/employee/account/">Lista firm</a>
+          <a class="dropdown-item" href="/employee/account/">Dodaj dane serwisu</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+          Usługi
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/employee/account/addService">Dodaj</a>
+          <a class="dropdown-item" href="/employee/account/editVisitElementsPart">Edytuj usługi i części</a>
+        </div>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav">
+      <li class="nav-item active" style="width: 120px">
+        <a routerLink="employee/logout" class="nav-link" >Wyloguj</a>
+      </li>
+    </ul>
   </nav>
