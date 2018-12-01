@@ -26,13 +26,13 @@
                   <td>{{visit.car.model}}</td>
                   <td>{{visit.car.registrationNumber}}</td>
                   <td>{{visit.visitDate}}</td>
-                  <ng-container *ngIf="visit.visitStatus === 'ACCEPTED'">
+                  <ng-container *ngIf="visit.visitStatus == 'ACCEPTED'">
                     <td><button (click)="changeStatus(visit.id, 'in progress')">Potwierdź odbiór</button></td>
                   </ng-container>
-                  <ng-container *ngIf="visit.visitStatus === 'IN_PROGRESS'">
+                  <ng-container *ngIf="visit.visitStatus == 'IN_PROGRESS'">
                     <td><button (click)="submitPickup(i)">Do odbioru</button></td>
                   </ng-container>
-                  <ng-container *ngIf="visit.visitStatus === 'FOR_PICKUP'">
+                  <ng-container *ngIf="visit.visitStatus == 'FOR_PICKUP'">
                     <td><button (click)="changeStatus(visit.id, 'finished')">Odebrano</button></td>
                   </ng-container>
                 </tr>
@@ -133,8 +133,15 @@
                 </div>
               </div>
             </div>
+            <div *ngIf="visits[i].overview">
+              <form [formGroup]="addServiceForm" (ngSubmit)="pushService()">
+                <div class="form-group">
+                  <label for="expirationDate">Data wygaśnięcia przeglądu</label>
+                  <input type="text" id="expirationDate" formControlName="expirationDate" class="form-control">
+                </div>
+              </form>
+            </div>
             <button (click)="sendRequest()">Zapisz wizyte</button>
-
           </ng-container>
         </div>
       </div>

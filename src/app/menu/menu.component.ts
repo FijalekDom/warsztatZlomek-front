@@ -12,9 +12,7 @@ export class MenuComponent implements OnInit {
     router.events.subscribe((x) => {
       const currentUrl = this.router.url;
       if (currentUrl.includes('/employee/account')) {
-        this.rightMenu = this.employeeLoginRightMenu;
-        this.leftMenu = this.employeeLoginLeftMenu;
-        this.logoHref = 'http://localhost:4200/employee/account';
+        this.logo = false;
       } else if (currentUrl.includes('/employee')) {
         this.rightMenu = this.employeeBeginRightMenu;
         this.leftMenu = this.employeeBeginLeftMenu;
@@ -31,12 +29,13 @@ export class MenuComponent implements OnInit {
     });
   }
 
+  logo = true;
   logoHref: string;
   leftMenu = [];
   rightMenu = [];
 
   beginLeftMenu = [{url: '#', text: 'O firmie'}, {url: '#', text: 'Oferta'}, {url: '#', text: 'Kontakt'},
-    {url: 'localhost:4200/checkVin', text: 'Sprawdź historię napraw'}];
+    {url: '/checkVin', text: 'Sprawdź historię napraw'}];
   beginRightMenu = [{url: '/login', text: 'Zaloguj'}, {url: 'register', text: 'Zarejestruj'}];
 
   loginLeftMenu = [{url: 'account/visits', text: 'Wizyty'}, {url: 'account/cars', text: 'Samochody'},
@@ -45,14 +44,10 @@ export class MenuComponent implements OnInit {
 
   employeeBeginLeftMenu = [{url: '#', text: ''}, {url: '#', text: ''}, {url: '#', text: ''}];
   employeeBeginRightMenu = [];
-
-  employeeLoginLeftMenu = [{url: '#', text: 'Wizyty'}, {url: '#', text: 'Samochody'}, {url: '#', text: 'Nowa wizyta'},
-    {url: 'javascript:void(0)', text: 'Faktury'}];
-  employeeLoginRightMenu = [{url: 'employee/logout', text: 'wyloguj'}];
-
   ngOnInit() {
 
   }
 
 
 }
+

@@ -215,6 +215,10 @@ export interface VisitResponse {
   services: VisitElementResponse[];
 }
 
+export interface VisitResponseOverview extends VisitResponse {
+  overview: boolean;
+}
+
 export interface RemoveVisitModel extends TokenModel {
   visitId: number;
 }
@@ -276,6 +280,7 @@ export interface InvoiceResponse {
   invoiceNumber: string;
   methodOfPayment: string;
   paymentDate: string;
+  serviceFinishDate: string;
   carServiceData: CompanyModel;
   companyData: CompanyModel;
   positions: InvoicePositionResponse[];
@@ -288,6 +293,7 @@ export interface InvoicePositionResponse {
   unitOfMeasure: string;
   valueOfVat: string;
   vatTax: string;
+  count: number;
 }
 
 export interface AcceptProFormaInvoice extends TokenModel {

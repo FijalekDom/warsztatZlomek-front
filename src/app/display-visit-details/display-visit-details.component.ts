@@ -24,7 +24,7 @@ export class DisplayVisitDetailsComponent implements OnInit {
       this.visit = result.details;
       const date = new Date(parseInt(this.visit.visitDate, 10));
       this.visit.visitDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
-      this.visit.visitStatus = this.convertStatus();
+      this.visit.visitStatus = this.convertStatus(this.visit.visitStatus);
       this.auth.setExpirationDate();
       console.log(this.visit);
     }, (result) => {
@@ -35,20 +35,14 @@ export class DisplayVisitDetailsComponent implements OnInit {
     });
   }
 
-  convertStatus() {
-    switch (this.visit.visitStatus) {
-      case ('NEW'):
-        return 'Nowa';
-      case ('ACCEPTED'):
-        return 'Zaakceptowana';
-      case ('IN PROGRESS'):
-        return 'W trakcie';
-      case ('FOR PICKUP'):
-        return 'Do odbioru';
-      case ('FINISHED'):
-        return 'Zakończona';
-      default:
-        return null;
+  convertStatus(status) {
+    switch (status) {
+        case 'NEW': { return 'Nowa'; break; }
+        case 'ACCEPTED': { return 'Zaakceptowano'; break; }
+        case 'IN_PROGRESS': { return 'W toku'; break; }
+        case 'FOR_PICKUP': { return 'Do odbioru'; break; }
+        case 'FINISHED': { return 'Zakończona'; break; }
+        default: { return null; break; }
     }
   }
 
