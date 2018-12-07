@@ -7,7 +7,7 @@
           <form [formGroup]="addVisitForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label >Data (podaj datę w formacie DD-MM-RRRR)</label>
-              <input type="date" formControlName="visitDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.visitDate.errors }" />
+              <input type="datetime-local" formControlName="visitDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.visitDate.errors }" />
               <div *ngIf="submitted && f.visitDate.errors" class="invalid-feedback">
                 <div *ngIf="f.visitDate.errors.required">Data jest wymagana</div>
               </div>

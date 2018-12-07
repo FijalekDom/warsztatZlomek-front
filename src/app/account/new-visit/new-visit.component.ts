@@ -57,11 +57,14 @@ export class NewVisitComponent implements OnInit {
       const visit: AddVisitModel = {
           accessToken: JSON.parse(localStorage.getItem('currentUser')),
           carId: this.f.carId.value,
-          visitDate: date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear(),
+          visitDate: date.getDate() + '-' + (date.getMonth() + 1) + '-'
+          + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes(),
           isOverview: this.f.isOverview.value
       };
 
       this.loading = true;
+
+      console.log(visit);
 
       this.connection.addVisit(visit)
           .pipe(first())

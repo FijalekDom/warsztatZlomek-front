@@ -10,7 +10,7 @@
             <div *ngIf="carParts.length!==0">
               <label for="part">Wybierz część</label>
               <select class="form-control" id="part">
-                <option value="-1">Wybierz część</option>
+                <option value="-1">--Wybierz część--</option>
                 <option *ngFor="let part of carParts; let i = index" value="{{i}}">{{part.name}} {{part.producer}}
                 </option>
               </select>
@@ -43,25 +43,18 @@
                     <div *ngIf="f.tax.errors.max">Podatek powinien być mniejszy od 25%</div>
                   </div>
                 </div>
-                <button type="submit">Zaktualizuj</button>
+                <button class="btn btn-primary" type="submit">Zaktualizuj</button>
               </form>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 backgroundClear">
           <div *ngIf="services.length===0">
             Brak usług
           </div>
           <div *ngIf="services.length!==0">
             <label for="part">Wybierz usługę</label>
             <select class="form-control" id="service">
-              <option value="-1">Wybierz usługę</option>
-              <option *ngFor="let service of services; let i = index" value="{{i}}">{{service.serviceName}}
+              <option value="-1">--Wybierz usługę--</option>
+              <option *ngFor="let service of services; let i = index" value="{{i}}">{{service.name}}
               </option>
             </select>
             <button class="btn btn-primary" (click)="showServicesForm()">Edytuj tą usługę</button>
@@ -73,7 +66,7 @@
                 <input type="text" id="serviceName" formControlName="serviceName" [(ngModel)]="service.serviceName"
                        [ngClass]="{ 'is-invalid': serviceSubmitted && f.serviceName.errors }">
                 <div *ngIf="serviceSubmitted && f.serviceName.errors" class="invalid-feedback">
-                  <div *ngIf="f.serviceName.errors.required">Nazwa usłygi jest wymagana</div>
+                  <div *ngIf="f.serviceName.errors.required">Nazwa usługi jest wymagana</div>
                 </div>
               </div>
               <div class="form-group">
@@ -85,8 +78,9 @@
                   <div *ngIf="f.serviceTax.errors.max">Podatek powinien być mniejszy od 25%</div>
                 </div>
               </div>
-              <button type="submit">Zaktualizuj</button>
+              <button class="btn btn-primary" type="submit">Zaktualizuj</button>
             </form>
+          </div>
           </div>
         </div>
       </div>

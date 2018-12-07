@@ -27,13 +27,13 @@
                   <td>{{visit.car.registrationNumber}}</td>
                   <td>{{visit.visitDate}}</td>
                   <ng-container *ngIf="visit.visitStatus == 'ACCEPTED'">
-                    <td><button (click)="changeStatus(visit.id, 'in progress')">Potwierdź odbiór</button></td>
+                    <td><button class="btn btn-primary" (click)="changeStatus(visit.id, 'in progress')">Potwierdź odbiór</button></td>
                   </ng-container>
                   <ng-container *ngIf="visit.visitStatus == 'IN_PROGRESS'">
-                    <td><button (click)="submitPickup(i)">Do odbioru</button></td>
+                    <td><button class="btn btn-primary" (click)="submitPickup(i)">Do odbioru</button></td>
                   </ng-container>
                   <ng-container *ngIf="visit.visitStatus == 'FOR_PICKUP'">
-                    <td><button (click)="changeStatus(visit.id, 'finished')">Odebrano</button></td>
+                    <td><button class="btn btn-primary" (click)="changeStatus(visit.id, 'finished')">Odebrano</button></td>
                   </ng-container>
                 </tr>
               </table>
@@ -134,14 +134,15 @@
               </div>
             </div>
             <div *ngIf="visits[i].overview">
-              <form [formGroup]="addServiceForm" (ngSubmit)="pushService()">
+              <form [formGroup]="addDateForm" (ngSubmit)="pushService()">
                 <div class="form-group">
-                  <label for="expirationDate">Data wygaśnięcia przeglądu</label>
-                  <input type="text" id="expirationDate" formControlName="expirationDate" class="form-control">
+                  <label for="expirationDate">Lata przedłużenia przeglądu</label>
+                  <input type="number" id="expirationDate" formControlName="expirationDate" class="form-control">
                 </div>
               </form>
             </div>
-            <button (click)="sendRequest()">Zapisz wizyte</button>
+            <button class="btn btn-primary" (click)="sendRequest()">Zapisz wizyte</button>
+            <button class="btn btn-primary" (click)="cancel()">Anuluj</button>
           </ng-container>
         </div>
       </div>

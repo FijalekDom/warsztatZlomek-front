@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth.service';
 import {ShowEmployeeVisitModel, SubmitVisitModel, TokenModel, VisitModel} from '../app.component';
 import {first} from 'rxjs/internal/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-employee-employees-visits',
@@ -12,7 +13,8 @@ export class EmployeeEmployeesVisitsComponent implements OnInit {
 
     visits: ShowEmployeeVisitModel[] = [];
 
-    constructor(private connection: AuthService) { }
+    constructor(private connection: AuthService,
+                private router: Router) { }
 
     ngOnInit() {
         const token: TokenModel = {
@@ -29,6 +31,7 @@ export class EmployeeEmployeesVisitsComponent implements OnInit {
                     for (let i = 0; i < data.visits.length; i++) {
                         const date = new Date(data.visits[i].visitDate);
                         data.visits[i].visitDate = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
+                        this.visits[i].visitStatus = this.convertStatus(this.visits[i].visitStatus);
                     }
                 },
                 error => {
@@ -37,58 +40,18 @@ export class EmployeeEmployeesVisitsComponent implements OnInit {
             );
     }
 
-
-    confirmReceival(id: number) {
-        const visit: SubmitVisitModel = {
-            accessToken: this.connection.getAccessToken(),
-            visitId: id,
-            carParts: [],
-            services: [],
-            countYears: null,
-            status: 'in progress'
-        };
-
-        this.connection.editVisit(visit)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    console.log(data);
-                    this.connection.setExpirationDate();
-                },
-                error => {
-                    console.log(error);
-                  if (error.accessToken !== null) {
-                    this.connection.setExpirationDate();
-                  }
-                }
-            );
+    convertStatus(status) {
+        switch (status) {
+            case 'NEW': { return 'Nowa'; break; }
+            case 'ACCEPTED': { return 'Zaakceptowano'; break; }
+            case 'IN_PROGRESS': { return 'W toku'; break; }
+            case 'FOR_PICKUP': { return 'Do odbioru'; break; }
+            case 'FINISHED': { return 'Zakończona'; break; }
+            default: { return null; break; }
+        }
     }
 
-    changeStatus(id: number, status: String) {
-        const visit: SubmitVisitModel = {
-            accessToken: this.connection.getAccessToken(),
-            visitId: id,
-            carParts: [],
-            services: [],
-            countYears: null,
-            status: 'for pickup'
-        };
-
-        this.connection.editVisit(visit)
-            .pipe(first())
-            .subscribe(
-                data => {
-                  this.connection.setExpirationDate();
-                    console.log(data);
-                },
-                error => {
-                    console.log(error);
-                  if (error.accessToken !== null) {
-                    this.connection.setExpirationDate();
-                  }
-                }
-            );
+    showMore(i: number) {
+        this.router.navigate(['employee/account/showVisitDetails', this.visits[i].id]);
     }
-
-
 }

@@ -272,10 +272,11 @@ export class AuthService {
       .subscribe(
         (data) => {
           this.setExpirationDate();
-          console.log(data);
+            alert('Dodano wizytę');
         },
         (data) => {
           console.log(data);
+            alert('Błąd!!!');
           if (data.accessToken !== null) {
             this.setExpirationDate();
           }
@@ -335,10 +336,11 @@ export class AuthService {
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/banUser', form).subscribe(
       (data) => {
         this.setExpirationDate();
-        console.log(data);
+        alert('Użytkownik został zablokowany');
       },
       (data) => {
         console.log(data);
+        alert('Błąd!!!');
         if (data.accessToken !== null) {
           this.setExpirationDate();
         }
@@ -353,9 +355,10 @@ export class AuthService {
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/addCarBrand', form).subscribe(
       (data) => {
         this.setExpirationDate();
-        console.log(data);
+        alert('Dodano markę do bazy!');
       },
       (data) => {
+        alert('Błąd!!!');
         if (data.accessToken !== null) {
           this.setExpirationDate();
         }
@@ -370,9 +373,10 @@ export class AuthService {
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/CarParts/addCarPart', form).subscribe(
       (data) => {
         this.setExpirationDate();
-        console.log(data);
+        alert('Dodano część do bazy!');
       },
       (data) => {
+        alert('Błąd!!!');
         if (data.accessToken !== null) {
           this.setExpirationDate();
         }
@@ -387,9 +391,10 @@ export class AuthService {
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/addCompany', form).subscribe(
       (data) => {
         this.setExpirationDate();
-        console.log(data);
+        alert('Dodano firmę!');
       },
       (data) => {
+        alert('Błąd!!!');
         if (data.accessToken !== null) {
           this.setExpirationDate();
         }
@@ -404,9 +409,10 @@ export class AuthService {
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/addCarServiceData', form).subscribe(
       (data) => {
         this.setExpirationDate();
-        console.log(data);
+          alert('Dodano dane serwisu!');
       },
       (data) => {
+          alert('Błąd!!!');
         if (data.accessToken !== null) {
           this.setExpirationDate();
         }
@@ -420,6 +426,7 @@ export class AuthService {
     }
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/addEmployee', visit)
       .pipe(map(visits => {
+        alert('Operacja została wykonana pomyślnie!');
         return visits;
       }));
   }
@@ -430,6 +437,7 @@ export class AuthService {
     }
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/edit', visit)
       .pipe(map(visits => {
+        alert('Operacja została wykonana pomyślnie!');
         return visits;
       }));
   }
@@ -440,6 +448,7 @@ export class AuthService {
     }
     return this.http.post<any>(url, form)
       .pipe(map(result => {
+        alert('Operacja została wykonana pomyślnie!');
         return result;
       }));
   }
@@ -467,9 +476,10 @@ export class AuthService {
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/CarParts/editCarPart', form).subscribe(
       (data) => {
         this.setExpirationDate();
-        console.log(data);
+        alert('Operacja została wykonana pomyślnie!');
       },
       (data) => {
+        alert('Błąd!!!');
         if (data.accessToken !== null) {
           this.setExpirationDate();
         }
@@ -483,9 +493,10 @@ export class AuthService {
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/editService', form).subscribe(
       (data) => {
         this.setExpirationDate();
-        console.log(data);
+        alert('Operacja została wykonana pomyślnie!');
       },
       (data) => {
+        alert('Błąd!');
         if (data.accessToken !== null) {
           this.setExpirationDate();
         }
@@ -535,9 +546,10 @@ export class AuthService {
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/editCompany', form).subscribe(
       (data) => {
         this.setExpirationDate();
-        console.log(data);
+          alert('Operacja została wykonana pomyślnie!');
       },
       (data) => {
+        alert('Błąd!!!');
         if (data.accessToken !== null) {
           this.setExpirationDate();
         }
@@ -577,6 +589,7 @@ export class AuthService {
     }
     return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/invoice/editInvoice', form)
       .pipe(map(result => {
+        alert('Operacja została wykonana pomyślnie!');
         return result;
       }));
   }
@@ -595,9 +608,12 @@ export class AuthService {
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/updateClient/addClientToCompany', form).subscribe(result => {
+    return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/updateClient/addClientToCompany', form).subscribe(
+        result => {
       this.setExpirationDate();
+      alert('Operacja została wykonana pomyślnie!');
     }, (result) => {
+          alert('Błąd!!!');
       if (result.accessToken !== null) {
         this.setExpirationDate();
       }
@@ -619,6 +635,7 @@ export class AuthService {
     }
     return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/updateClient/removeClientFromCompany',
       form).pipe(map((result) => {
+      alert('Operacja została wykonana pomyślnie!');
       return result;
     }));
   }
@@ -638,6 +655,7 @@ export class AuthService {
     }
     return this.http.post<any>('http://localhost:8080/warsztatZlomek/rest/visits/addService',
       form).pipe(map((result) => {
+      alert('Operacja została wykonana pomyślnie!');
       return result;
     }));
   }

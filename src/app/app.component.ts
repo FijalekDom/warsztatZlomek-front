@@ -95,7 +95,7 @@ export interface ShowVisitModel {
   id: number;
   visitDate: DateConstructor;
   isOverview: boolean;
-  status: String;
+  visitStatus: String;
 }
 
 export interface BanUser {
@@ -236,7 +236,7 @@ export interface SubmitVisitModel extends AddEmployeeToVisit {
 }
 
 export interface ShowEmployeeVisitModel extends VisitModel {
-  status: string;
+  visitStatus: string;
 }
 
 

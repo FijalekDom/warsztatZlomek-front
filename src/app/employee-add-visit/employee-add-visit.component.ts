@@ -39,7 +39,8 @@ export class EmployeeAddVisitComponent implements OnInit {
         const visit: AddVisitModel = {
             accessToken: this.connection.getAccessToken(),
             carId: 0,
-            visitDate: date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear(),
+            visitDate: date.getDate() + '-' + (date.getMonth() + 1) + '-'
+            + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes(),
             isOverview: this.f.isOverview.value
         };
 
