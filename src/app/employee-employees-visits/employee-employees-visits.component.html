@@ -27,8 +27,8 @@
                 <td>{{visit.car.model}}</td>
                 <td>{{visit.car.registrationNumber}}</td>
                 <td>{{visit.visitDate}}</td>
-                <td>{{visit.status}}</td>
-                <td><button>Pokarz szczegóły</button></td>
+                <td>{{visit.visitStatus}}</td>
+                <td><button (click)="showMore(i)" class="btn btn-primary">Pokarz szczegóły</button></td>
               </tr>
             </table>
           </ng-container>

@@ -24,6 +24,7 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
   carPartsList: CarPartResponse[] = [];
   addCarPartForm: FormGroup;
   addServiceForm: FormGroup;
+  addDateForm: FormGroup;
   private id: number;
   private owners: UserData[] = [];
   private notVerified: UserData[] = [];
@@ -59,6 +60,11 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
       );
   }
 
+  cancel() {
+      this.showList = true;
+      this.i = 0;
+  }
+
   submitPickup(id: number) {
     this.showList = false;
     this.id = this.visits[id].id;
@@ -68,7 +74,6 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          console.log(data);
           this.carPartsList = data.parts;
           this.servicesList = data.services;
         },
@@ -91,6 +96,10 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
       serviceCount: ['', Validators.required],
     });
 
+    this.addDateForm = this.formBuilder.group({
+        expirationDate: ['', Validators.required],
+    });
+
   }
 
   get f() {
@@ -111,6 +120,10 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
 
   get g() {
     return this.addServiceForm.controls;
+  }
+
+  get dateControls() {
+    return this.addDateForm.controls;
   }
 
   pushService() {
@@ -139,7 +152,7 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          console.log(data);
+          window.location.reload();
         },
         error => {
           console.log(error);
@@ -151,13 +164,15 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
     this.owners = [];
     this.notVerified = [];
     const visit: SubmitVisitModel = {
-      visitId: this.id,
-      carParts: this.carParts,
-      services: this.services,
-      countYears: null,
-      status: 'for pickup',
-      accessToken: this.connection.getAccessToken()
-    };
+            visitId: this.id,
+            carParts: this.carParts,
+            services: this.services,
+            countYears: null,
+            status: 'for pickup',
+            accessToken: this.connection.getAccessToken()
+        };
+
+    console.log('aaaa');
 
     if (this.checkOwnership()) {
       const form: VerificationModel = {
@@ -170,7 +185,6 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
         console.log(result);
         this.connection.setExpirationDate();
       }, result => {
-        console.log(result);
         if (result.accessToken !== null) {
           this.connection.setExpirationDate();
         }
@@ -178,6 +192,8 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
     } else if (this.visits[this.i].notVerifiedOwners.length !== 0) {
       return;
     }
+
+    console.log(visit);
 
     this.connection.editVisit(visit)
       .pipe(first())
@@ -190,7 +206,6 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
           console.log(error);
         }
       );
-
   }
 
   checkOwnership(): boolean {
@@ -210,8 +225,6 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
         this.notVerified.push(vo[i]);
       }
     }
-    console.log(this.owners);
-    console.log(this.notVerified);
     return this.owners.length !== 0;
   }
 }
