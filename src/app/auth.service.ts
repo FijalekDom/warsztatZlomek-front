@@ -300,6 +300,7 @@ export class AuthService {
     }
     return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/getNewVisits', token)
       .pipe(map(visits => {
+          console.log(visits);
         return visits;
       }));
   }

@@ -152,7 +152,7 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          window.location.reload();
+          this.ngOnInit();
         },
         error => {
           console.log(error);
@@ -172,7 +172,6 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
             accessToken: this.connection.getAccessToken()
         };
 
-    console.log('aaaa');
 
     if (this.checkOwnership()) {
       const form: VerificationModel = {
@@ -199,8 +198,7 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          console.log(data);
-          alert('Udało się!');
+          this.ngOnInit();
         },
         error => {
           console.log(error);
