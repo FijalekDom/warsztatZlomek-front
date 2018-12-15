@@ -120,8 +120,8 @@ const appRoutes: Routes = [
         canActivate: [EmployeeAuthGuard],
         children: [
           {
-            path: '',
-            component: EmployeeWelcomeSiteComponent
+              path: '',
+              component: EmployeeEmployeesVisitsComponent
           },
           {
             path: 'add-visit',
