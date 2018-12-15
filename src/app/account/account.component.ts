@@ -30,7 +30,7 @@ export class AccountComponent implements OnInit {
                   this.visits = data.visits;
                   for (let i = 0; i < data.visits.length; i++) {
                       const date = new Date(data.visits[i].visitDate);
-                      data.visits[i].visitDate = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear()
+                      data.visits[i].visitDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear()
                       + ' ' + date.getHours() + ':' + date.getMinutes();
                       switch (this.visits[i].visitStatus) {
                           case 'NEW': {this.visits[i].visitStatus = 'Nowa'; break; }

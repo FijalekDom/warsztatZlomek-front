@@ -28,7 +28,8 @@ export class EmployeeGetNewVisitsComponent implements OnInit {
                     this.visits = data.visits;
                     for (let i = 0; i < data.visits.length; i++) {
                         const date = new Date(data.visits[i].visitDate);
-                        data.visits[i].visitDate = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
+                        const month = date.getMonth() + 1;
+                        data.visits[i].visitDate = date.getDate() + '-' + month + '-' + date.getFullYear();
                     }
                 },
                 error => {

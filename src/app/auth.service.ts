@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   login(loginM: LoginModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/signIn', loginM)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/authorization/signIn', loginM)
       .pipe(map(user => {
         if (user && user.accessToken) {
           console.log(user);
@@ -58,10 +58,11 @@ export class AuthService {
 
 
   logoutEmployee() {
+
     const accessToken = this.getAccessToken();
     const tokenModel: TokenModel = {'accessToken': accessToken};
     localStorage.removeItem('warsztatZlomekEmployee');
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/signOutEmployee', tokenModel).subscribe(() => {
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/authorization/signOutEmployee', tokenModel).subscribe(() => {
 
       },
       (error1 => {
@@ -70,7 +71,7 @@ export class AuthService {
   }
 
   loginEmployee(loginM: LoginModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/signInEmployee', loginM)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/authorization/signInEmployee', loginM)
       .pipe(map(user => {
         if (user && user.accessToken) {
           const date = new Date();
@@ -87,14 +88,14 @@ export class AuthService {
   }
 
   register(registerM: RegisterModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/register', registerM)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/authorization/register', registerM)
       .pipe(map(user => {
         return user;
       }));
   }
 
   getAccountData(token: TokenModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/getFullClientData', token)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/authorization/getFullClientData', token)
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
         return user;
@@ -102,7 +103,7 @@ export class AuthService {
   }
 
   getCars(token: TokenModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/getAllClientsCars', token)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/car/getAllClientsCars', token)
       .pipe(map(cars => {
         localStorage.setItem('currentUser', JSON.stringify(cars.accessToken.valueOf()));
         return cars;
@@ -110,7 +111,7 @@ export class AuthService {
   }
 
   updateClientData(client: ClientUpdateModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/updateClient/editClientData', client)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/updateClient/editClientData', client)
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
         return user;
@@ -118,14 +119,14 @@ export class AuthService {
   }
 
   deleteUser(token: TokenModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/deleteAccount', token)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/authorization/deleteAccount', token)
       .pipe(map(user => {
         return user;
       }));
   }
 
   getAllClientVisits(token: TokenModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/getAllClientsVisits', token)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/visits/getAllClientsVisits', token)
       .pipe(map(visits => {
         localStorage.setItem('currentUser', JSON.stringify(visits.accessToken.valueOf()));
         return visits;
@@ -133,7 +134,7 @@ export class AuthService {
   }
 
   getFutureVisits(token: TokenModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/getFutureVisits', token)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/authorization/getFutureVisits', token)
       .pipe(map(visits => {
         localStorage.setItem('currentUser', JSON.stringify(visits.accessToken.valueOf()));
         return visits;
@@ -141,14 +142,14 @@ export class AuthService {
   }
 
   getCarBrands() {
-    return this.http.get<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/getAllCarBrands')
+    return this.http.get<any>('http://192.168.43.159:8080/warsztatZlomek/rest/car/getAllCarBrands')
       .pipe(map(cars => {
         return cars;
       }));
   }
 
   addCar(car: AddCarModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/updateClient/addCar', car)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/updateClient/addCar', car)
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
         return user;
@@ -156,7 +157,7 @@ export class AuthService {
   }
 
   deleteCar(id: CarIdModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/updateClient/removeCar', id)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/updateClient/removeCar', id)
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
         return user;
@@ -164,7 +165,7 @@ export class AuthService {
   }
 
   editCar(car: CarEditModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/editCar', car)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/car/editCar', car)
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
         return user;
@@ -173,7 +174,7 @@ export class AuthService {
 
 
   addCoowner(owner: CoownerModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/addCoowner', owner)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/car/addCoowner', owner)
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
         return user;
@@ -181,7 +182,7 @@ export class AuthService {
   }
 
   removeCoowner(owner: CoownerModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/removeCoowner', owner)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/car/removeCoowner', owner)
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
         return user;
@@ -189,7 +190,7 @@ export class AuthService {
   }
 
   addCarToCompany(company: CarHasCompanyModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/addCarToCompany', company)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/car/addCarToCompany', company)
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
         return user;
@@ -197,7 +198,7 @@ export class AuthService {
   }
 
   removeCarFromCompany(company: CarHasCompanyModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/removeCarFromCompany', company)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/car/removeCarFromCompany', company)
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
         return user;
@@ -205,7 +206,7 @@ export class AuthService {
   }
 
   addVisit(visit: AddVisitModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/add', visit)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/visits/add', visit)
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
         return user;
@@ -213,7 +214,7 @@ export class AuthService {
   }
 
   removeVisit(visit: RemoveVisitModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/removeVisit', visit)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/visits/removeVisit', visit)
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user.accessToken.valueOf()));
         return user;
@@ -221,7 +222,7 @@ export class AuthService {
   }
 
   getClientsCompanies(token: TokenModel) {
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/getClientsCompanies', token)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/companies/getClientsCompanies', token)
       .pipe(map(companies => {
         localStorage.setItem('currentUser', JSON.stringify(companies.accessToken.valueOf()));
         return companies;
@@ -232,7 +233,7 @@ export class AuthService {
     if (registerEmployeeModel.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/registerEmployee',
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/authorization/registerEmployee',
       registerEmployeeModel).subscribe(
       () => {
         this.setExpirationDate();
@@ -252,7 +253,7 @@ export class AuthService {
     if (removeEmployeeModel.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/removeEmployee',
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/authorization/removeEmployee',
       removeEmployeeModel).subscribe(
       (data) => {
         this.setExpirationDate();
@@ -268,7 +269,7 @@ export class AuthService {
     if (visit.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/addEmptyVisit', visit)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/visits/addEmptyVisit', visit)
       .subscribe(
         (data) => {
           this.setExpirationDate();
@@ -288,7 +289,7 @@ export class AuthService {
     if (token.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/getNotFinishedVisits', token)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/visits/getNotFinishedVisits', token)
       .pipe(map(visits => {
         return visits;
       }));
@@ -298,7 +299,7 @@ export class AuthService {
     if (token.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/getNewVisits', token)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/visits/getNewVisits', token)
       .pipe(map(visits => {
           console.log(visits);
         return visits;
@@ -309,7 +310,7 @@ export class AuthService {
     if (token.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/getAllEmployeeVisits', token)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/visits/getAllEmployeeVisits', token)
       .pipe(map(visits => {
         return visits;
       }));
@@ -334,7 +335,7 @@ export class AuthService {
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/authorization/banUser', form).subscribe(
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/authorization/banUser', form).subscribe(
       (data) => {
         this.setExpirationDate();
         alert('Użytkownik został zablokowany');
@@ -353,7 +354,7 @@ export class AuthService {
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/car/addCarBrand', form).subscribe(
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/car/addCarBrand', form).subscribe(
       (data) => {
         this.setExpirationDate();
         alert('Dodano markę do bazy!');
@@ -371,7 +372,7 @@ export class AuthService {
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/CarParts/addCarPart', form).subscribe(
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/CarParts/addCarPart', form).subscribe(
       (data) => {
         this.setExpirationDate();
         alert('Dodano część do bazy!');
@@ -389,7 +390,7 @@ export class AuthService {
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/addCompany', form).subscribe(
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/companies/addCompany', form).subscribe(
       (data) => {
         this.setExpirationDate();
         alert('Dodano firmę!');
@@ -407,7 +408,7 @@ export class AuthService {
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/addCarServiceData', form).subscribe(
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/companies/addCarServiceData', form).subscribe(
       (data) => {
         this.setExpirationDate();
           alert('Dodano dane serwisu!');
@@ -425,7 +426,7 @@ export class AuthService {
     if (visit.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/addEmployee', visit)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/visits/addEmployee', visit)
       .pipe(map(visits => {
         alert('Operacja została wykonana pomyślnie!');
         return visits;
@@ -436,7 +437,7 @@ export class AuthService {
     if (visit.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/edit', visit)
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/visits/edit', visit)
       .pipe(map(visits => {
         alert('Operacja została wykonana pomyślnie!');
         return visits;
@@ -474,7 +475,7 @@ export class AuthService {
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/CarParts/editCarPart', form).subscribe(
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/CarParts/editCarPart', form).subscribe(
       (data) => {
         this.setExpirationDate();
         alert('Operacja została wykonana pomyślnie!');
@@ -491,7 +492,7 @@ export class AuthService {
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/editService', form).subscribe(
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/visits/editService', form).subscribe(
       (data) => {
         this.setExpirationDate();
         alert('Operacja została wykonana pomyślnie!');
@@ -507,7 +508,7 @@ export class AuthService {
 
 
   getEditVisitData() {
-      return this.http.get<any>('http://127.0.0.1:8080/warsztatZlomek/rest/visits/getDataForVisit')
+      return this.http.get<any>('http://192.168.43.159:8080/warsztatZlomek/rest/visits/getDataForVisit')
            .pipe(map( visits => {
                return visits;
            }));
@@ -521,7 +522,7 @@ export class AuthService {
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/getAllCompanies', form).pipe(map((result) => {
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/companies/getAllCompanies', form).pipe(map((result) => {
       return result;
       }
     ));
@@ -534,7 +535,7 @@ export class AuthService {
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/getCompanyData', form).pipe(map((result) => {
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/companies/getCompanyData', form).pipe(map((result) => {
         return result;
       }
     ));
@@ -544,7 +545,7 @@ export class AuthService {
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/companies/editCompany', form).subscribe(
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/companies/editCompany', form).subscribe(
       (data) => {
         this.setExpirationDate();
           alert('Operacja została wykonana pomyślnie!');
@@ -578,7 +579,7 @@ export class AuthService {
     if (form.accessToken == null) {
       return;
     }
-    return this.http.post<any>('http://127.0.0.1:8080/warsztatZlomek/rest/invoice/getInvoiceDetails', form).pipe(map((result) => {
+    return this.http.post<any>('http://192.168.43.159:8080/warsztatZlomek/rest/invoice/getInvoiceDetails', form).pipe(map((result) => {
         return result;
       })
     );

@@ -71,6 +71,7 @@ export class NewVisitComponent implements OnInit {
           .subscribe(
               user => {
                   this.loading = false;
+                  alert('Dodano wizytę!!!');
                   window.location.reload();
               },
               error => {
