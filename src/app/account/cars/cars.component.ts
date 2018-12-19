@@ -109,7 +109,7 @@ export class CarsComponent implements OnInit {
           .subscribe(
               user => {
                   this.loading = false;
-                  window.location.reload();
+                  this.ngOnInit();
               },
               error => {
                   console.log(error);
@@ -135,6 +135,7 @@ export class CarsComponent implements OnInit {
               user => {
                   this.loading = false;
                   this.formDisable = false;
+                  this.ngOnInit();
               },
               error => {
                   console.log(error);
@@ -151,7 +152,7 @@ export class CarsComponent implements OnInit {
       this.authService.deleteCar(idData)
           .pipe(first())
           .subscribe( user => {
-                  window.location.reload();
+                  this.ngOnInit();
               },
               error => {
                   console.log(error);

@@ -35,5 +35,6 @@ export class AddCarBrandComponent implements OnInit {
       accessToken: this.service.getAccessToken()
     };
     this.service.addCarBrand(model);
+    this.ngOnInit();
   }
 }

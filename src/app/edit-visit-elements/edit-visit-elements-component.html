@@ -20,7 +20,7 @@
               <form [formGroup]="editCarPartForm" (ngSubmit)="submit()">
                 <div class="form-group">
                   <label for="producerName">Producent</label>
-                  <input type="text" id="producerName" formControlName="producerName" [(ngModel)]="carPart.producer"
+                  <input type="text" id="producerName" class="form-control" formControlName="producerName" [(ngModel)]="carPart.producer"
                          [ngClass]="{ 'is-invalid': submitted && f.producerName.errors }">
                   <div *ngIf="submitted && f.producerName.errors" class="invalid-feedback">
                     <div *ngIf="f.producerName.errors.required">Nazwa producenta jest wymagana</div>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                   <label for="partName">Nazwa</label>
-                  <input type="text" id="partName" formControlName="partName" [(ngModel)]="carPart.name"
+                  <input type="text" id="partName" class="form-control" formControlName="partName" [(ngModel)]="carPart.name"
                          [ngClass]="{ 'is-invalid': submitted && f.partName.errors }">
                   <div *ngIf="submitted && f.partName.errors" class="invalid-feedback">
                     <div *ngIf="f.partName.errors.required">Nazwa części jest wymagana</div>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                   <label for="tax">Podatek</label>
-                  <input type="number" id="tax" formControlName="tax" [(ngModel)]="carPart.tax"
+                  <input type="number" id="tax" formControlName="tax" class="form-control" [(ngModel)]="carPart.tax"
                          [ngClass]="{ 'is-invalid': submitted && f.tax.errors }">
                   <div *ngIf="submitted && f.tax.errors" class="invalid-feedback">
                     <div *ngIf="f.tax.errors.min">Podatek powinien być nieujemny</div>

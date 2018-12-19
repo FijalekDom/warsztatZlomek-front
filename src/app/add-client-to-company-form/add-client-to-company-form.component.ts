@@ -28,7 +28,7 @@ export class AddClientToCompanyFormComponent implements OnInit {
       }
     });
     this.addClientToCompanyForm = this.builder.group({
-      email: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9._-]{1,}@[a-z0-9]{1,6}.[a-z]{2,3}$')]]
+      email: ['', [Validators.required, Validators.email]]
     });
   }
 

@@ -28,7 +28,7 @@
                 <td>{{visit.visitDate}}</td>
                 <td>{{visit.visitStatus}}</td>
                 <ng-container *ngIf="visit.visitStatus === 'Nowa'">
-                  <td><button (click)="removeVisit(visit.id)">Odwołaj wizytę</button></td>
+                  <td><button class="btn btn-primary" (click)="removeVisit(visit.id)">Odwołaj wizytę</button></td>
                 </ng-container>
               </tr>
             </table>

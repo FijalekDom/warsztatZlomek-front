@@ -3,7 +3,7 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {first, switchMap} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import * as $ from 'jquery';
-import {InvoiceForm, InvoiceResponse} from '../app.component';
+import {CompanyModel, InvoiceForm, InvoiceResponse, TokenModel} from '../app.component';
 import {AuthService} from '../auth.service';
 import {GeneratePDFService} from '../generate-pdf.service';
 
@@ -17,6 +17,7 @@ export class GenerateInvoiceFormComponent implements OnInit {
   private submitted = false;
   private generateInvoiceForm: FormGroup;
   private invoice: InvoiceResponse;
+  private companiesNames: CompanyModel;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -35,6 +36,24 @@ export class GenerateInvoiceFormComponent implements OnInit {
       discount: [0, [Validators.required, Validators.min(0)]]
     });
     this.visitId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+
+    const token: TokenModel = {
+       accessToken: this.authService.getAccessToken()
+    };
+    this.authService.getCompanies(token).
+      pipe(first())
+          .subscribe(
+              data => {
+                  this.authService.setExpirationDate();
+                  this.companiesNames = data.companies;
+                  console.log(this.companiesNames);
+              },
+          error => {
+              if (error.accessToken !== null) {
+                  this.authService.setExpirationDate();
+              }
+          });
+
   }
 
   get f() {

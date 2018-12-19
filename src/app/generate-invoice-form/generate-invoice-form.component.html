@@ -5,10 +5,9 @@
         <form [formGroup]="generateInvoiceForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="companyName">Nazwa firmy</label>
-            <input type="text" formControlName="companyName" id="companyName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.companyName.errors }" />
-            <div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
-              <div *ngIf="f.companyName.errors.required">Nazwa firmy jest wymagana</div>
-            </div>
+            <select id="companyName" formControlName="companyName" class="form-control">
+              <option *ngFor="let company of companiesNames" [ngValue]="company.name">{{company.name}}</option>
+            </select>
             <label for="date" >Data płatności</label>
             <input type="date" formControlName="date" id="date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.date.errors }" />
             <div *ngIf="submitted && f.date.errors" class="invalid-feedback">

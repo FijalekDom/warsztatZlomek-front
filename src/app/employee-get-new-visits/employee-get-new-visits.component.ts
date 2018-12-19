@@ -55,7 +55,7 @@ export class EmployeeGetNewVisitsComponent implements OnInit {
                 data => {
                     console.log(data);
                     this.connection.setExpirationDate();
-                    window.location.reload();
+                    this.ngOnInit();
                 },
                 error => {
                   if (error.accessToken !== null) {
