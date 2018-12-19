@@ -26,12 +26,12 @@ export class RegisterClientComponent implements OnInit {
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
+            firstName: ['', [Validators.required, Validators.pattern('[A-ZŹĄĘÓŁŻ]{1}+[a-z,ąęółńćźż]{2,}')]],
+            lastName: ['', [Validators.required, Validators.pattern('[A-ZŹĄĘÓŁŻ]{1}+[a-z,ąęółńćźż]{2,}')]],
             email: ['', [Validators.required, Validators.email]],
             phoneNumber: ['', [Validators.required, Validators.pattern('[1-9]{1}[0-9]{8}')]],
-            cityName: ['', Validators.required],
-            streetName: ['', Validators.required],
+            cityName: ['', [Validators.required, Validators.pattern('[A-ZŹĄĘÓŁŻ]{1}+[a-z,ąęółńćźż]{2,}')]],
+            streetName: ['', [Validators.required, Validators.pattern('[A-ZŹĄĘÓŁŻ]{1}+[a-z,ąęółńćźż]{2,}')]],
             buildNum: ['', Validators.required],
             aptNum: ['', Validators.pattern('[0-9]*')],
             zipCode: ['', [Validators.required, Validators.pattern('[0-9]{2}-[0-9]{3}')]],

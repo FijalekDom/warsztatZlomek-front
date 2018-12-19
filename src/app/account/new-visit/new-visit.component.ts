@@ -30,6 +30,7 @@ export class NewVisitComponent implements OnInit {
       this.addVisitForm = this.formBuilder.group({
           carId: ['', Validators.required],
           visitDate: ['', Validators.required],
+          visitTime: ['', Validators.required],
           isOverview: ['', Validators.required],
           });
 
@@ -53,12 +54,24 @@ export class NewVisitComponent implements OnInit {
           return;
       }
 
+      const currentDate = new Date();
       const date = new Date(this.f.visitDate.value);
+
+      if (date < currentDate) {
+          alert('Data przeglądu nie musi być późniejsza niż dzień jutrzejszy.');
+          return 0;
+      }
+
+      if (this.f.visitTime.value < '08:00' || this.f.visitTime.value > '16:00') {
+          alert('Godzina wizyty musi zawierać się w godzinach pracy warsztatu (8:00-16:00).');
+          return 0;
+      }
+
       const visit: AddVisitModel = {
           accessToken: JSON.parse(localStorage.getItem('currentUser')),
           carId: this.f.carId.value,
           visitDate: date.getDate() + '-' + (date.getMonth() + 1) + '-'
-          + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes(),
+          + date.getFullYear() + ' ' + this.f.visitTime.value,
           isOverview: this.f.isOverview.value
       };
 

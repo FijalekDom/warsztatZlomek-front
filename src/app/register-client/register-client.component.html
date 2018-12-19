@@ -10,6 +10,7 @@
                   <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
                   <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                       <div *ngIf="f.firstName.errors.required">Imię jest wymagane</div>
+                      <div *ngIf="f.firstName.errors.pattern">Imię musi się zaczynać dużą literą!!!</div>
                   </div>
               </div>
 
@@ -18,6 +19,7 @@
                   <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
                   <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                       <div *ngIf="f.lastName.errors.required">Nazwisko jest wymagane</div>
+                      <div *ngIf="f.lastName.errors.pattern">Nazwisko musi się zaczynać dużą literą!!!</div>
                   </div>
               </div>
 
@@ -44,6 +46,7 @@
                   <input type="text" formControlName="cityName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cityName.errors }" />
                   <div *ngIf="submitted && f.cityName.errors" class="invalid-feedback">
                       <div *ngIf="f.cityName.errors.required">Nazwa miasta jest wymagana</div>
+                      <div *ngIf="f.cityName.errors.pattern">Nazwa miasta musi się zaczynać dużą literą!!!</div>
                   </div>
               </div>
 
@@ -52,6 +55,7 @@
                   <input type="text" formControlName="streetName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.streetName.errors }" />
                   <div *ngIf="submitted && f.streetName.errors" class="invalid-feedback">
                       <div *ngIf="f.streetName.errors.required">Ulica jest wymagana</div>
+                      <div *ngIf="f.streetName.errors.pattern">Ulica musi się zaczynać dużą literą!!!</div>
                   </div>
               </div>
 

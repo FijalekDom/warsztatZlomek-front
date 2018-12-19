@@ -135,7 +135,6 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
       price: this.g.servicePrice.value,
       count: this.g.serviceCount.value,
     };
-
     this.services.push(service);
   }
 
@@ -199,6 +198,7 @@ export class EmployeeGetNotFinishedVisitsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+            console.log('poszlo');
           this.ngOnInit();
         },
         error => {

@@ -23,6 +23,7 @@ export class EmployeeAddVisitComponent implements OnInit {
 
         this.addVisitForm = this.formBuilder.group({
             visitDate: ['', Validators.required],
+            visitTime: ['', Validators.required],
             isOverview: ['', Validators.required],
         });
     }
@@ -40,7 +41,7 @@ export class EmployeeAddVisitComponent implements OnInit {
             accessToken: this.connection.getAccessToken(),
             carId: 0,
             visitDate: date.getDate() + '-' + (date.getMonth() + 1) + '-'
-            + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes(),
+            + date.getFullYear() + ' ' + this.f.visitTime.value,
             isOverview: this.f.isOverview.value
         };
 

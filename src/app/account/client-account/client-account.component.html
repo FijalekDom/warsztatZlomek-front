@@ -6,7 +6,7 @@
 
           <ng-container *ngIf="formDisable == false">
             <h1>Twoje dane:</h1>
-            <div class="col-md-4" style="margin-left: 15%; font-family: Calibri; font-size: larger">
+            <div class="col-md-6" style="margin-left: auto; margin-right: auto; font-family: Calibri; font-size: larger">
               <p>Imię: {{userData.firstName}}</p>
               <p>Nazwisko: {{userData.lastName}}</p>
               <p>E-mail: {{userData.email}}</p>
@@ -16,7 +16,8 @@
               <p *ngIf="userData.aptNum != null">Numer mieszkania: {{userData.aptNum}}</p>
               <p>Kod pocztowy: {{userData.zipCode}}</p>
               <p>Numer telefonu: {{userData.phoneNumber}}</p>
-              <button (click)="showForm()" class="btn btn-primary">Edytuj</button>
+              <button (click)="showForm()" class="btn btn-primary">Edytuj dane</button>
+              <button (click)="deleteAccount()" style="float: right" class="btn btn-primary">Usuń konto</button>
             </div>
           </ng-container>
 
@@ -109,7 +110,6 @@
               </div>
             </form>
           </ng-container>
-          <button (click)="deleteAccount()" class="btn btn-primary">Usuń konto</button>
         </div>
       </div>
     </div>

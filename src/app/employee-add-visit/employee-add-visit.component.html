@@ -4,30 +4,39 @@
       <div class="col-md-12 backgroundClear">
         <div  id="site-background">
           <h1>Nowa wizyta</h1>
-          <form [formGroup]="addVisitForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-              <label >Data (podaj datę w formacie DD-MM-RRRR)</label>
-              <input type="datetime-local" formControlName="visitDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.visitDate.errors }" />
-              <div *ngIf="submitted && f.visitDate.errors" class="invalid-feedback">
-                <div *ngIf="f.visitDate.errors.required">Data jest wymagana</div>
+          <div class="col-md-5" style="margin-left: auto; margin-right: auto;">
+            <form [formGroup]="addVisitForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label >Data (podaj datę w formacie DD-MM-RRRR)</label>
+                <input type="date" formControlName="visitDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.visitDate.errors }" />
+                <div *ngIf="submitted && f.visitDate.errors" class="invalid-feedback">
+                  <div *ngIf="f.visitDate.errors.required">Data jest wymagana</div>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label >Rodzaj wizyty:</label>
-              <select formControlName="isOverview" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.isOverview.errors }">
-                <option [ngValue]="true">Przegląd techniczny</option>
-                <option [ngValue]="false">Inna</option>
-              </select>
-              <div *ngIf="submitted && f.isOverview.errors" class="invalid-feedback">
-                <div *ngIf="f.isOverview.errors.required">Wybór rodzaju wizyty jest wymagany</div>
+              <div class="form-group">
+                <label >Data (podaj godzinę w formacie HH:MM)</label>
+                <input type="time" formControlName="visitTime" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.visitTime.errors }" />
+                <div *ngIf="submitted && f.visitTime.errors" class="invalid-feedback">
+                  <div *ngIf="f.visitTime.errors.required">Godzina jest wymagana</div>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <button [disabled]="loading" class="btn btn-primary">Dodaj</button>
-              <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            </div>
-          </form>
-        </div>
+              <div class="form-group">
+                <label >Rodzaj wizyty:</label>
+                <select formControlName="isOverview" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.isOverview.errors }">
+                  <option [ngValue]="true">Przegląd techniczny</option>
+                  <option [ngValue]="false">Inna</option>
+                </select>
+                <div *ngIf="submitted && f.isOverview.errors" class="invalid-feedback">
+                  <div *ngIf="f.isOverview.errors.required">Wybór rodzaju wizyty jest wymagany</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">Dodaj</button>
+                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+              </div>
+            </form>
+          </div>
+          </div>
       </div>
     </div>
   </div>
